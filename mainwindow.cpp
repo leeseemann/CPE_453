@@ -19,7 +19,7 @@ MainWindow::MainWindow(QWidget *parent) :
 
     customLayout(ids, ids, ids);
 
-   //TEST DATA
+  /* //TEST DATA
     TrackSegments *seg1 = new TrackSegments();
     seg1->setTrackSegmentNumber("Segment 1");
     seg1->setComponentID(35);
@@ -78,7 +78,7 @@ MainWindow::MainWindow(QWidget *parent) :
 
     ui->treeWidget->insertTopLevelItem(2,locomotive );
 
-   // tracksegment->addChild(track.tracks.at(0));
+   // tracksegment->addChild(track.tracks.at(0));*/
 
 }
 
@@ -103,24 +103,43 @@ void MainWindow::createTopLevelItems()
 // this function populates three QLists that are then used to populate the TreeWidget
 void MainWindow::customLayout(QVector<int>&track_ids, QVector<int>&switch_ids, QVector<int>&locomotive_ids)
 {
+    QString segment_label;
+    QString segment_number;
+    QString switch_label;
+    QString switch_number;
+    QString locomotive_label;
+    QString locomotive_number;
+    track_status = new QLabel ("Track Entry Successful. ");
+    switch_status = new QLabel ("Switch Entry Successful. ");
+    locomotive_status = new QLabel ("Locomotive Entry Successful. ");
+
+    if(track_ids.size() == 0)
+    {
+        track_status->setText("ERROR: Invalid Number of Track Segments ");
+    }
+
     for(int i = 0; i < track_ids.size(); i++)
     {
         new_track = new TrackSegments;
-        QString segment = "Segment ";
-        QString segment_number = QString::number(i+1);
-        segment.append(segment_number);
-        new_track->setTrackSegmentNumber(segment);
+        segment_label = "Segment ";
+        segment_number = QString::number(i+1);
+        segment_label.append(segment_number);
+        new_track->setTrackSegmentNumber(segment_label);
         new_track->setComponentID(track_ids.at(i));
         new_track->setStatus("Inactive");
 
         tracks.insert(i,new_track);
     }
 
+    if(switch_ids.size() == 0)
+    {
+        switch_status->setText("WARNING: No Switches Included in Track Layout ");
+    }
     for(int i = 0; i < switch_ids.size(); i++)
     {
         new_switch = new TrackSwitches;
-        QString switch_label = "Switch ";
-        QString switch_number = QString::number(i+1);
+        switch_label = "Switch ";
+        switch_number = QString::number(i+1);
         switch_label.append(switch_number);
         new_switch->setTrackSwitchNumber(switch_label);
         new_switch->setComponentID(switch_ids.at(i));
@@ -129,11 +148,15 @@ void MainWindow::customLayout(QVector<int>&track_ids, QVector<int>&switch_ids, Q
         switches.insert(i,new_switch);
     }
 
+    if(locomotive_ids.size() == 0)
+    {
+        locomotive_status->setText("WARNING: No Locomotives Included in Track Layout ");
+    }
     for(int i = 0; i < locomotive_ids.size(); i++)
     {
         new_locomotive = new Locomotives;
-        QString locomotive_label = "Locomotive ";
-        QString locomotive_number = QString::number(i+1);
+        locomotive_label = "Locomotive ";
+        locomotive_number = QString::number(i+1);
         locomotive_label.append(locomotive_number);
         new_locomotive->setLocomotiveNumber(locomotive_label);
         new_locomotive->setComponentID(locomotive_ids.at(i));
@@ -141,6 +164,9 @@ void MainWindow::customLayout(QVector<int>&track_ids, QVector<int>&switch_ids, Q
 
         locomotives.insert(i,new_locomotive);
     }
+    statusBar()->addWidget(track_status);
+    statusBar()->addWidget(switch_status);
+    statusBar()->addWidget(locomotive_status);
     addChildren(tracks, switches, locomotives);
 }
 

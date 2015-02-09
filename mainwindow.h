@@ -4,6 +4,7 @@
 #include <QMainWindow>
 #include <QTreeWidgetItem>
 #include "trainDisplayInfo.h"
+#include <QLabel>
 
 namespace Ui {
 class MainWindow;
@@ -31,6 +32,9 @@ private:
     TrackSegments* new_track;
     TrackSwitches* new_switch;
     Locomotives* new_locomotive;
+    QLabel* track_status;
+    QLabel* switch_status;
+    QLabel* locomotive_status;
 
     void createTopLevelItems();
     void addChildren(QList<TrackSegments*>, QList<TrackSwitches*>, QList<Locomotives*>);
