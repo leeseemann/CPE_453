@@ -19,7 +19,7 @@ MainWindow::MainWindow(QWidget *parent) :
 
     customLayout(ids, ids, ids);
 
-   /* //TEST DATA
+   //TEST DATA
     TrackSegments *seg1 = new TrackSegments();
     seg1->setTrackSegmentNumber("Segment 1");
     seg1->setComponentID(35);
@@ -28,7 +28,7 @@ MainWindow::MainWindow(QWidget *parent) :
     TrackSegments *seg2 = new TrackSegments();
     seg2->setTrackSegmentNumber("Segment 2");
     seg2->setComponentID(36);
-    seg2->setStatus("Occupied");
+    seg2->setStatus("Lauren");
 
     TrackSegments *seg3 = new TrackSegments();
     seg3->setTrackSegmentNumber("Segment 3");
@@ -43,7 +43,7 @@ MainWindow::MainWindow(QWidget *parent) :
     TrackSwitches *switch2 = new TrackSwitches();
     switch2->setTrackSwitchNumber("Switch 2");
     switch2->setComponentID(22);
-    switch2->setStatus("Through");
+    switch2->setStatus("Dog");
 
     Locomotives *loco1 = new Locomotives();
     loco1->setLocomotiveNumber("Locomotive 1");
@@ -76,7 +76,7 @@ MainWindow::MainWindow(QWidget *parent) :
     locomotive->addChild(loco1);
       locomotive->addChild(loco2);
 
-    ui->treeWidget->insertTopLevelItem(2,locomotive );*/
+    ui->treeWidget->insertTopLevelItem(2,locomotive );
 
    // tracksegment->addChild(track.tracks.at(0));
 
@@ -101,7 +101,7 @@ void MainWindow::createTopLevelItems()
 }
 
 // this function populates three QLists that are then used to populate the TreeWidget
-void MainWindow::customLayout(QVector<int>track_ids, QVector<int>switch_ids, QVector<int>locomotive_ids)
+void MainWindow::customLayout(QVector<int>&track_ids, QVector<int>&switch_ids, QVector<int>&locomotive_ids)
 {
     for(int i = 0; i < track_ids.size(); i++)
     {

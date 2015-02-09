@@ -20,7 +20,7 @@ public:
     QList<TrackSegments*> tracks;
     QList<TrackSwitches*> switches;
     QList<Locomotives*> locomotives;
-    void customLayout(QVector<int>, QVector<int>, QVector<int>);
+    void customLayout(QVector<int>&, QVector<int>&, QVector<int>&);
 
 private:
     Ui::MainWindow *ui;

@@ -20,12 +20,14 @@ void TrackSegments::setComponentID(int compID){
 }
 
 void TrackSegments::setStatus(QString status){
-    setText(2, status);
+
 
 
     //SET STATUS COLORS FOR TrackSegments************
     if(status=="Active")
     {
+        setText(2, status);
+
         QColor color;
         color.setGreen(255);
         setBackgroundColor(2, color);
@@ -34,6 +36,8 @@ void TrackSegments::setStatus(QString status){
 
     else if(status=="Inactive")
     {
+        setText(2, status);
+
         QColor color;
         color.setRed(255);
         setBackgroundColor(2, color);
@@ -41,10 +45,16 @@ void TrackSegments::setStatus(QString status){
 
     else if(status=="Occupied")
     {
+        setText(2, status);
+
         QColor color;
         color.setRgb(255,255,0);
         setBackgroundColor(2, color);
     }
+
+    else
+        setText(2,"Error: Incorrect Status Input");
+
 
 }
 
@@ -53,7 +63,7 @@ TrackSwitches::TrackSwitches(){
 }
 
 //SET COLUMN ITEMS FOR TrackSwitches***************************
-void TrackSwitches::setTrackSwitchNumber(QString switchNum){
+    void TrackSwitches::setTrackSwitchNumber(QString switchNum){
     setText(0, switchNum);
 }
 
@@ -63,11 +73,13 @@ void TrackSwitches::setComponentID(int compID){
 }
 
 void TrackSwitches::setStatus(QString status){
-   setText(2, status);
+
 
    //SET STATUS COLORS FOR TrackSwitches************
    if(status=="Through")
    {
+       setText(2, status);
+
        QColor color;
        color.setGreen(255);
        setBackgroundColor(2, color);
@@ -75,10 +87,15 @@ void TrackSwitches::setStatus(QString status){
 
    else if(status=="Bypass")
    {
+       setText(2, status);
+
        QColor color;
        color.setRed(255);
        setBackgroundColor(2, color);
    }
+
+   else
+       setText(2,"Error: Incorrect Status Input");
 
 }
 
