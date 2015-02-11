@@ -33,15 +33,24 @@
         <property name="text">
          <string>Item</string>
         </property>
+        <property name="textAlignment">
+         <set>AlignHCenter|AlignVCenter|AlignCenter</set>
+        </property>
        </column>
        <column>
         <property name="text">
          <string>Component ID</string>
         </property>
+        <property name="textAlignment">
+         <set>AlignHCenter|AlignVCenter|AlignCenter</set>
+        </property>
        </column>
        <column>
         <property name="text">
          <string>Status</string>
+        </property>
+        <property name="textAlignment">
+         <set>AlignHCenter|AlignVCenter|AlignCenter</set>
         </property>
        </column>
       </widget>
@@ -58,7 +67,7 @@
      <x>0</x>
      <y>0</y>
      <width>800</width>
-     <height>22</height>
+     <height>21</height>
     </rect>
    </property>
   </widget>

@@ -89,14 +89,19 @@ void MainWindow::createTopLevelItems()
     tracksegment = new QTreeWidgetItem;
     tracksegment->setText(0, "Track Segments");
     ui->treeWidget->insertTopLevelItem(0, tracksegment);
+    ui->treeWidget->setColumnWidth(0, 130);
+
 
     trackswitch = new QTreeWidgetItem;
     trackswitch->setText(0, "Track Switches");
     ui->treeWidget->insertTopLevelItem(1, trackswitch);
+    ui->treeWidget->setColumnWidth(1, 130);
 
     locomotive = new QTreeWidgetItem;
     locomotive->setText(0,"Locomotives");
     ui->treeWidget->insertTopLevelItem(2, locomotive);
+    ui->treeWidget->setColumnWidth(2, 130);
+
 
 }
 

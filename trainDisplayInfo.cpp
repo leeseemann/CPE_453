@@ -17,6 +17,7 @@ void TrackSegments::setTrackSegmentNumber(QString segmentNum){
 void TrackSegments::setComponentID(int compID){
     QString id = QString::number(compID);
     setText(1, id);
+    setTextAlignment(1, Qt::AlignHCenter);
 }
 
 void TrackSegments::setStatus(QString status){
@@ -55,7 +56,7 @@ void TrackSegments::setStatus(QString status){
     else
         setText(2,"Error: Incorrect Status Input");
 
-
+    setTextAlignment(2, Qt::AlignHCenter);
 }
 
 TrackSwitches::TrackSwitches(){
@@ -70,6 +71,7 @@ TrackSwitches::TrackSwitches(){
 void TrackSwitches::setComponentID(int compID){
     QString id = QString::number(compID);
     setText(1, id);
+    setTextAlignment(1, Qt::AlignHCenter);
 }
 
 void TrackSwitches::setStatus(QString status){
@@ -97,6 +99,8 @@ void TrackSwitches::setStatus(QString status){
    else
        setText(2,"Error: Incorrect Status Input");
 
+   setTextAlignment(2, Qt::AlignHCenter);
+
 }
 
 
@@ -112,10 +116,12 @@ void Locomotives::setLocomotiveNumber(QString locomotiveNum){
 void Locomotives::setComponentID(int compID){
     QString id = QString::number(compID);
     setText(1, id);
+    setTextAlignment(1, Qt::AlignHCenter);
 }
 
 void Locomotives::setStatus(QString status){
      setText(2, status);
+     setTextAlignment(2, Qt::AlignHCenter);
 }
 
 
