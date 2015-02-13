@@ -3,6 +3,7 @@
 #include "trainDisplayInfo.h"
 #include "QDebug"
 
+
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
@@ -18,6 +19,8 @@ MainWindow::MainWindow(QWidget *parent) :
     ids.push_back(35);
 
     customLayout(ids, ids, ids);
+    sql_information();
+
 
   /* //TEST DATA
     TrackSegments *seg1 = new TrackSegments();
@@ -192,6 +195,93 @@ void MainWindow::addChildren(QList<TrackSegments*> tracks, QList<TrackSwitches*>
     {
         locomotive->addChild(locomotives.at(k));
     }
+}
+
+// this function prompts the user for database information
+void MainWindow::sql_information()
+{
+    QDialog* sql_info = new QDialog;
+    QGridLayout* layout = new QGridLayout;
+
+    QLabel* title = new QLabel ("SQL Database Information");
+    layout->addWidget(title);
+
+    type = new QLineEdit;
+    QLabel* type_label = new QLabel("Database Type");
+    layout->addWidget(type_label, 1, 0);
+    layout->addWidget(type, 1, 1);
+
+    host = new QLineEdit;
+    QLabel* host_label = new QLabel("Host");
+    layout->addWidget(host_label, 2, 0);
+    layout->addWidget(host, 2, 1);
+
+    port = new QLineEdit;
+    QLabel* port_label = new QLabel("Port");
+    layout->addWidget(port_label, 3,0);
+    layout->addWidget(port, 3,1);
+
+    name = new QLineEdit;
+    QLabel* name_label = new QLabel("Name");
+    layout->addWidget(name_label, 4,0);
+    layout->addWidget(name, 4, 1);
+
+    username = new QLineEdit;
+    QLabel* username_label = new QLabel("Username");
+    layout->addWidget(username_label, 5, 0);
+    layout->addWidget(username, 5, 1);
+
+    password = new QLineEdit;
+    QLabel* password_label = new QLabel("Password");
+    layout->addWidget(password_label, 6, 0);
+    layout->addWidget(password, 6, 1);
+
+    QPushButton* default_db = new QPushButton;
+    default_db->setText("Use Default Database");
+    layout->addWidget(default_db, 7, 0);
+
+    QPushButton* submit = new QPushButton;
+    submit->setText("Submit");
+    layout->addWidget(submit, 7,1);
+
+    sql_info->setLayout(layout);
+
+   connect(submit, SIGNAL(clicked()), this, SLOT(sql_submit()));
+   connect(submit, SIGNAL(clicked()), sql_info, SLOT(close()));
+   connect(default_db, SIGNAL(clicked()), this, SLOT(sql_default()));
+
+   sql_info->exec();
+}
+
+// this function stores the user's database info and passes it to sql_server
+void MainWindow::sql_submit()
+{
+    db_type = type->text();
+    db_host = host->text();
+    db_port = port->text();
+    db_name = name->text();
+    db_username = username->text();
+    db_password = password->text();
+
+    qDebug() << "type: " << db_type;
+    qDebug() << "host: " << db_host;
+    qDebug() << "port: " << db_port;
+    qDebug() << "name: " << db_name;
+    qDebug() << "username: " << db_username;
+    qDebug() << "password: " << db_password;
+
+    sql->sql_connect(db_type, db_host, db_port.toInt(), db_name, db_username, db_password);
+}
+
+// this function populates the QDialog with default data if the user chooses to use the default database
+void MainWindow::sql_default()
+{
+    type->setText("MYSQL");
+    host->setText("pavelow.eng.uah.edu");
+    port->setText(QString::number(33157));
+    name->setText("CPE453_SQL");
+    username->setText("Team_3B");
+    password->setText("ulimbese");
 }
 
 MainWindow::~MainWindow()
