@@ -23,6 +23,7 @@ public:
     QList<TrackSwitches*> switches;
     QList<Locomotives*> locomotives;
     void customLayout(QVector<int>&, QVector<int>&, QVector<int>&);
+    void createTopLevelItems();
 
 
 private:
@@ -50,9 +51,9 @@ private:
     QString db_name;
     QString db_username;
     QString db_password;
-    sqlServer* sql;
+    //sqlServer *sql;
 
-    void createTopLevelItems();
+    //void createTopLevelItems();
     void addChildren(QList<TrackSegments*>, QList<TrackSwitches*>, QList<Locomotives*>);
     void sql_information();
 

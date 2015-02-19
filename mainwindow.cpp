@@ -2,7 +2,7 @@
 #include "ui_mainwindow.h"
 #include "trainDisplayInfo.h"
 #include "QDebug"
-
+#include "sqlServer.h"
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -17,8 +17,9 @@ MainWindow::MainWindow(QWidget *parent) :
     ids.push_back(33);
     ids.push_back(34);
     ids.push_back(35);
+    qDebug() << "Drivers: " << QSqlDatabase::drivers();
 
-    customLayout(ids, ids, ids);
+   // customLayout(ids, ids, ids);
     sql_information();
 
 
@@ -270,18 +271,19 @@ void MainWindow::sql_submit()
     qDebug() << "username: " << db_username;
     qDebug() << "password: " << db_password;
 
+    sqlServer* sql;
     sql->sql_connect(db_type, db_host, db_port.toInt(), db_name, db_username, db_password);
 }
 
 // this function populates the QDialog with default data if the user chooses to use the default database
 void MainWindow::sql_default()
 {
-    type->setText("MYSQL");
-    host->setText("pavelow.eng.uah.edu");
-    port->setText(QString::number(33157));
-    name->setText("CPE453_SQL");
-    username->setText("Team_3B");
-    password->setText("ulimbese");
+    type->setText("QPSQL");
+    host->setText("chargertrains.club");
+    port->setText(QString::number(5432));
+    name->setText("tmpsql");
+    username->setText("team_3b");
+    password->setText("team_3b");
 }
 
 MainWindow::~MainWindow()
