@@ -25,7 +25,7 @@ public:
     void setComponentID(int compID);
     void setStatus(QString status);
     int getTrackSwitchNumber();
-    int getComponentID();
+    QString getComponentID();
     QString getStatus();
 
 };

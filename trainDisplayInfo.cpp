@@ -103,6 +103,16 @@ void TrackSwitches::setStatus(QString status){
 
 }
 
+QString TrackSwitches::getComponentID()
+{
+    return text(1);
+}
+
+QString TrackSwitches::getStatus()
+{
+    return text(2);
+}
+
 
 Locomotives::Locomotives(){
 

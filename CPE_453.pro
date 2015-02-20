@@ -14,12 +14,10 @@ TEMPLATE = app
 
 SOURCES += main.cpp\
         mainwindow.cpp \
-    trainDisplayInfo.cpp \
-    sqlServer.cpp
+    trainDisplayInfo.cpp
 
 HEADERS  += mainwindow.h \
-    trainDisplayInfo.h \
-    sqlServer.h
+    trainDisplayInfo.h
 
 FORMS    += \
     mainwindow.ui
