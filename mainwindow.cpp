@@ -2,6 +2,10 @@
 #include "ui_mainwindow.h"
 #include "trainDisplayInfo.h"
 #include "QDebug"
+#include <QGraphicsPixmapItem>
+#include <QGraphicsRectItem>
+#include <QBrush>
+#include <QColor>
 
 
 MainWindow::MainWindow(QWidget *parent) :
@@ -10,6 +14,10 @@ MainWindow::MainWindow(QWidget *parent) :
 {
 
     ui->setupUi(this);
+
+    /*Initialize and set the graphicsView scene to hold items*/
+    QGraphicsScene *scene = new QGraphicsScene;
+    ui->graphicsView->setScene(scene);
 
     createTopLevelItems();
 
@@ -22,8 +30,13 @@ MainWindow::MainWindow(QWidget *parent) :
     sql_information();
 
 
-  /* //TEST DATA
-    TrackSegments *seg1 = new TrackSegments();
+  //TEST DATA
+   /* TrackSegments *seg1 = new TrackSegments();
+
+    //set graphicsViewRectItem and position
+    seg1->setPos(100,100);
+    seg1->setRect(5,5,100, 100);
+
     seg1->setTrackSegmentNumber("Segment 1");
     seg1->setComponentID(35);
     seg1->setStatus("Active");
@@ -58,58 +71,58 @@ MainWindow::MainWindow(QWidget *parent) :
     loco2->setComponentID(89);
     loco2->setStatus("On Segment 37");
 
-   QTreeWidgetItem *tracksegment = new QTreeWidgetItem();
-   tracksegment->setText(0, "Track Segments");
-   tracksegment->addChild(seg1);
-     tracksegment->addChild(seg2);
-       tracksegment->addChild(seg3);
+   QTreeWidgetItem *trackSegmentParentItem = new QTreeWidgetItem();
+   trackSegmentParentItem->setText(0, "Track Segments");
+   trackSegmentParentItem->addChild(seg1);
+     trackSegmentParentItem->addChild(seg2);
+       trackSegmentParentItem->addChild(seg3);
 
-   ui->treeWidget->insertTopLevelItem(0,tracksegment);
+   ui->treeWidget->insertTopLevelItem(0,trackSegmentParentItem);
 
 
-   QTreeWidgetItem *trackswitch = new QTreeWidgetItem();
-   trackswitch->setText(0, "Track Switches");
-   trackswitch->addChild(switch1);
-    trackswitch->addChild(switch2);
+   QTreeWidgetItem *trackSwitchParentItem = new QTreeWidgetItem();
+   trackSwitchParentItem->setText(0, "Track Switches");
+   trackSwitchParentItem->addChild(switch1);
+    trackSwitchParentItem->addChild(switch2);
 
-   ui->treeWidget->insertTopLevelItem(1,trackswitch);
+   ui->treeWidget->insertTopLevelItem(1,trackSwitchParentItem);
 
-    QTreeWidgetItem *locomotive = new QTreeWidgetItem();
-    locomotive->setText(0,"Locomotives");
-    locomotive->addChild(loco1);
-      locomotive->addChild(loco2);
+    QTreeWidgetItem *locomotiveParentItem = new QTreeWidgetItem();
+    locomotiveParentItem->setText(0,"Locomotives");
+    locomotiveParentItem->addChild(loco1);
+      locomotiveParentItem->addChild(loco2);
 
-    ui->treeWidget->insertTopLevelItem(2,locomotive );
+    ui->treeWidget->insertTopLevelItem(2,locomotiveParentItem );
 
-   // tracksegment->addChild(track.tracks.at(0));*/
-
+   // trackSegmentParentItem->addChild(track.tracks.at(0));
+*/
 }
 
 
 // this function creates the three top level items in the TreeWidget
 void MainWindow::createTopLevelItems()
 {
-    tracksegment = new QTreeWidgetItem;
-    tracksegment->setText(0, "Track Segments");
-    ui->treeWidget->insertTopLevelItem(0, tracksegment);
+    trackSegmentParentItem = new QTreeWidgetItem;
+    trackSegmentParentItem->setText(0, "Track Segments");
+    ui->treeWidget->insertTopLevelItem(0, trackSegmentParentItem);
     ui->treeWidget->setColumnWidth(0, 130);
 
 
-    trackswitch = new QTreeWidgetItem;
-    trackswitch->setText(0, "Track Switches");
-    ui->treeWidget->insertTopLevelItem(1, trackswitch);
+    trackSwitchParentItem = new QTreeWidgetItem;
+    trackSwitchParentItem->setText(0, "Track Switches");
+    ui->treeWidget->insertTopLevelItem(1, trackSwitchParentItem);
     ui->treeWidget->setColumnWidth(1, 130);
 
-    locomotive = new QTreeWidgetItem;
-    locomotive->setText(0,"Locomotives");
-    ui->treeWidget->insertTopLevelItem(2, locomotive);
+    locomotiveParentItem = new QTreeWidgetItem;
+    locomotiveParentItem->setText(0,"Locomotives");
+    ui->treeWidget->insertTopLevelItem(2, locomotiveParentItem);
     ui->treeWidget->setColumnWidth(2, 130);
 
 
 }
 
 // this function populates three QLists that are then used to populate the TreeWidget
-void MainWindow::customLayout(QVector<int>&track_ids, QVector<QString>& track_status, QVector<int>& switch_ids, QVector<QString>& switch_status, QVector<int>&locomotive_ids, QVector<QString>& locomotive_status)
+void MainWindow::customLayout(QVector<int>&trackSegment_ids, QVector<QString>& trackSegmentStatus, QVector<int>& trackSwitch_ids, QVector<QString>& trackSwitchStatus, QVector<int>&locomotive_ids, QVector<QString>& locomotive_status)
 {
     QString segment_label;
     QString segment_number;
@@ -118,66 +131,89 @@ void MainWindow::customLayout(QVector<int>&track_ids, QVector<QString>& track_st
     QString locomotive_label;
     QString locomotive_number;
 
-    statusTrack = new QLabel ("Track Entry Successful. ");
-    statusSwitch = new QLabel ("Switch Entry Successful. ");
-    statusLocomotive = new QLabel ("Locomotive Entry Successful. ");
+    trackSegmentStatusLabel = new QLabel ("Track Entry Successful. ");
+    trackSwitchStatusLabel = new QLabel ("Switch Entry Successful. ");
+    locomotiveStatusLabel = new QLabel ("Locomotive Entry Successful. ");
 
-   if(track_ids.size() == 0)
+   if(trackSegment_ids.size() == 0)
     {
-        statusTrack->setText("ERROR: Invalid Number of Track Segments ");
+        trackSegmentStatusLabel->setText("ERROR: Invalid Number of Track Segments ");
     }
 
-    for(int i = 0; i < track_ids.size(); i++)
+    for(int i = 0; i < trackSegment_ids.size(); i++)
     {
-        new_track = new TrackSegments;
+        trackSegment = new TrackSegments;
+
+        //set graphicsViewRectItem and position
+        trackSegment->setRect(100,100,400, 50);
+        ui->graphicsView->scene()->addItem(trackSegment);
+
         segment_label = "Segment ";
         segment_number = QString::number(i+1);
         segment_label.append(segment_number);
-        new_track->setTrackSegmentNumber(segment_label);
-        new_track->setComponentID(track_ids.at(i));
-        new_track->setStatus(track_status.at(i));
+        trackSegment->setTrackSegmentNumber(segment_label);
+        trackSegment->setComponentID(trackSegment_ids.at(i));
+        trackSegment->setStatus(trackSegmentStatus.at(i));
 
-        tracks.insert(i,new_track);
+        tracks.insert(i,trackSegment);
     }
 
-    if(switch_ids.size() == 0)
+    if(trackSwitch_ids.size() == 0)
     {
-       statusSwitch->setText("WARNING: No Switches Included in Track Layout ");
+       trackSwitchStatusLabel->setText("WARNING: No Switches Included in Track Layout ");
     }
-    for(int i = 0; i < switch_ids.size(); i++)
+    for(int i = 0; i < trackSwitch_ids.size(); i++)
     {
 
-        new_switch = new TrackSwitches;
+        trackSwitch = new TrackSwitches;
+
+        QGraphicsRectItem *rect = new QGraphicsRectItem;
+        rect->setRect(400, 30, 40, 70);
+        QColor color;
+        color.setRed(75);
+        QBrush trackSwitchBackgroundBrush(color);
+        rect->setBrush(trackSwitchBackgroundBrush);
+        ui->graphicsView->scene()->addItem(rect);
+
+        //set graphicsViewRectItem for Track Switch Status and position
+        trackSwitch->setRect(400, 10 ,20, 20);
+        trackSwitch->setParentItem(rect);
+        ui->graphicsView->scene()->addItem(trackSwitch);
+
         switch_label = "Switch ";
         switch_number = QString::number(i+1);
         switch_label.append(switch_number);
-        new_switch->setTrackSwitchNumber(switch_label);
-        new_switch->setComponentID(switch_ids.at(i));
-        new_switch->setStatus(switch_status.at(i));
+        trackSwitch->setTrackSwitchNumber(switch_label);
+        trackSwitch->setComponentID(trackSwitch_ids.at(i));
+        trackSwitch->setStatus(trackSwitchStatus.at(i));
 
-        switches.insert(i,new_switch);
+        switches.insert(i,trackSwitch);
 
     }
 
    if(locomotive_ids.size() == 0)
     {
-        statusLocomotive->setText("WARNING: No Locomotives Included in Track Layout ");
+        locomotiveStatusLabel->setText("WARNING: No Locomotives Included in Track Layout ");
     }
     for(int i = 0; i < locomotive_ids.size(); i++)
     {
-        new_locomotive = new Locomotives;
+        locomotive = new Locomotives;
+        locomotive->setScale(0.2);
+        locomotive->setPos(20,35);
+        ui->graphicsView->scene()->addItem(locomotive);
+
         locomotive_label = "Locomotive ";
         locomotive_number = QString::number(i+1);
         locomotive_label.append(locomotive_number);
-        new_locomotive->setLocomotiveNumber(locomotive_label);
-        new_locomotive->setComponentID(locomotive_ids.at(i));
-        new_locomotive->setStatus(locomotive_status.at(i));
+        locomotive->setLocomotiveNumber(locomotive_label);
+        locomotive->setComponentID(locomotive_ids.at(i));
+        locomotive->setStatus(locomotive_status.at(i));
 
-        locomotives.insert(i,new_locomotive);
+        locomotives.insert(i,locomotive);
     }
-   statusBar()->addWidget(statusTrack);
-   statusBar()->addWidget(statusSwitch);
-   statusBar()->addWidget(statusLocomotive);
+   statusBar()->addWidget(trackSegmentStatusLabel);
+   statusBar()->addWidget(trackSwitchStatusLabel);
+   statusBar()->addWidget(locomotiveStatusLabel);
 
    addChildren(tracks, switches, locomotives);
 }
@@ -187,19 +223,20 @@ void MainWindow::addChildren(QList<TrackSegments*> tracks, QList<TrackSwitches*>
 {
     for(int i = 0; i < tracks.size(); i++)
     {
-        tracksegment->addChild(tracks.at(i));
+        trackSegmentParentItem->addChild(tracks.at(i));
     }
 
     for(int j = 0; j < switches.size(); j++)
     {
-      trackswitch->addChild(switches.at(j));
+      trackSwitchParentItem->addChild(switches.at(j));
     }
 
     for(int k = 0; k < locomotives.size(); k++)
     {
-        locomotive->addChild(locomotives.at(k));
+        locomotiveParentItem->addChild(locomotives.at(k));
     }
 }
+
 
 // this function prompts the user for database information
 void MainWindow::sql_information()
@@ -323,8 +360,8 @@ void MainWindow::sql_initialData()
 
     while(query.next())
     {
-        switch_ids.push_back(query.value(0).toInt());
-        switch_status.push_back(query.value(1).toString());
+        trackSwitch_ids.push_back(query.value(0).toInt());
+        trackSwitchStatus.push_back(query.value(1).toString());
 
        i++;
     }
@@ -341,8 +378,8 @@ void MainWindow::sql_initialData()
     int j = 0;
     while(query.next())
     {
-        train_ids.push_back(query.value(0).toInt());
-        train_status.push_back(query.value(1).toString());
+        locomotive_ids.push_back(query.value(0).toInt());
+        locomotiveStatus.push_back(query.value(1).toString());
         j++;
     }
 
@@ -358,12 +395,12 @@ void MainWindow::sql_initialData()
     int k = 0;
     while(query.next())
     {
-        track_ids.push_back(query.value(0).toInt());
-        track_status.push_back(query.value(1).toString());
+        trackSegment_ids.push_back(query.value(0).toInt());
+        trackSegmentStatus.push_back(query.value(1).toString());
         k++;
     }
 
-    customLayout(track_ids, track_status, switch_ids, switch_status, train_ids, train_status);
+    customLayout(trackSegment_ids, trackSegmentStatus, trackSwitch_ids, trackSwitchStatus, locomotive_ids, locomotiveStatus);
 
 }
 

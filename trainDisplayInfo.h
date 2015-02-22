@@ -3,8 +3,10 @@
 
 #include <QTreeWidget>
 #include <QString>
+#include <QGraphicsRectItem>
+#include <QGraphicsPixmapItem>
 
-class TrackSegments: public QTreeWidgetItem{
+class TrackSegments: public QTreeWidgetItem, public QGraphicsRectItem{
 
     public:
         TrackSegments();
@@ -17,7 +19,7 @@ class TrackSegments: public QTreeWidgetItem{
 
 };
 
-class TrackSwitches: public QTreeWidgetItem{
+class TrackSwitches: public QTreeWidgetItem, public QGraphicsRectItem{
 
 public:
     TrackSwitches();
@@ -30,7 +32,7 @@ public:
 
 };
 
-class Locomotives: public QTreeWidgetItem{
+class Locomotives: public QTreeWidgetItem, public QGraphicsPixmapItem{
 
 public:
     Locomotives();

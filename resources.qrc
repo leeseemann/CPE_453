@@ -1,0 +1,5 @@
+<RCC>
+    <qresource prefix="/">
+        <file>locoImage.png</file>
+    </qresource>
+</RCC>

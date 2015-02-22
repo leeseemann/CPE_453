@@ -33,21 +33,21 @@ public:
 private:
     Ui::MainWindow *ui;
 
-    QTreeWidgetItem *tracksegment;
-    QTreeWidgetItem *trackswitch;
-    QTreeWidgetItem *locomotive;
-    TrackSegments* new_track;
-    TrackSwitches* new_switch;
-    Locomotives* new_locomotive;
-    QVector<int> switch_ids;
-    QVector<QString> switch_status;
-    QVector<int> track_ids;
-    QVector<QString> track_status;
-    QVector<int> train_ids;
-    QVector<QString> train_status;
-    QLabel* statusTrack;
-    QLabel* statusSwitch;
-    QLabel* statusLocomotive;
+    QTreeWidgetItem *trackSegmentParentItem;
+    QTreeWidgetItem *trackSwitchParentItem;
+    QTreeWidgetItem *locomotiveParentItem;
+    TrackSegments* trackSegment;
+    TrackSwitches* trackSwitch;
+    Locomotives* locomotive;
+    QVector<int> trackSwitch_ids;
+    QVector<QString> trackSwitchStatus;
+    QVector<int> trackSegment_ids;
+    QVector<QString> trackSegmentStatus;
+    QVector<int> locomotive_ids;
+    QVector<QString> locomotiveStatus;
+    QLabel* trackSegmentStatusLabel;
+    QLabel* trackSwitchStatusLabel;
+    QLabel* locomotiveStatusLabel;
 
     QLineEdit* type;
     QLineEdit* host;
