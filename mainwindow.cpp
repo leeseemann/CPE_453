@@ -90,6 +90,11 @@ void MainWindow::customLayout(QVector<int>&trackSegment_ids, QVector<QString>& t
         trackSegment->setComponentID(trackSegment_ids.at(i));
         trackSegment->setStatus(trackSegmentStatus.at(i));
 
+        if(trackSegmentStatus.at(i) == "Occupied")
+        {
+            addOccupiedTrack(trackSegment_ids.at(i));
+        }
+
         tracks.insert(i,trackSegment);
     }
 
@@ -354,6 +359,16 @@ void MainWindow::update_trains() // update the train status, execute each time t
     // query the database and populate temp_train, compare temp_train status to train_data and update status if necessary
 }
 
+void MainWindow::addOccupiedTrack(int id)
+{
+    QString trackID = QString::number(id);
+    ui->occupiedTracksList->addItem(trackID);
+}
+
+void MainWindow::clearOccupiedTrack()
+{
+    ui->occupiedTracksList->clear();
+}
 MainWindow::~MainWindow()
 {
     delete ui;

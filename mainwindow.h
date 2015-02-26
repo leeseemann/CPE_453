@@ -62,6 +62,7 @@ private:
     QString db_username;
     QString db_password;
 
+
     void addChildren(QList<TrackSegments*>, QList<TrackSwitches*>, QList<Locomotives*>);
     void sql_information();
     void sql_connect(QString db_type, QString db_host, int db_port, QString db_name, QString db_username, QString db_password);
@@ -71,11 +72,13 @@ private:
     void update_trains();
     void customLayout(QVector<int>&, QVector<QString>&, QVector<int>&, QVector<QString>&, QVector<int>&, QVector<QString>&);
     void createTopLevelItems();
-
+    void addOccupiedTrack(int);
+    void clearOccupiedTrack();
 
 private slots:
     void sql_submit();
     void sql_default();
+
 
 
 };
