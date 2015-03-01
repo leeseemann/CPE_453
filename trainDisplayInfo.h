@@ -14,7 +14,7 @@ class TrackSegments: public QTreeWidgetItem, public QGraphicsRectItem{
         void setComponentID(int compID);
         void setStatus(QString status);
         int getTrackSegmentNumber();
-        int getComponentID();
+        QString getComponentID();
         QString getStatus();
 
 };
@@ -40,7 +40,7 @@ public:
     void setComponentID(int compID);
     void setStatus(QString status);
     int getTrackSwitchNumber();
-    int getComponentID();
+    QString getComponentID();
     QString getStatus();
 
 

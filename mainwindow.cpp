@@ -14,6 +14,12 @@ MainWindow::MainWindow(QWidget *parent) :
 {
 
     ui->setupUi(this);
+    status_update = new QTimer(this);
+    status_update->setInterval(250);
+
+    connect(status_update, SIGNAL(timeout()), this, SLOT(update_trains()));
+    connect(status_update, SIGNAL(timeout()), this, SLOT(update_switches()));
+    connect(status_update, SIGNAL(timeout()), this, SLOT(update_tracks()));
 
     /*Initialize and set the graphicsView scene to hold items*/
     QGraphicsScene *scene = new QGraphicsScene;
@@ -21,15 +27,7 @@ MainWindow::MainWindow(QWidget *parent) :
 
     createTopLevelItems();
 
-    QVector<int> ids;
-    ids.push_back(33);
-    ids.push_back(34);
-    ids.push_back(35);
-
-  //  customLayout(ids, ids, id,  ids);
     sql_information();
-
-
 
 }
 
@@ -73,6 +71,7 @@ void MainWindow::customLayout(QVector<int>&trackSegment_ids, QVector<QString>& t
    if(trackSegment_ids.size() == 0)
     {
         trackSegmentStatusLabel->setText("ERROR: Invalid Number of Track Segments ");
+        user_alert->message("Invalid Number of Track Segments");
     }
 
     for(int i = 0; i < trackSegment_ids.size(); i++)
@@ -83,6 +82,7 @@ void MainWindow::customLayout(QVector<int>&trackSegment_ids, QVector<QString>& t
         trackSegment->setRect(100,100,400, 50);
         ui->graphicsView->scene()->addItem(trackSegment);
 
+        //initialize QTreeWidget track segments
         segment_label = "Segment ";
         segment_number = QString::number(i+1);
         segment_label.append(segment_number);
@@ -101,6 +101,7 @@ void MainWindow::customLayout(QVector<int>&trackSegment_ids, QVector<QString>& t
     if(trackSwitch_ids.size() == 0)
     {
        trackSwitchStatusLabel->setText("WARNING: No Switches Included in Track Layout ");
+       user_alert->message("No Switches Included in Track Layout");
     }
     for(int i = 0; i < trackSwitch_ids.size(); i++)
     {
@@ -120,6 +121,7 @@ void MainWindow::customLayout(QVector<int>&trackSegment_ids, QVector<QString>& t
         trackSwitch->setParentItem(rect);
         ui->graphicsView->scene()->addItem(trackSwitch);
 
+        // initialize QTreeWidget switches
         switch_label = "Switch ";
         switch_number = QString::number(i+1);
         switch_label.append(switch_number);
@@ -134,7 +136,9 @@ void MainWindow::customLayout(QVector<int>&trackSegment_ids, QVector<QString>& t
    if(locomotive_ids.size() == 0)
     {
         locomotiveStatusLabel->setText("WARNING: No Locomotives Included in Track Layout ");
+        user_alert->message("No Locomotives Included in Track Layout");
     }
+
     for(int i = 0; i < locomotive_ids.size(); i++)
     {
         locomotive = new Locomotives;
@@ -142,6 +146,7 @@ void MainWindow::customLayout(QVector<int>&trackSegment_ids, QVector<QString>& t
         locomotive->setPos(20,35);
         ui->graphicsView->scene()->addItem(locomotive);
 
+        // initialize the QTreeWidget trains
         locomotive_label = "Locomotive ";
         locomotive_number = QString::number(i+1);
         locomotive_label.append(locomotive_number);
@@ -151,11 +156,15 @@ void MainWindow::customLayout(QVector<int>&trackSegment_ids, QVector<QString>& t
 
         locomotives.insert(i,locomotive);
     }
+
+   // update status bar with important information
    statusBar()->addWidget(trackSegmentStatusLabel);
    statusBar()->addWidget(trackSwitchStatusLabel);
    statusBar()->addWidget(locomotiveStatusLabel);
 
    addChildren(tracks, switches, locomotives);
+
+   status_update->start(); // start timer
 }
 
 // this function adds all the necessary data to the TreeWidget
@@ -272,13 +281,17 @@ void MainWindow::sql_connect(QString db_type, QString db_host, int db_port, QStr
     {
         qDebug() << "Database was not opened successfully";
         qDebug() << db.lastError();
+        user_alert->message("Database was not opened successfully. Program has exited.");
+        return;
     }
     else
+    {
         qDebug() << "Database was opened successfully";
+    }
 
     sql_initialData();
 
-    db.close();
+   // db.close(); // close the database connection
 
 }
 
@@ -290,11 +303,20 @@ void MainWindow::sql_initialData()
     QSqlQuery query;
 
     if(!query.prepare(q))
+    {
         qDebug() << "Query Error: " << query.lastError();
+        user_alert->message(query.lastError());
+    }
     if(!query.exec())
+    {
         qDebug() << "Query Error: " << query.lastError();
+        user_alert->message(query.lastError());
+    }
     if(!query.isActive())
+    {
         qDebug() << "Query Error: " << query.lastError();
+         user_alert->message(query.lastError());
+    }
 
     int i = 0;
 
@@ -308,11 +330,20 @@ void MainWindow::sql_initialData()
 
     q = "SELECT Train, Current FROM Trains";
     if(!query.prepare(q))
+    {
         qDebug() << "Query Error: " << query.lastError();
+         user_alert->message(query.lastError());
+    }
     if(!query.exec())
+    {
         qDebug() << "Query Error: " << query.lastError();
+         user_alert->message(query.lastError());
+    }
     if(!query.isActive())
+    {
         qDebug() << "Query Error: " << query.lastError();
+        user_alert->message(query.lastError());
+    }
 
 
     int j = 0;
@@ -326,11 +357,20 @@ void MainWindow::sql_initialData()
 
     q = "SELECT Track, Status FROM Tracks";
     if(!query.prepare(q))
+    {
         qDebug() << "Query Error: " << query.lastError();
+        user_alert->message(query.lastError());
+    }
     if(!query.exec())
+    {
         qDebug() << "Query Error: " << query.lastError();
+         user_alert->message(query.lastError());
+    }
     if(!query.isActive())
+    {
         qDebug() << "Query Error: " << query.lastError();
+        user_alert->message(query.lastError());
+    }
 
     int k = 0;
     while(query.next())
@@ -346,18 +386,110 @@ void MainWindow::sql_initialData()
 
 void MainWindow::update_tracks() // update the track status, execute each time the timer expires
 {
-    // query the database and populate temp_track, compare temp_track status to track_data and update status if necessary
+    QSqlQuery query_trackStatus;
+    QString trackStatus_update;
+    trackStatus_update = "SELECT Status FROM Tracks";
+
+    if(!query_trackStatus.prepare(trackStatus_update))
+    {
+        qDebug() << "Query Error: " << query_trackStatus.lastError();
+        user_alert->message(query_trackStatus.lastError());
+    }
+    if(!query_trackStatus.exec())
+    {
+        qDebug() << "Query Error: " << query_trackStatus.lastError();
+        user_alert->message(query_trackStatus.lastError());
+    }
+    if(!query_trackStatus.isActive())
+    {
+        qDebug() << "Query Error: " << query_trackStatus.lastError();
+        user_alert->message(query_trackStatus.lastError());
+    }
+
+
+    while(query_trackStatus.next())
+        temp_track.push_back(query_trackStatus.value(0).toString());
+
+    for(int k = 0; k < temp_track.length(); k++)
+    {
+        if(temp_track.at(k) != tracks.at(k)->getStatus())
+            tracks.at(k)->setStatus(temp_track.at(k));
+    }
+    temp_track.clear();
+
 }
 
 void MainWindow::update_switches() // update the switch status, execute each time the timer expires
 {
-    // query the database and populate temp_switch, compare temp_switch status to switch_data and update status if necessary
+    QSqlQuery query_switchStatus;
+    QString switchStatus_update;
+    switchStatus_update = "SELECT Position FROM Switches";
+
+    if(!query_switchStatus.prepare(switchStatus_update))
+    {
+        qDebug() << "Query Error: " << query_switchStatus.lastError();
+        user_alert->message(query_switchStatus.lastError());
+    }
+    if(!query_switchStatus.exec())
+    {
+        qDebug() << "Query Error: " << query_switchStatus.lastError();
+        user_alert->message(query_switchStatus.lastError());
+    }
+
+    if(!query_switchStatus.isActive())
+    {
+        qDebug() << "Query Error: " << query_switchStatus.lastError();
+        user_alert->message(query_switchStatus.lastError());
+    }
+
+
+    while(query_switchStatus.next())
+        temp_switch.push_back(query_switchStatus.value(0).toString());
+
+    for(int k = 0; k < temp_switch.length(); k++)
+    {
+        if(temp_switch.at(k) != switches.at(k)->getStatus())
+            switches.at(k)->setStatus(temp_switch.at(k));
+    }
+
+    temp_switch.clear();
 }
 
 void MainWindow::update_trains() // update the train status, execute each time the timer expires
 {
-    // query the database and populate temp_train, compare temp_train status to train_data and update status if necessary
+    QSqlQuery query_trainStatus;
+    QString trainStatus_update;
+    trainStatus_update = "SELECT Current FROM Trains";
+
+    if(!query_trainStatus.prepare(trainStatus_update))
+    {
+        qDebug() << "Query Error: " << query_trainStatus.lastError();
+        user_alert->message(query_trainStatus.lastError());
+    }
+    if(!query_trainStatus.exec())
+    {
+        qDebug() << "Query Error: " << query_trainStatus.lastError();
+        user_alert->message(query_trainStatus.lastError());
+    }
+    if(!query_trainStatus.isActive())
+    {
+        qDebug() << "Query Error: " << query_trainStatus.lastError();
+        user_alert->message(query_trainStatus.lastError());
+    }
+
+    while(query_trainStatus.next())
+        temp_train.push_back(query_trainStatus.value(0).toString());
+
+    for(int k = 0; k < temp_train.length(); k++)
+    {
+        if(temp_train.at(k) != locomotives.at(k)->getStatus())
+            locomotives.at(k)->setStatus(temp_train.at(k));
+    }
+
+    temp_train.clear();
+
 }
+
 
 void MainWindow::addOccupiedTrack(int id)
 {

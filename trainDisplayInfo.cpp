@@ -77,6 +77,15 @@ void TrackSegments::setStatus(QString status){
 
     setTextAlignment(2, Qt::AlignHCenter);
 }
+QString TrackSegments::getComponentID()
+{
+    return text(1);
+}
+
+QString TrackSegments::getStatus()
+{
+    return text(2);
+}
 
 TrackSwitches::TrackSwitches(){
 
@@ -166,6 +175,15 @@ void Locomotives::setStatus(QString status){
      setTextAlignment(2, Qt::AlignHCenter);
 
       //set QGraphicsPixmapItem
+}
+QString Locomotives::getComponentID()
+{
+    return text(1);
+}
+
+QString Locomotives::getStatus()
+{
+    return text(2);
 }
 
 
