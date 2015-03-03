@@ -281,7 +281,7 @@ void MainWindow::sql_connect(QString db_type, QString db_host, int db_port, QStr
     {
         qDebug() << "Database was not opened successfully";
         qDebug() << db.lastError();
-        user_alert->message("Database was not opened successfully. Program has exited.");
+        user_alert->message("Database was not opened successfully.");
         return;
     }
     else
@@ -416,6 +416,16 @@ void MainWindow::update_tracks() // update the track status, execute each time t
             tracks.at(k)->setStatus(temp_track.at(k));
     }
     temp_track.clear();
+
+    clearOccupiedTrack();
+
+    for(int i = 0; i < tracks.length(); i++)
+    {
+        if(tracks.at(i)->getStatus() == "Occupied")
+        {
+            addOccupiedTrack(tracks.at(i)->getComponentID().toInt());
+        }
+    }
 
 }
 
