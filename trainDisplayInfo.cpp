@@ -14,9 +14,8 @@ void TrackSegments::setTrackSegmentNumber(QString segmentNum){
     setText(0, segmentNum);
 }
 
-void TrackSegments::setComponentID(int compID){
-    QString id = QString::number(compID);
-    setText(1, id);
+void TrackSegments::setComponentID(QString compID){
+    setText(1, compID);
     setTextAlignment(1, Qt::AlignHCenter);
 }
 
@@ -25,9 +24,9 @@ void TrackSegments::setStatus(QString status){
 
 
     //SET STATUS COLORS FOR TrackSegments************
-    if(status=="Active")
+    if(status=="TRUE")
     {
-        setText(2, status);
+        setText(2, "Active");
 
         //set background color status indicator for QTreeWidgetItem
         QColor color;
@@ -43,9 +42,9 @@ void TrackSegments::setStatus(QString status){
 
     }
 
-    else if(status=="Inactive")
+    else if(status=="FALSE")
     {
-        setText(2, status);
+        setText(2, "Inactive");
 
         //set background color status indicator for QTreeWidgetItem
         QColor color;
@@ -76,6 +75,15 @@ void TrackSegments::setStatus(QString status){
         setText(2,"Error: Incorrect Status Input");
 
     setTextAlignment(2, Qt::AlignHCenter);
+}
+QString TrackSegments::getComponentID()
+{
+    return text(1);
+}
+
+QString TrackSegments::getStatus()
+{
+    return text(2);
 }
 
 TrackSwitches::TrackSwitches(){
@@ -166,6 +174,15 @@ void Locomotives::setStatus(QString status){
      setTextAlignment(2, Qt::AlignHCenter);
 
       //set QGraphicsPixmapItem
+}
+QString Locomotives::getComponentID()
+{
+    return text(1);
+}
+
+QString Locomotives::getStatus()
+{
+    return text(2);
 }
 
 
