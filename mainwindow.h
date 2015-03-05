@@ -46,7 +46,7 @@ private:
     Locomotives* locomotive;
     QVector<int> trackSwitch_ids;
     QVector<QString> trackSwitchStatus;
-    QVector<int> trackSegment_ids;
+    QVector<QString> trackSegment_ids;
     QVector<QString> trackSegmentStatus;
     QVector<int> locomotive_ids;
     QVector<QString> locomotiveStatus;
@@ -77,9 +77,9 @@ private:
     void sql_information();
     void sql_connect(QString db_type, QString db_host, int db_port, QString db_name, QString db_username, QString db_password);
     void sql_initialData();
-    void customLayout(QVector<int>&, QVector<QString>&, QVector<int>&, QVector<QString>&, QVector<int>&, QVector<QString>&);
+    void customLayout(QVector<QString>&, QVector<QString>&, QVector<int>&, QVector<QString>&, QVector<int>&, QVector<QString>&);
     void createTopLevelItems();
-    void addOccupiedTrack(int);
+    void addOccupiedTrack(QString);
     void clearOccupiedTrack();
 
 private slots:

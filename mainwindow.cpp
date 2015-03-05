@@ -55,7 +55,7 @@ void MainWindow::createTopLevelItems()
 }
 
 // this function populates three QLists that are then used to populate the TreeWidget
-void MainWindow::customLayout(QVector<int>&trackSegment_ids, QVector<QString>& trackSegmentStatus, QVector<int>& trackSwitch_ids, QVector<QString>& trackSwitchStatus, QVector<int>&locomotive_ids, QVector<QString>& locomotive_status)
+void MainWindow::customLayout(QVector<QString>&trackSegment_ids, QVector<QString>& trackSegmentStatus, QVector<int>& trackSwitch_ids, QVector<QString>& trackSwitchStatus, QVector<int>&locomotive_ids, QVector<QString>& locomotive_status)
 {
     QString segment_label;
     QString segment_number;
@@ -375,7 +375,7 @@ void MainWindow::sql_initialData()
     int k = 0;
     while(query.next())
     {
-        trackSegment_ids.push_back(query.value(0).toInt());
+        trackSegment_ids.push_back(query.value(0).toString());
         trackSegmentStatus.push_back(query.value(1).toString());
         k++;
     }
@@ -417,13 +417,43 @@ void MainWindow::update_tracks() // update the track status, execute each time t
     }
     temp_track.clear();
 
+    trackStatus_update = "SELECT Segment, Occupied FROM Occupancy";
+    if(!query_trackStatus.prepare(trackStatus_update))
+    {
+        qDebug() << "Query Error: " << query_trackStatus.lastError();
+        user_alert->message(query_trackStatus.lastError());
+    }
+    if(!query_trackStatus.exec())
+    {
+        qDebug() << "Query Error: " << query_trackStatus.lastError();
+        user_alert->message(query_trackStatus.lastError());
+    }
+    if(!query_trackStatus.isActive())
+    {
+        qDebug() << "Query Error: " << query_trackStatus.lastError();
+        user_alert->message(query_trackStatus.lastError());
+    }
+
+
+    while(query_trackStatus.next())
+    {
+        if(query_trackStatus.value(1).toString() == "TRUE")
+        {
+            for(int j = 0; j < tracks.length(); j++)
+            {
+                if(tracks.at(j)->getComponentID() == query_trackStatus.value(0).toString())
+                    tracks.at(j)->setStatus("Occupied");
+            }
+        }
+    }
+
     clearOccupiedTrack();
 
     for(int i = 0; i < tracks.length(); i++)
     {
         if(tracks.at(i)->getStatus() == "Occupied")
         {
-            addOccupiedTrack(tracks.at(i)->getComponentID().toInt());
+            addOccupiedTrack(tracks.at(i)->getComponentID());
         }
     }
 
@@ -501,10 +531,9 @@ void MainWindow::update_trains() // update the train status, execute each time t
 }
 
 
-void MainWindow::addOccupiedTrack(int id)
+void MainWindow::addOccupiedTrack(QString id)
 {
-    QString trackID = QString::number(id);
-    ui->occupiedTracksList->addItem(trackID);
+    ui->occupiedTracksList->addItem(id);
 }
 
 void MainWindow::clearOccupiedTrack()
