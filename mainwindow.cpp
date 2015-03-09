@@ -394,8 +394,8 @@ void MainWindow::sql_initialData()
     //Generate the message and close everything.
     if(badDB == true)
     {
-        user_alert->message("The database is bad and it should feel bad.\n Closing the application!");
-        printErrors();
+        user_alert->message("The database is bad and it should feel bad.\n Closing the application!",errorStack);
+        printErrors();  //pring errors to debug too
         exit(1);
     }
 
