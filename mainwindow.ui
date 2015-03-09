@@ -16,37 +16,84 @@
   <widget class="QWidget" name="centralwidget">
    <layout class="QGridLayout" name="gridLayout">
     <item row="0" column="0">
-     <layout class="QHBoxLayout" name="horizontalLayout_2">
+     <layout class="QHBoxLayout" name="horizontalLayout_3">
       <item>
-       <layout class="QVBoxLayout" name="verticalLayout" stretch="0,0,0,0,0">
+       <layout class="QVBoxLayout" name="verticalLayout">
         <property name="spacing">
          <number>6</number>
         </property>
         <property name="sizeConstraint">
-         <enum>QLayout::SetNoConstraint</enum>
-        </property>
-        <property name="rightMargin">
-         <number>0</number>
+         <enum>QLayout::SetMaximumSize</enum>
         </property>
         <item>
-         <widget class="QLabel" name="occupiedTracksLabel">
-          <property name="text">
-           <string>Occupied Tracks</string>
-          </property>
-         </widget>
+         <layout class="QHBoxLayout" name="horizontalLayout">
+          <item>
+           <widget class="QLabel" name="lblOccupiedTracks">
+            <property name="text">
+             <string>Occupied Tracks</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QLabel" name="lblLegend">
+            <property name="text">
+             <string>Legend</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
         </item>
         <item>
-         <layout class="QHBoxLayout" name="horizontalLayout"/>
-        </item>
-        <item>
-         <widget class="QListWidget" name="occupiedTracksList">
-          <property name="sizePolicy">
-           <sizepolicy hsizetype="Maximum" vsizetype="Expanding">
-            <horstretch>0</horstretch>
-            <verstretch>0</verstretch>
-           </sizepolicy>
-          </property>
-         </widget>
+         <layout class="QHBoxLayout" name="horizontalLayout_2">
+          <item>
+           <widget class="QListWidget" name="occupiedTracksList">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Maximum" vsizetype="Expanding">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="horizontalScrollBarPolicy">
+             <enum>Qt::ScrollBarAlwaysOff</enum>
+            </property>
+            <property name="sizeAdjustPolicy">
+             <enum>QAbstractScrollArea::AdjustToContents</enum>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QTableWidget" name="legend">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Maximum" vsizetype="Expanding">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="horizontalScrollBarPolicy">
+             <enum>Qt::ScrollBarAlwaysOff</enum>
+            </property>
+            <property name="sizeAdjustPolicy">
+             <enum>QAbstractScrollArea::AdjustToContents</enum>
+            </property>
+            <column>
+             <property name="text">
+              <string>Meaning</string>
+             </property>
+             <property name="textAlignment">
+              <set>AlignHCenter|AlignVCenter|AlignCenter</set>
+             </property>
+            </column>
+            <column>
+             <property name="text">
+              <string>Color</string>
+             </property>
+             <property name="textAlignment">
+              <set>AlignHCenter|AlignVCenter|AlignCenter</set>
+             </property>
+            </column>
+           </widget>
+          </item>
+         </layout>
         </item>
         <item>
          <widget class="Line" name="line">
@@ -57,20 +104,17 @@
         </item>
         <item>
          <widget class="QTreeWidget" name="treeWidget">
-          <property name="sizePolicy">
-           <sizepolicy hsizetype="Maximum" vsizetype="Expanding">
-            <horstretch>0</horstretch>
-            <verstretch>0</verstretch>
-           </sizepolicy>
-          </property>
           <property name="maximumSize">
            <size>
             <width>256</width>
             <height>16777215</height>
            </size>
           </property>
+          <property name="horizontalScrollBarPolicy">
+           <enum>Qt::ScrollBarAlwaysOff</enum>
+          </property>
           <property name="sizeAdjustPolicy">
-           <enum>QAbstractScrollArea::AdjustIgnored</enum>
+           <enum>QAbstractScrollArea::AdjustToContents</enum>
           </property>
           <property name="allColumnsShowFocus">
            <bool>false</bool>
@@ -124,6 +168,9 @@
     </item>
    </layout>
    <zorder></zorder>
+   <zorder>lblLegend</zorder>
+   <zorder>legend</zorder>
+   <zorder>horizontalSpacer</zorder>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">

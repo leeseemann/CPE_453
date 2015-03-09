@@ -86,7 +86,6 @@ private:
     //These are for the error stack
     void pushError(QString);
     void printErrors();
-    int stackSize;
     QVector<QString> errorStack;
 
 

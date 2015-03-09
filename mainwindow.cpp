@@ -563,7 +563,6 @@ void MainWindow::clearOccupiedTrack()
 void MainWindow::pushError(QString Err)
 {
     errorStack.push_back(Err);
-    stackSize++;
 }
 
 void MainWindow::printErrors()
@@ -571,7 +570,7 @@ void MainWindow::printErrors()
     QString temp;
     while(!errorStack.empty())
     {
-        temp = errorStack.takeLast();
+        temp = errorStack.takeFirst();
         qDebug() << temp;
     }
 }
