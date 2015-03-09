@@ -38,7 +38,11 @@ void TrackSegments::setStatus(QString status){
         QBrush trackSegmentGraphicsBrush(color);
         setBrush(trackSegmentGraphicsBrush);
 
+        for(unsigned i = 0; i < _rects.size(); ++i) {
+            _rects[i]->setBrush(trackSegmentGraphicsBrush);
 
+
+        }
 
     }
 
@@ -84,6 +88,10 @@ QString TrackSegments::getComponentID()
 QString TrackSegments::getStatus()
 {
     return text(2);
+}
+
+void TrackSegments::addRect(QGraphicsRectItem *rect) {
+    _rects.push_back(rect);
 }
 
 TrackSwitches::TrackSwitches(){

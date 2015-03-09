@@ -8,6 +8,7 @@
 #include <QColor>
 
 
+
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
@@ -74,29 +75,56 @@ void MainWindow::customLayout(QVector<QString>&trackSegment_ids, QVector<QString
         user_alert->message("Invalid Number of Track Segments");
     }
 
+
     for(int i = 0; i < trackSegment_ids.size(); i++)
     {
+
+        //trackSegment = new TrackSegments;
+
+       //********DRAWS THE TRACK
+       QSqlQuery query("SELECT Track FROM Tracks");
         trackSegment = new TrackSegments;
 
-        //set graphicsViewRectItem and position
-        trackSegment->setRect(100,100,400, 50);
-        ui->graphicsView->scene()->addItem(trackSegment);
+           while(query.next())
+           {
+              // trackSegment = new TrackSegments;
+               QString trackSegmentNum = query.value(0).toString();
 
-        //initialize QTreeWidget track segments
-        segment_label = "Segment ";
-        segment_number = QString::number(i+1);
-        segment_label.append(segment_number);
-        trackSegment->setTrackSegmentNumber(segment_label);
-        trackSegment->setComponentID(trackSegment_ids.at(i));
-        trackSegment->setStatus(trackSegmentStatus.at(i));
+               QSqlQuery query1("SELECT Vert_X FROM DS_" + (trackSegmentNum[0]) +"_" +"1");
+               QSqlQuery query2("SELECT Vert_Y FROM DS_"+ (trackSegmentNum[0]) +"_" +"1");
 
-        if(trackSegmentStatus.at(i) == "Occupied")
-        {
-            addOccupiedTrack(trackSegment_ids.at(i));
-        }
+                       while (query1.next() && query2.next())
+                       {
+                           QGraphicsRectItem* rect = new QGraphicsRectItem;
+                          int seg = query1.value(0).toInt();
+                          seg = seg*7;
+                          int seg2 = query2.value(0).toInt();
+                            seg2 = seg2*7;
 
-        tracks.insert(i,trackSegment);
-    }
+                          rect->setRect(seg,seg2,7, 7);
+                          trackSegment->addRect(rect);
+                           ui->graphicsView->scene()->addItem(rect);
+                       }
+
+           }//***********************
+
+
+            segment_label = "Segment ";
+            segment_number = QString::number(i+1);
+            segment_label.append(segment_number);
+            trackSegment->setTrackSegmentNumber(segment_label);
+            trackSegment->setComponentID(trackSegment_ids.at(i));
+            trackSegment->setStatus(trackSegmentStatus.at(i));
+
+            if(trackSegmentStatus.at(i) == "Occupied")
+            {
+                addOccupiedTrack(trackSegment_ids.at(i));
+            }
+
+            tracks.insert(i,trackSegment);
+
+
+  }
 
     if(trackSwitch_ids.size() == 0)
     {
@@ -108,7 +136,8 @@ void MainWindow::customLayout(QVector<QString>&trackSegment_ids, QVector<QString
 
         trackSwitch = new TrackSwitches;
 
-        QGraphicsRectItem *rect = new QGraphicsRectItem;
+       /* QGraphicsRectItem *rect = new QGraphicsRectItem;
+        //get position from SQL TABLE, Vert_X Vert_Y
         rect->setRect(400, 30, 40, 70);
         QColor color;
         color.setRed(75);
@@ -119,7 +148,7 @@ void MainWindow::customLayout(QVector<QString>&trackSegment_ids, QVector<QString
         //set graphicsViewRectItem for Track Switch Status and position
         trackSwitch->setRect(400, 10 ,20, 20);
         trackSwitch->setParentItem(rect);
-        ui->graphicsView->scene()->addItem(trackSwitch);
+        ui->graphicsView->scene()->addItem(trackSwitch);*/
 
         // initialize QTreeWidget switches
         switch_label = "Switch ";
@@ -142,9 +171,9 @@ void MainWindow::customLayout(QVector<QString>&trackSegment_ids, QVector<QString
     for(int i = 0; i < locomotive_ids.size(); i++)
     {
         locomotive = new Locomotives;
-        locomotive->setScale(0.2);
+        /*locomotive->setScale(0.2);
         locomotive->setPos(20,35);
-        ui->graphicsView->scene()->addItem(locomotive);
+        ui->graphicsView->scene()->addItem(locomotive);*/
 
         // initialize the QTreeWidget trains
         locomotive_label = "Locomotive ";

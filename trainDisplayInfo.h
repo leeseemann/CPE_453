@@ -6,8 +6,9 @@
 #include <QGraphicsRectItem>
 #include <QGraphicsPixmapItem>
 
-class TrackSegments: public QTreeWidgetItem, public QGraphicsRectItem{
-
+class TrackSegments: public QTreeWidgetItem, public QGraphicsRectItem {
+private:
+    QVector<QGraphicsRectItem*> _rects;
     public:
         TrackSegments();
         void setTrackSegmentNumber(QString segmentNum);
@@ -16,6 +17,7 @@ class TrackSegments: public QTreeWidgetItem, public QGraphicsRectItem{
         int getTrackSegmentNumber();
         QString getComponentID();
         QString getStatus();
+        void addRect(QGraphicsRectItem* rect);
 
 };
 
