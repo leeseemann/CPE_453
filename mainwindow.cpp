@@ -28,7 +28,6 @@ MainWindow::MainWindow(QWidget *parent) :
     createTopLevelItems();
 
     sql_information();
-
 }
 
 
@@ -241,6 +240,7 @@ void MainWindow::sql_information()
    connect(default_db, SIGNAL(clicked()), this, SLOT(sql_default()));
 
    sql_info->exec();
+
 }
 
 // this function stores the user's database info and passes it to sql_server
@@ -281,8 +281,8 @@ void MainWindow::sql_connect(QString db_type, QString db_host, int db_port, QStr
     {
         qDebug() << "Database was not opened successfully";
         qDebug() << db.lastError();
-        user_alert->message("Database was not opened successfully.");
-        return;
+        user_alert->message("Database was not opened successfully.\n Closing the application!");
+        exit(2);
     }
     else
     {
@@ -301,21 +301,25 @@ void MainWindow::sql_initialData()
     // retrieve the initial status and ids from database, pass them to MainWindow::customLayout
     QString q = "SELECT Switch, Position FROM Switches";
     QSqlQuery query;
+    bool badDB = false;
 
     if(!query.prepare(q))
     {
         qDebug() << "Query Error: " << query.lastError();
-        user_alert->message(query.lastError());
+        pushError(query.lastError().text());
+        badDB = true;
     }
     if(!query.exec())
     {
         qDebug() << "Query Error: " << query.lastError();
-        user_alert->message(query.lastError());
+        pushError(query.lastError().text());
+        badDB = true;
     }
     if(!query.isActive())
     {
         qDebug() << "Query Error: " << query.lastError();
-         user_alert->message(query.lastError());
+        pushError(query.lastError().text());
+        badDB = true;
     }
 
     int i = 0;
@@ -332,17 +336,20 @@ void MainWindow::sql_initialData()
     if(!query.prepare(q))
     {
         qDebug() << "Query Error: " << query.lastError();
-         user_alert->message(query.lastError());
+        pushError(query.lastError().text());
+        badDB = true;
     }
     if(!query.exec())
     {
         qDebug() << "Query Error: " << query.lastError();
-         user_alert->message(query.lastError());
+        pushError(query.lastError().text());
+        badDB = true;
     }
     if(!query.isActive())
     {
         qDebug() << "Query Error: " << query.lastError();
-        user_alert->message(query.lastError());
+        pushError(query.lastError().text());
+        badDB = true;
     }
 
 
@@ -359,17 +366,20 @@ void MainWindow::sql_initialData()
     if(!query.prepare(q))
     {
         qDebug() << "Query Error: " << query.lastError();
-        user_alert->message(query.lastError());
+        pushError(query.lastError().text());
+        badDB = true;
     }
     if(!query.exec())
     {
         qDebug() << "Query Error: " << query.lastError();
-         user_alert->message(query.lastError());
+        pushError(query.lastError().text());
+        badDB = true;
     }
     if(!query.isActive())
     {
         qDebug() << "Query Error: " << query.lastError();
-        user_alert->message(query.lastError());
+        pushError(query.lastError().text());
+        badDB = true;
     }
 
     int k = 0;
@@ -378,6 +388,15 @@ void MainWindow::sql_initialData()
         trackSegment_ids.push_back(query.value(0).toString());
         trackSegmentStatus.push_back(query.value(1).toString());
         k++;
+    }
+
+    //If any of the querys fail then the database is not set up right.
+    //Generate the message and close everything.
+    if(badDB == true)
+    {
+        user_alert->message("The database is bad and it should feel bad.\n Closing the application!");
+        printErrors();
+        exit(1);
     }
 
     customLayout(trackSegment_ids, trackSegmentStatus, trackSwitch_ids, trackSwitchStatus, locomotive_ids, locomotiveStatus);
@@ -530,7 +549,7 @@ void MainWindow::update_trains() // update the train status, execute each time t
 
 }
 
-
+//Eric's Functions for stuff
 void MainWindow::addOccupiedTrack(QString id)
 {
     ui->occupiedTracksList->addItem(id);
@@ -540,6 +559,23 @@ void MainWindow::clearOccupiedTrack()
 {
     ui->occupiedTracksList->clear();
 }
+
+void MainWindow::pushError(QString Err)
+{
+    errorStack.push_back(Err);
+    stackSize++;
+}
+
+void MainWindow::printErrors()
+{
+    QString temp;
+    while(!errorStack.empty())
+    {
+        temp = errorStack.takeLast();
+        qDebug() << temp;
+    }
+}
+
 MainWindow::~MainWindow()
 {
     delete ui;

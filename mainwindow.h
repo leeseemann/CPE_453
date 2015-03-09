@@ -73,6 +73,7 @@ private:
     QString db_password;
 
 
+
     void addChildren(QList<TrackSegments*>, QList<TrackSwitches*>, QList<Locomotives*>);
     void sql_information();
     void sql_connect(QString db_type, QString db_host, int db_port, QString db_name, QString db_username, QString db_password);
@@ -81,6 +82,14 @@ private:
     void createTopLevelItems();
     void addOccupiedTrack(QString);
     void clearOccupiedTrack();
+
+    //These are for the error stack
+    void pushError(QString);
+    void printErrors();
+    int stackSize;
+    QVector<QString> errorStack;
+
+
 
 private slots:
     void sql_submit();

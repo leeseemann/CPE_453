@@ -1,5 +1,6 @@
 #include "userinfo.h"
 #include <QDebug>
+#include <QListWidget>
 
 userInfo::userInfo()
 {
@@ -9,6 +10,8 @@ void userInfo::message(QString alert)
 {
     QDialog user_alert;
     QVBoxLayout* layout = new QVBoxLayout;
+    //QString Err;
+    //int ErrStackSize = ErrorStack.getStackSize();
 
     QLabel* title = new QLabel("WARNING");
     title->setAlignment(Qt::AlignHCenter);
@@ -20,10 +23,21 @@ void userInfo::message(QString alert)
     message->setAlignment(Qt::AlignHCenter);
     message->setFont(QFont("Helvetica", 12));
 
+    //QListWidget* errors = new QListWidget();
+
+    //for(int iter = 0; iter < ErrStackSize; iter++)
+    //{
+    //    Err = ErrorStack.getStack();
+    //    errors->addItem();
+    //}
+
     layout->addWidget(title);
     layout->addSpacing(15);
     layout->addWidget(message);
     layout->addSpacing(25);
+    //layout->addWidget(errors);
+    //layout->addSpacing(25);
+
   //  layout->addWidget(accept);
 
     user_alert.setLayout(layout);
