@@ -75,38 +75,11 @@ void MainWindow::customLayout(QVector<QString>&trackSegment_ids, QVector<QString
     }
 
 
-    for(int i = 0; i < trackSegment_ids.size(); i++)
+
+  /* for(int i = 0; i < trackSegment_ids.size(); i++)
     {
 
-        //trackSegment = new TrackSegments;
-
-       //********DRAWS THE TRACK
-       QSqlQuery query("SELECT Track FROM Tracks");
-        trackSegment = new TrackSegments;
-
-           while(query.next())
-           {
-              // trackSegment = new TrackSegments;
-               QString trackSegmentNum = query.value(0).toString();
-
-               QSqlQuery query1("SELECT Vert_X FROM DS_" + (trackSegmentNum[0]) +"_" +"1");
-               QSqlQuery query2("SELECT Vert_Y FROM DS_"+ (trackSegmentNum[0]) +"_" +"1");
-
-                       while (query1.next() && query2.next())
-                       {
-                           QGraphicsRectItem* rect = new QGraphicsRectItem;
-                          int seg = query1.value(0).toInt();
-                          seg = seg*7;
-                          int seg2 = query2.value(0).toInt();
-                            seg2 = seg2*7;
-
-                          rect->setRect(seg,seg2,7, 7);
-                          trackSegment->addRect(rect);
-                           ui->graphicsView->scene()->addItem(rect);
-                       }
-
-           }//***********************
-
+            trackSegment = new TrackSegments;
 
             segment_label = "Segment ";
             segment_number = QString::number(i+1);
@@ -120,10 +93,59 @@ void MainWindow::customLayout(QVector<QString>&trackSegment_ids, QVector<QString
                 addOccupiedTrack(trackSegment_ids.at(i));
             }
 
-            tracks.insert(i,trackSegment);
+            tracks.insert(i,trackSegment);*/
+
+   //********DRAWS THE TRACK
+   QSqlQuery query("SELECT Track FROM Tracks");
+    //trackSegment = new TrackSegments;
+
+       //while(query.next())
+       //{
+
+        for(int i = 0; i < trackSegment_ids.size(); i++)
+        {
+             query.next();
+           trackSegment = new TrackSegments;
+
+           QString xcoordQuery ="SELECT Vert_X FROM DS_" + (trackSegment_ids[i][0])+"_"+ (trackSegment_ids[i][2]);
+           QString ycoordQuery = "SELECT Vert_Y FROM DS_"+ (trackSegment_ids[i][0])+"_"+ (trackSegment_ids[i][2]);
+           //QString trackSegmentNum = query.value(0).toString();
+           //QSqlQuery query1("SELECT Vert_X FROM DS_" + (trackSegmentNum[0]) +"_" +"1");
+           //QSqlQuery query2("SELECT Vert_Y FROM DS_"+ (trackSegmentNum[0]) +"_" +"1");
+        QSqlQuery query1(xcoordQuery);
+        QSqlQuery query2(ycoordQuery);
+                   while (query1.next() && query2.next())
+                   {
+                       QGraphicsRectItem* rect = new QGraphicsRectItem;
+                      int seg = query1.value(0).toInt();
+                      seg = seg*7;
+                      int seg2 = query2.value(0).toInt();
+                        seg2 = seg2*7;
+
+                      rect->setRect(seg,seg2,7, 7);
+                      trackSegment->addRect(rect);
+                       ui->graphicsView->scene()->addItem(rect);
+                   }
+
+                   segment_label = "Segment ";
+                   segment_number = QString::number(i+1);
+                   segment_label.append(segment_number);
+                   trackSegment->setTrackSegmentNumber(segment_label);
+                   trackSegment->setComponentID(trackSegment_ids.at(i));
+                   trackSegment->setStatus(trackSegmentStatus.at(i));
+
+                   if(trackSegmentStatus.at(i) == "Occupied")
+                   {
+                       addOccupiedTrack(trackSegment_ids.at(i));
+                   }
+
+                   tracks.insert(i,trackSegment);
+            }
 
 
-  }
+       //}//***********************
+
+
 
     if(trackSwitch_ids.size() == 0)
     {

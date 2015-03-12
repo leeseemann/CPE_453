@@ -59,6 +59,10 @@ void TrackSegments::setStatus(QString status){
         QBrush trackSegmentGraphicsBrush(color);
         setBrush(trackSegmentGraphicsBrush);
 
+        for(unsigned i = 0; i < _rects.size(); ++i) {
+            _rects[i]->setBrush(trackSegmentGraphicsBrush);
+        }
+
     }
 
     else if(status=="Occupied")
@@ -73,6 +77,10 @@ void TrackSegments::setStatus(QString status){
         //set background color status indicator for QGraphicsRectItem
         QBrush trackSegmentGraphicsBrush(color);
         setBrush(trackSegmentGraphicsBrush);
+
+        for(unsigned i = 0; i < _rects.size(); ++i) {
+            _rects[i]->setBrush(trackSegmentGraphicsBrush);
+        }
     }
 
     else
