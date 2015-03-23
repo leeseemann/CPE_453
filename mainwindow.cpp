@@ -93,6 +93,9 @@ void MainWindow::customLayout(QVector<QString>&trackSegment_ids, QVector<QString
                    while (query1.next() && query2.next())
                    {
                       QGraphicsRectItem* rect = new QGraphicsRectItem;
+                      QString tooltip = "ID: ";
+                      tooltip.append(trackSegment_ids[i]);
+                      rect->setToolTip(tooltip);
                       int xValue = query1.value(0).toInt();
                       xValue = xValue*7;
                       int yValue = query2.value(0).toInt();
@@ -100,6 +103,8 @@ void MainWindow::customLayout(QVector<QString>&trackSegment_ids, QVector<QString
                       rect->setRect(xValue, yValue, 7, 5);
                       trackSegment->addRect(rect);
                       ui->graphicsView->scene()->addItem(rect);
+
+                      qDebug() << "track id: " << trackSegment_ids[i];
                    }
 
                    segment_label = "Segment ";
