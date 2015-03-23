@@ -76,55 +76,30 @@ void MainWindow::customLayout(QVector<QString>&trackSegment_ids, QVector<QString
 
 
 
-  /* for(int i = 0; i < trackSegment_ids.size(); i++)
-    {
 
-            trackSegment = new TrackSegments;
-
-            segment_label = "Segment ";
-            segment_number = QString::number(i+1);
-            segment_label.append(segment_number);
-            trackSegment->setTrackSegmentNumber(segment_label);
-            trackSegment->setComponentID(trackSegment_ids.at(i));
-            trackSegment->setStatus(trackSegmentStatus.at(i));
-
-            if(trackSegmentStatus.at(i) == "Occupied")
-            {
-                addOccupiedTrack(trackSegment_ids.at(i));
-            }
-
-            tracks.insert(i,trackSegment);*/
-
-   //********DRAWS THE TRACK
-   QSqlQuery query("SELECT Track FROM Tracks");
-    //trackSegment = new TrackSegments;
-
-       //while(query.next())
-       //{
+   //********CREATES TRACK SEGMENTS IN QTREEWIDGET AND IN QGRAPHICSVIEW
+  // QSqlQuery query("SELECT Track FROM Tracks");
 
         for(int i = 0; i < trackSegment_ids.size(); i++)
         {
-             query.next();
+           //query.next();
            trackSegment = new TrackSegments;
 
-           QString xcoordQuery ="SELECT Vert_X FROM DS_" + (trackSegment_ids[i][0])+"_"+ (trackSegment_ids[i][2]);
-           QString ycoordQuery = "SELECT Vert_Y FROM DS_"+ (trackSegment_ids[i][0])+"_"+ (trackSegment_ids[i][2]);
-           //QString trackSegmentNum = query.value(0).toString();
-           //QSqlQuery query1("SELECT Vert_X FROM DS_" + (trackSegmentNum[0]) +"_" +"1");
-           //QSqlQuery query2("SELECT Vert_Y FROM DS_"+ (trackSegmentNum[0]) +"_" +"1");
-        QSqlQuery query1(xcoordQuery);
-        QSqlQuery query2(ycoordQuery);
+           QString xcoordQuery ="SELECT Vert_X FROM DS_" + (trackSegment_ids[i]);
+           QString ycoordQuery = "SELECT Vert_Y FROM DS_"+ (trackSegment_ids[i]);
+            QSqlQuery query1(xcoordQuery);
+            QSqlQuery query2(ycoordQuery);
+
                    while (query1.next() && query2.next())
                    {
-                       QGraphicsRectItem* rect = new QGraphicsRectItem;
-                      int seg = query1.value(0).toInt();
-                      seg = seg*7;
-                      int seg2 = query2.value(0).toInt();
-                        seg2 = seg2*7;
-
-                      rect->setRect(seg,seg2,7, 7);
+                      QGraphicsRectItem* rect = new QGraphicsRectItem;
+                      int xValue = query1.value(0).toInt();
+                      xValue = xValue*7;
+                      int yValue = query2.value(0).toInt();
+                      yValue = yValue*7;
+                      rect->setRect(xValue, yValue, 7, 5);
                       trackSegment->addRect(rect);
-                       ui->graphicsView->scene()->addItem(rect);
+                      ui->graphicsView->scene()->addItem(rect);
                    }
 
                    segment_label = "Segment ";
@@ -142,46 +117,59 @@ void MainWindow::customLayout(QVector<QString>&trackSegment_ids, QVector<QString
                    tracks.insert(i,trackSegment);
             }
 
-
-       //}//***********************
-
-
-
     if(trackSwitch_ids.size() == 0)
     {
        trackSwitchStatusLabel->setText("WARNING: No Switches Included in Track Layout ");
        user_alert->message("No Switches Included in Track Layout");
     }
-    for(int i = 0; i < trackSwitch_ids.size(); i++)
-    {
 
-        trackSwitch = new TrackSwitches;
+   //********CREATES TRACK SWITCHES IN QTREEWIDGET AND IN QGRAPHICSVIEW
+    int curSwitch = 0;
 
-       /* QGraphicsRectItem *rect = new QGraphicsRectItem;
-        //get position from SQL TABLE, Vert_X Vert_Y
-        rect->setRect(400, 30, 40, 70);
-        QColor color;
-        color.setRed(75);
-        QBrush trackSwitchBackgroundBrush(color);
-        rect->setBrush(trackSwitchBackgroundBrush);
-        ui->graphicsView->scene()->addItem(rect);
+      for(int j = 0; j < trackSegment_ids.size(); j++)
+      {
 
-        //set graphicsViewRectItem for Track Switch Status and position
-        trackSwitch->setRect(400, 10 ,20, 20);
-        trackSwitch->setParentItem(rect);
-        ui->graphicsView->scene()->addItem(trackSwitch);*/
+        QString xcoordQuery ="SELECT Vert_X FROM DS_" + (trackSegment_ids[j]);
+        QString ycoordQuery = "SELECT Vert_Y FROM DS_"+ (trackSegment_ids[j]);
+        QString dirQuery = "SELECT DIR FROM DS_"+ (trackSegment_ids[j]);
 
-        // initialize QTreeWidget switches
-        switch_label = "Switch ";
-        switch_number = QString::number(i+1);
-        switch_label.append(switch_number);
-        trackSwitch->setTrackSwitchNumber(switch_label);
-        trackSwitch->setComponentID(trackSwitch_ids.at(i));
-        trackSwitch->setStatus(trackSwitchStatus.at(i));
+        QSqlQuery query1(xcoordQuery);
+        QSqlQuery query2(ycoordQuery);
+        QSqlQuery query3(dirQuery);
 
-        switches.insert(i,trackSwitch);
+              while (query1.next() && query2.next() && query3.next() )
+              {
+                QString switchCoord=query3.value(0).toString();
+                query3.next();
+                QString switchCoordNext=query3.value(0).toString();
+                int switchX=query1.value(0).toInt();
+                int switchY=query2.value(0).toInt();
 
-    }
+                    if(switchCoord=="A" && switchCoordNext=="B")
+                    {
+                      switchX = switchX*7;
+                      switchY = switchY*7;
+
+                      trackSwitch = new TrackSwitches;
+                      trackSwitch->setRect(switchX, switchY, 7, 12);
+                      ui->graphicsView->scene()->addItem(trackSwitch);
+
+                      // initialize QTreeWidget switches
+
+                      switch_label = "Switch ";
+                      switch_number = QString::number(curSwitch+1);
+                      switch_label.append(switch_number);
+                      trackSwitch->setTrackSwitchNumber(switch_label);
+                      trackSwitch->setComponentID(trackSwitch_ids.at(curSwitch));
+                      trackSwitch->setStatus(trackSwitchStatus.at(curSwitch));
+
+                      switches.insert(curSwitch,trackSwitch);
+                      ++curSwitch;
+                    }
+                    query3.previous();
+              }
+        }
+
 
    if(locomotive_ids.size() == 0)
     {
@@ -189,12 +177,10 @@ void MainWindow::customLayout(QVector<QString>&trackSegment_ids, QVector<QString
         user_alert->message("No Locomotives Included in Track Layout");
     }
 
+   //ADD LOCOMOTIVE GRAPHICS ITEM*************************************
     for(int i = 0; i < locomotive_ids.size(); i++)
     {
-        locomotive = new Locomotives;
-        /*locomotive->setScale(0.2);
-        locomotive->setPos(20,35);
-        ui->graphicsView->scene()->addItem(locomotive);*/
+       locomotive = new Locomotives;
 
         // initialize the QTreeWidget trains
         locomotive_label = "Locomotive ";

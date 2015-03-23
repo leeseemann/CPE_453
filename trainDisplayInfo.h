@@ -34,7 +34,7 @@ public:
 
 };
 
-class Locomotives: public QTreeWidgetItem, public QGraphicsPixmapItem{
+class Locomotives: public QTreeWidgetItem, public QGraphicsRectItem{
 
 public:
     Locomotives();
