@@ -14,6 +14,8 @@ class userInfo
 {
 public:
     userInfo();
+
+    // overloaded functions for displaying a message to the user
     void message(QString);
     void message(QSqlError);
     void message(QString,QVector<QString>);

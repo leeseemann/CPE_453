@@ -17,8 +17,6 @@ void userInfo::message(QString alert)
     title->setAlignment(Qt::AlignHCenter);
     title->setFont(QFont("Helvetica", 16, QFont::Bold));
 
-   // QPushButton* accept = new QPushButton("Continue");
-
     QLabel* message = new QLabel(alert);
     message->setAlignment(Qt::AlignHCenter);
     message->setFont(QFont("Helvetica", 12));
