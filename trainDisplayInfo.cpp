@@ -24,7 +24,7 @@ void TrackSegments::setStatus(QString status){
 
 
     //SET STATUS COLORS FOR TrackSegments************
-    if(status=="TRUE")
+    if(status=="1")
     {
         setText(2, "Active"); // set track segment status
 
@@ -44,7 +44,7 @@ void TrackSegments::setStatus(QString status){
 
     }
 
-     else if( status=="FALSE")
+     else if( status=="0")
     {
         setText(2, "Inactive"); // set track segment status
 
