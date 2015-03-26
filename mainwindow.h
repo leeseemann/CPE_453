@@ -84,6 +84,9 @@ private:
     QString db_username;
     QString db_password;
 
+    QSqlDatabase team3b;
+    QSqlDatabase team4b;
+
 
     // functions
     void addChildren(QList<TrackSegments*>, QList<TrackSwitches*>, QList<Locomotives*>);

@@ -93,10 +93,10 @@ void MainWindow::customLayout(QVector<QString>&trackSegment_ids, QVector<QString
            trackSegment = new TrackSegments;
 
            // create the necessary queries
-           QString xcoordQuery ="SELECT Vert_X FROM DS_" + (trackSegment_ids[i]);
-           QString ycoordQuery = "SELECT Vert_Y FROM DS_"+ (trackSegment_ids[i]);
-           QSqlQuery query1(xcoordQuery);
-           QSqlQuery query2(ycoordQuery);
+           QString xcoordQuery ="SELECT x FROM DS_" + (trackSegment_ids[i]);
+           QString ycoordQuery = "SELECT y FROM DS_"+ (trackSegment_ids[i]);
+           QSqlQuery query1(xcoordQuery, team4b);
+           QSqlQuery query2(ycoordQuery, team4b);
 
                     // while there is coordinate data available, retrieve it
                    while (query1.next() && query2.next())
@@ -128,15 +128,28 @@ void MainWindow::customLayout(QVector<QString>&trackSegment_ids, QVector<QString
                    trackSegment->setComponentID(trackSegment_ids.at(i));
                    trackSegment->setStatus(trackSegmentStatus.at(i));
 
-                   // if the detection section is occupied, add it to the list which populates the occupied tracks box in the graphics view
-                   if(trackSegmentStatus.at(i) == "Occupied")
-                   {
-                       addOccupiedTrack(trackSegment_ids.at(i));
-                   }
-
                    tracks.insert(i,trackSegment); // add this track segment to the master list of track segments
             }
 
+        QSqlQuery query3 ("SELECT Segment, Occupied FROM Occupancy", team3b);
+
+        if(!query3.exec())
+        {
+            qDebug() << "Query Error: " << query3.lastError();
+            pushError(query3.lastError().text()); // add error to error list
+        }
+        if(!query3.isActive())
+        {
+            qDebug() << "Query Error: " << query3.lastError();
+            pushError(query3.lastError().text()); // add error to error list
+        }
+        while(query3.next())
+        {
+            if(query3.value(1) == "1") // a value of 1 indicates an occupied track
+            {
+                addOccupiedTrack(query3.value(0).toString());
+            }
+        }
     // if there are no switches found, alert the user
     if(trackSwitch_ids.size() == 0)
     {
@@ -152,13 +165,13 @@ void MainWindow::customLayout(QVector<QString>&trackSegment_ids, QVector<QString
       {
 
         // create the necessary queries
-        QString xcoordQuery ="SELECT Vert_X FROM DS_" + (trackSegment_ids[j]);
-        QString ycoordQuery = "SELECT Vert_Y FROM DS_"+ (trackSegment_ids[j]);
-        QString dirQuery = "SELECT DIR FROM DS_"+ (trackSegment_ids[j]);
+        QString xcoordQuery ="SELECT x FROM DS_" + (trackSegment_ids[j]);
+        QString ycoordQuery = "SELECT y FROM DS_"+ (trackSegment_ids[j]);
+        QString dirQuery = "SELECT Node FROM DS_"+ (trackSegment_ids[j]);
 
-        QSqlQuery query1(xcoordQuery);
-        QSqlQuery query2(ycoordQuery);
-        QSqlQuery query3(dirQuery);
+        QSqlQuery query1(xcoordQuery, team4b);
+        QSqlQuery query2(ycoordQuery, team4b);
+        QSqlQuery query3(dirQuery, team4b);
 
               while (query1.next() && query2.next() && query3.next() )
               {
@@ -179,23 +192,27 @@ void MainWindow::customLayout(QVector<QString>&trackSegment_ids, QVector<QString
                       trackSwitch->setRect(switchX, switchY, 7, 12);
                       ui->graphicsView->scene()->addItem(trackSwitch);
 
-
-                      // create the label that will be displayed in the first column of the Track Switches section in the QTreeWidget
-                      switch_label = "Switch ";
-                      switch_number = QString::number(curSwitch+1);
-                      switch_label.append(switch_number);
-                      trackSwitch->setTrackSwitchNumber(switch_label);
-
-                      // set the ID and status asssociated with this switch
-                      trackSwitch->setComponentID(trackSwitch_ids.at(curSwitch));
-                      trackSwitch->setStatus(trackSwitchStatus.at(curSwitch));
-
-                      switches.insert(curSwitch,trackSwitch);
                       ++curSwitch;
                     }
                     query3.previous();
               }
         }
+
+   for(int k = 0; k < trackSwitch_ids.length(); k++)
+   {
+       // create the label that will be displayed in the first column of the Track Switches section in the QTreeWidget
+       trackSwitch = new TrackSwitches;
+       switch_label = "Switch ";
+       switch_number = QString::number(k+1);
+       switch_label.append(switch_number);
+       trackSwitch->setTrackSwitchNumber(switch_label);
+
+       // set the ID and status asssociated with this switch
+       trackSwitch->setComponentID(trackSwitch_ids.at(k));
+       trackSwitch->setStatus(trackSwitchStatus.at(k));
+
+       switches.insert(curSwitch,trackSwitch);
+   }
 
 
    // if there are no locomotives found, alert the user
@@ -289,8 +306,36 @@ void MainWindow::sql_pavelow()
 
 void MainWindow::connect_pavelow()
 {
-    // create necessary connections to pavelow here
-    qDebug() << "Inside connect_pavelow";
+    // create connections to the individual sql databases that are needed to populate the display
+    team4b = QSqlDatabase::addDatabase("QMYSQL", "4b");
+    team4b.setHostName("pavelow.eng.uah.edu");
+    team4b.setPort(33158);
+    team4b.setDatabaseName("team4b");
+    team4b.setUserName("team3b");
+    team4b.setPassword("ulimbese");
+
+    if(!team4b.open())
+    {
+        qDebug() << "Database was not opened successfully";
+        qDebug() << team4b.lastError();
+        user_alert->message("Database was not opened successfully.\n Closing the application!");
+        exit(2);
+    }
+
+    team3b = QSqlDatabase::addDatabase("QMYSQL", "3b");
+    team3b.setHostName("pavelow.eng.uah.edu");
+    team3b.setPort(33157);
+    team3b.setDatabaseName("team3b");
+    team3b.setUserName("team3b");
+    team3b.setPassword("ulimbese");
+
+    if(!team3b.open())
+    {
+        qDebug() << "Database was not opened successfully";
+        qDebug() << team3b.lastError();
+        user_alert->message("Database was not opened successfully.\n Closing the application!");
+        exit(2);
+    }
 }
 
 // this function prompts the user for database information
@@ -418,17 +463,10 @@ void MainWindow::sql_connect(QString db_type, QString db_host, int db_port, QStr
 void MainWindow::sql_initialData()
 {
     // retrieve the initial status and ids from database, pass them to MainWindow::customLayout
-    QString q = "SELECT Switch, Position FROM Switches";
-    QSqlQuery query;
+    QSqlQuery query ("SELECT Switch, Position FROM Switches", team3b);
     bool badDB = false;
 
     // verify that the query is valid and executes properly
-    if(!query.prepare(q))
-    {
-        qDebug() << "Query Error: " << query.lastError();
-        pushError(query.lastError().text()); // add error to error list
-        badDB = true; // 'true' indicates failure
-    }
     if(!query.exec())
     {
         qDebug() << "Query Error: " << query.lastError();
@@ -452,65 +490,54 @@ void MainWindow::sql_initialData()
        i++;
     }
 
-    q = "SELECT Train, Current FROM Trains"; // retrieve train id and current location
+    QSqlQuery query2("SELECT Train, Current FROM Trains", team3b); // retrieve train id and current location
 
     // verify that the query is valid and executes properly
-    if(!query.prepare(q))
+
+    if(!query2.exec())
     {
-        qDebug() << "Query Error: " << query.lastError();
-        pushError(query.lastError().text()); // add error to error list
+        qDebug() << "Query Error: " << query2.lastError();
+        pushError(query2.lastError().text()); // add error to error list
         badDB = true; // 'true' indicates failure
     }
-    if(!query.exec())
+    if(!query2.isActive())
     {
-        qDebug() << "Query Error: " << query.lastError();
-        pushError(query.lastError().text()); // add error to error list
-        badDB = true; // 'true' indicates failure
-    }
-    if(!query.isActive())
-    {
-        qDebug() << "Query Error: " << query.lastError();
-        pushError(query.lastError().text()); // add error to error list
+        qDebug() << "Query Error: " << query2.lastError();
+        pushError(query2.lastError().text()); // add error to error list
         badDB = true; // 'true' indicates failure
     }
 
 
     int j = 0;
-    while(query.next()) // while there is data to retrieve
+    while(query2.next()) // while there is data to retrieve
     {
-        locomotive_ids.push_back(query.value(0).toInt()); // store train id
-        locomotiveStatus.push_back(query.value(1).toString()); // store the current location of the train
+        locomotive_ids.push_back(query2.value(0).toInt()); // store train id
+        locomotiveStatus.push_back(query2.value(1).toString()); // store the current location of the train
         j++;
     }
 
 
-    q = "SELECT Track, Status FROM Tracks"; // retrieve track segment ids and the current status
+    QSqlQuery query3("SELECT Track, Status FROM Tracks", team3b); // retrieve track segment ids and the current status
 
     // verify that the query is valid and executes properly
-    if(!query.prepare(q))
+    if(!query3.exec())
     {
-        qDebug() << "Query Error: " << query.lastError();
-        pushError(query.lastError().text()); // add error to error list
+        qDebug() << "Query Error: " << query3.lastError();
+        pushError(query3.lastError().text()); // add error to error list
         badDB = true; // 'true' indicates failure
     }
-    if(!query.exec())
+    if(!query3.isActive())
     {
-        qDebug() << "Query Error: " << query.lastError();
-        pushError(query.lastError().text()); // add error to error list
-        badDB = true; // 'true' indicates failure
-    }
-    if(!query.isActive())
-    {
-        qDebug() << "Query Error: " << query.lastError();
-        pushError(query.lastError().text()); // add error to error list
+        qDebug() << "Query Error: " << query3.lastError();
+        pushError(query3.lastError().text()); // add error to error list
         badDB = true; // 'true' indicates failure
     }
 
     int k = 0;
-    while(query.next()) // while there is data to retrieve
+    while(query3.next()) // while there is data to retrieve
     {
-        trackSegment_ids.push_back(query.value(0).toString()); // store track segment id
-        trackSegmentStatus.push_back(query.value(1).toString()); // store track segment's current status
+        trackSegment_ids.push_back(query3.value(0).toString()); // store track segment id
+        trackSegmentStatus.push_back(query3.value(1).toString()); // store track segment's current status
         k++;
     }
 
@@ -530,16 +557,9 @@ void MainWindow::sql_initialData()
 
 void MainWindow::update_tracks() // update the track status, execute each time the timer expires
 {
-    QSqlQuery query_trackStatus;
-    QString trackStatus_update;
-    trackStatus_update = "SELECT Status FROM Tracks";
+    QSqlQuery query_trackStatus("SELECT Status FROM Tracks", team3b);
 
     // verify query is valid and executes properly
-    if(!query_trackStatus.prepare(trackStatus_update))
-    {
-        qDebug() << "Query Error: " << query_trackStatus.lastError();
-        user_alert->message(query_trackStatus.lastError()); // alert user
-    }
     if(!query_trackStatus.exec())
     {
         qDebug() << "Query Error: " << query_trackStatus.lastError();
@@ -564,34 +584,29 @@ void MainWindow::update_tracks() // update the track status, execute each time t
     temp_track.clear(); // clear temp vector to prepare for next update
 
     // check to see which tracks are now occcupied
-    trackStatus_update = "SELECT Segment, Occupied FROM Occupancy";
+   QSqlQuery query_trackStatus2("SELECT Segment, Occupied FROM Occupancy", team3b);
 
     // verify query is valid and executes properly
-    if(!query_trackStatus.prepare(trackStatus_update))
+    if(!query_trackStatus2.exec())
     {
-        qDebug() << "Query Error: " << query_trackStatus.lastError();
-        user_alert->message(query_trackStatus.lastError()); // alert user
+        qDebug() << "Query Error: " << query_trackStatus2.lastError();
+        user_alert->message(query_trackStatus2.lastError()); // alert user
     }
-    if(!query_trackStatus.exec())
+    if(!query_trackStatus2.isActive())
     {
-        qDebug() << "Query Error: " << query_trackStatus.lastError();
-        user_alert->message(query_trackStatus.lastError()); // alert user
-    }
-    if(!query_trackStatus.isActive())
-    {
-        qDebug() << "Query Error: " << query_trackStatus.lastError();
-        user_alert->message(query_trackStatus.lastError()); // alert user
+        qDebug() << "Query Error: " << query_trackStatus2.lastError();
+        user_alert->message(query_trackStatus2.lastError()); // alert user
     }
 
 
-    while(query_trackStatus.next())
+    while(query_trackStatus2.next())
     {
         // if a track segment is occupied, update the status of that track segment
-        if(query_trackStatus.value(1).toString() == "TRUE")
+        if(query_trackStatus2.value(1).toString() == "TRUE")
         {
             for(int j = 0; j < tracks.length(); j++)
             {
-                if(tracks.at(j)->getComponentID() == query_trackStatus.value(0).toString())
+                if(tracks.at(j)->getComponentID() == query_trackStatus2.value(0).toString())
                     tracks.at(j)->setStatus("Occupied");
             }
         }
@@ -612,16 +627,9 @@ void MainWindow::update_tracks() // update the track status, execute each time t
 
 void MainWindow::update_switches() // update the switch status, execute each time the timer expires
 {
-    QSqlQuery query_switchStatus;
-    QString switchStatus_update;
-    switchStatus_update = "SELECT Position FROM Switches";
+    QSqlQuery query_switchStatus("SELECT Position FROM Switches", team3b);
 
     // verify query is valid and executes properly
-    if(!query_switchStatus.prepare(switchStatus_update))
-    {
-        qDebug() << "Query Error: " << query_switchStatus.lastError();
-        user_alert->message(query_switchStatus.lastError()); // alert user
-    }
     if(!query_switchStatus.exec())
     {
         qDebug() << "Query Error: " << query_switchStatus.lastError();
@@ -650,16 +658,9 @@ void MainWindow::update_switches() // update the switch status, execute each tim
 
 void MainWindow::update_trains() // update the train status, execute each time the timer expires
 {
-    QSqlQuery query_trainStatus;
-    QString trainStatus_update;
-    trainStatus_update = "SELECT Current FROM Trains";
+    QSqlQuery query_trainStatus("SELECT Current FROM Trains", team3b);
 
     // verify query is valid and executes properly
-    if(!query_trainStatus.prepare(trainStatus_update))
-    {
-        qDebug() << "Query Error: " << query_trainStatus.lastError();
-        user_alert->message(query_trainStatus.lastError()); // alert user
-    }
     if(!query_trainStatus.exec())
     {
         qDebug() << "Query Error: " << query_trainStatus.lastError();
