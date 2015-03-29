@@ -93,8 +93,8 @@ void MainWindow::customLayout(QVector<QString>&trackSegment_ids, QVector<QString
            trackSegment = new TrackSegments;
 
            // create the necessary queries
-           QString xcoordQuery ="SELECT x FROM DS_" + (trackSegment_ids[i]);
-           QString ycoordQuery = "SELECT y FROM DS_"+ (trackSegment_ids[i]);
+           QString xcoordQuery ="SELECT Vert_X FROM DS_" + (trackSegment_ids[i]);
+           QString ycoordQuery = "SELECT Vert_Y FROM DS_"+ (trackSegment_ids[i]);
            QSqlQuery query1(xcoordQuery, team4b);
            QSqlQuery query2(ycoordQuery, team4b);
 
@@ -165,9 +165,9 @@ void MainWindow::customLayout(QVector<QString>&trackSegment_ids, QVector<QString
       {
 
         // create the necessary queries
-        QString xcoordQuery ="SELECT x FROM DS_" + (trackSegment_ids[j]);
-        QString ycoordQuery = "SELECT y FROM DS_"+ (trackSegment_ids[j]);
-        QString dirQuery = "SELECT Node FROM DS_"+ (trackSegment_ids[j]);
+        QString xcoordQuery ="SELECT Vert_X FROM DS_" + (trackSegment_ids[j]);
+        QString ycoordQuery = "SELECT Vert_Y FROM DS_"+ (trackSegment_ids[j]);
+        QString dirQuery = "SELECT DIR FROM DS_"+ (trackSegment_ids[j]);
 
         QSqlQuery query1(xcoordQuery, team4b);
         QSqlQuery query2(ycoordQuery, team4b);
@@ -431,19 +431,41 @@ void MainWindow::sql_default()
 void MainWindow::sql_connect(QString db_type, QString db_host, int db_port, QString db_name, QString db_username, QString db_password)
 {
     // create a QSqlDatabase and set login data
-    QSqlDatabase db = QSqlDatabase::addDatabase(db_type);
-    db.setHostName(db_host);
-    db.setPort(db_port);
-    db.setDatabaseName(db_name);
-    db.setUserName(db_username);
-    db.setPassword(db_password);
+    team3b = QSqlDatabase::addDatabase(db_type, "4b");
+    team3b.setHostName(db_host);
+    team3b.setPort(db_port);
+    team3b.setDatabaseName(db_name);
+    team3b.setUserName(db_username);
+    team3b.setPassword(db_password);
+
+    team4b = QSqlDatabase::addDatabase(db_type, "3b");
+    team4b.setHostName(db_host);
+    team4b.setPort(db_port);
+    team4b.setDatabaseName(db_name);
+    team4b.setUserName(db_username);
+    team4b.setPassword(db_password);
 
     // verify that database was opened successfully
     // if failure occurs, alert the user and exit the program
-    if(!db.open())
+    if(!team3b.open())
     {
         qDebug() << "Database was not opened successfully";
-        qDebug() << db.lastError();
+        qDebug() << team3b.lastError();
+        user_alert->message("Database was not opened successfully.\n Closing the application!");
+        exit(2);
+    }
+
+    else
+    {
+        qDebug() << "Database was opened successfully"; // if database opens successfully
+    }
+
+    // verify that database was opened successfully
+    // if failure occurs, alert the user and exit the program
+    if(!team4b.open())
+    {
+        qDebug() << "Database was not opened successfully";
+        qDebug() << team4b.lastError();
         user_alert->message("Database was not opened successfully.\n Closing the application!");
         exit(2);
     }
