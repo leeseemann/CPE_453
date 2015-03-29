@@ -26,6 +26,21 @@ MainWindow::MainWindow(QWidget *parent) :
     QGraphicsScene *scene = new QGraphicsScene;
     ui->graphicsView->setScene(scene);
 
+    /*Set the colors and sizing for the legend*/
+    QColor color;
+    color.setGreen(255);
+    ui->legend->item(0,0)->setData(Qt::BackgroundRole,color);
+
+    color.setRgb(255,0,0);
+    ui->legend->item(1,0)->setData(Qt::BackgroundRole,color);
+
+    color.setRgb(255,255,0);
+    ui->legend->item(2,0)->setData(Qt::BackgroundRole,color);
+
+    QHeaderView *verticalHeader = ui->legend->verticalHeader();
+    verticalHeader->sectionResizeMode(QHeaderView::Fixed);
+    verticalHeader->setDefaultSectionSize(25);
+
     createTopLevelItems();
 
     sql_information();
@@ -211,6 +226,10 @@ void MainWindow::addChildren(QList<TrackSegments*> tracks, QList<TrackSwitches*>
     for(int k = 0; k < locomotives.size(); k++)
     {
         locomotiveParentItem->addChild(locomotives.at(k));
+    }
+    for(int l = 0; l < 3; l++)
+    {
+    ui->treeWidget->resizeColumnToContents(l);
     }
 }
 
