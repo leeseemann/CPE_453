@@ -11,11 +11,11 @@ TrackSegments::TrackSegments(){
 
 //SET COLUMN ITEMS FOR TrackSegments***************************
 void TrackSegments::setTrackSegmentNumber(QString segmentNum){
-    setText(0, segmentNum);
+    setText(0, segmentNum); // set track segment number
 }
 
 void TrackSegments::setComponentID(QString compID){
-    setText(1, compID);
+    setText(1, compID); // set track segment id
     setTextAlignment(1, Qt::AlignHCenter);
 }
 
@@ -24,9 +24,9 @@ void TrackSegments::setStatus(QString status){
 
 
     //SET STATUS COLORS FOR TrackSegments************
-    if(status=="TRUE")
+    if(status=="1")
     {
-        setText(2, "Active");
+        setText(2, "Active"); // set track segment status
 
         //set background color status indicator for QTreeWidgetItem
         QColor color;
@@ -44,9 +44,9 @@ void TrackSegments::setStatus(QString status){
 
     }
 
-     else if( status=="FALSE")
+     else if( status=="0")
     {
-        setText(2, "Inactive");
+        setText(2, "Inactive"); // set track segment status
 
         //set background color status indicator for QTreeWidgetItem
         QColor color;
@@ -81,7 +81,7 @@ void TrackSegments::setStatus(QString status){
         }
     }
 
-    else
+    else // check for invalid status
     {
         setText(2,"Error: Incorrect Status Input");
         QColor color;
@@ -99,12 +99,12 @@ void TrackSegments::setStatus(QString status){
 }
 QString TrackSegments::getComponentID()
 {
-    return text(1);
+    return text(1); // retrieve track segment id
 }
 
 QString TrackSegments::getStatus()
 {
-    return text(2);
+    return text(2); // retrieve track segment status
 }
 
 void TrackSegments::addRect(QGraphicsRectItem *rect) {
@@ -117,12 +117,12 @@ TrackSwitches::TrackSwitches(){
 
 //SET COLUMN ITEMS FOR TrackSwitches***************************
     void TrackSwitches::setTrackSwitchNumber(QString switchNum){
-    setText(0, switchNum);
+    setText(0, switchNum); // set track switch number
 }
 
 void TrackSwitches::setComponentID(int compID){
     QString id = QString::number(compID);
-    setText(1, id);
+    setText(1, id); // set track switch id
     setTextAlignment(1, Qt::AlignHCenter);
 }
 
@@ -132,7 +132,7 @@ void TrackSwitches::setStatus(QString status){
    //SET STATUS COLORS FOR TrackSwitches************
    if(status=="Pass")
    {
-       setText(2, status);
+       setText(2, status); // set track switch status
 
        //set background color status indicator for QTreeWidgetItem
        QColor color;
@@ -149,7 +149,7 @@ void TrackSwitches::setStatus(QString status){
 
    else if(status=="Bypass")
    {
-       setText(2, status);
+       setText(2, status); // set track switch status
 
        //set background color status indicator for QTreeWidgetItem
        QColor color;
@@ -163,7 +163,7 @@ void TrackSwitches::setStatus(QString status){
 
    }
 
-   else
+   else // check for invalid status
        setText(2,"Error: Incorrect Status Input");
 
    setTextAlignment(2, Qt::AlignHCenter);
@@ -172,12 +172,12 @@ void TrackSwitches::setStatus(QString status){
 
 QString TrackSwitches::getComponentID()
 {
-    return text(1);
+    return text(1); // retrieve switch id
 }
 
 QString TrackSwitches::getStatus()
 {
-    return text(2);
+    return text(2); // retreive switch status
 }
 
 
@@ -191,29 +191,29 @@ Locomotives::Locomotives() {
 
 //SET COLUMN ITEMS FOR Locomotives***************************
 void Locomotives::setLocomotiveNumber(QString locomotiveNum){
-    setText(0, locomotiveNum);
+    setText(0, locomotiveNum); // set train number
 }
 
 void Locomotives::setComponentID(int compID){
     QString id = QString::number(compID);
-    setText(1, id);
+    setText(1, id); // set train id
     setTextAlignment(1, Qt::AlignHCenter);
 }
 
 void Locomotives::setStatus(QString status){
-     setText(2, status);
+     setText(2, status); // set train status
      setTextAlignment(2, Qt::AlignHCenter);
 
       //set QGraphicsPixmapItem
 }
 QString Locomotives::getComponentID()
 {
-    return text(1);
+    return text(1); // retrieve train id
 }
 
 QString Locomotives::getStatus()
 {
-    return text(2);
+    return text(2); // retrieve train status
 }
 
 
