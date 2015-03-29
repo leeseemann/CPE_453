@@ -40,13 +40,11 @@ void TrackSegments::setStatus(QString status){
 
         for(unsigned i = 0; i < _rects.size(); ++i) {
             _rects[i]->setBrush(trackSegmentGraphicsBrush);
-
-
         }
 
     }
 
-    else if(status=="FALSE")
+     else if( status=="FALSE")
     {
         setText(2, "Inactive");
 
@@ -58,6 +56,10 @@ void TrackSegments::setStatus(QString status){
         //set background color status indicator for QGraphicsRectItem
         QBrush trackSegmentGraphicsBrush(color);
         setBrush(trackSegmentGraphicsBrush);
+
+        for(unsigned i = 0; i < _rects.size(); ++i) {
+            _rects[i]->setBrush(trackSegmentGraphicsBrush);
+        }
 
     }
 
@@ -73,10 +75,25 @@ void TrackSegments::setStatus(QString status){
         //set background color status indicator for QGraphicsRectItem
         QBrush trackSegmentGraphicsBrush(color);
         setBrush(trackSegmentGraphicsBrush);
+
+        for(unsigned i = 0; i < _rects.size(); ++i) {
+            _rects[i]->setBrush(trackSegmentGraphicsBrush);
+        }
     }
 
     else
+    {
         setText(2,"Error: Incorrect Status Input");
+        QColor color;
+        color.setBlue(255);
+        setBackgroundColor(2, color);
+        QBrush trackSegmentGraphicsBrush(color);
+        setBrush(trackSegmentGraphicsBrush);
+
+        for(unsigned i = 0; i < _rects.size(); ++i) {
+            _rects[i]->setBrush(trackSegmentGraphicsBrush);
+        }
+    }
 
     setTextAlignment(2, Qt::AlignHCenter);
 }
@@ -113,18 +130,19 @@ void TrackSwitches::setStatus(QString status){
 
 
    //SET STATUS COLORS FOR TrackSwitches************
-   if(status=="Through")
+   if(status=="Pass")
    {
        setText(2, status);
 
        //set background color status indicator for QTreeWidgetItem
        QColor color;
-       color.setGreen(255);
+      color.setRgb(200,140,237);
        setBackgroundColor(2, color);
 
        //set background color status indicator for QGraphicsRectItem
        QBrush trackSwitchGraphicsBrush(color);
        setBrush(trackSwitchGraphicsBrush);
+
 
 
    }
@@ -135,12 +153,13 @@ void TrackSwitches::setStatus(QString status){
 
        //set background color status indicator for QTreeWidgetItem
        QColor color;
-       color.setRed(255);
+        color.setRgb(79,80,82);
        setBackgroundColor(2, color);
 
        //set background color status indicator for QGraphicsRectItem
        QBrush trackSwitchGraphicsBrush(color);
        setBrush(trackSwitchGraphicsBrush);
+
 
    }
 
@@ -162,7 +181,11 @@ QString TrackSwitches::getStatus()
 }
 
 
-Locomotives::Locomotives(): QGraphicsPixmapItem(QPixmap(":/locoImage.png")) {
+//Locomotives::Locomotives(): QGraphicsPixmapItem(QPixmap(":/locoImage.png")) {
+
+//}
+
+Locomotives::Locomotives() {
 
 }
 
