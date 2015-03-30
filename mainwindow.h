@@ -94,6 +94,7 @@ private:
     void sql_initialData();
     void customLayout(QVector<QString>&, QVector<QString>&, QVector<int>&, QVector<QString>&, QVector<int>&, QVector<QString>&);
     void createTopLevelItems();
+    void setupLegend();
     void addOccupiedTrack(QString);
     void clearOccupiedTrack();
     void sql_pavelow();

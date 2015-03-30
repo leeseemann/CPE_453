@@ -15,8 +15,8 @@
   </property>
   <widget class="QWidget" name="centralwidget">
    <layout class="QGridLayout" name="gridLayout">
-    <item row="1" column="1">
-     <widget class="QTableWidget" name="legend">
+    <item row="1" column="0">
+     <widget class="QListWidget" name="occupiedTracksList">
       <property name="sizePolicy">
        <sizepolicy hsizetype="Maximum" vsizetype="Expanding">
         <horstretch>0</horstretch>
@@ -26,11 +26,8 @@
       <property name="maximumSize">
        <size>
         <width>16777215</width>
-        <height>100</height>
+        <height>115</height>
        </size>
-      </property>
-      <property name="verticalScrollBarPolicy">
-       <enum>Qt::ScrollBarAlwaysOff</enum>
       </property>
       <property name="horizontalScrollBarPolicy">
        <enum>Qt::ScrollBarAlwaysOff</enum>
@@ -38,62 +35,6 @@
       <property name="sizeAdjustPolicy">
        <enum>QAbstractScrollArea::AdjustToContents</enum>
       </property>
-      <row>
-       <property name="text">
-        <string>Active</string>
-       </property>
-      </row>
-      <row>
-       <property name="text">
-        <string>Inactive</string>
-       </property>
-      </row>
-      <row>
-       <property name="text">
-        <string>Occupied</string>
-       </property>
-      </row>
-      <column>
-       <property name="text">
-        <string>Color</string>
-       </property>
-       <property name="textAlignment">
-        <set>AlignHCenter|AlignVCenter|AlignCenter</set>
-       </property>
-      </column>
-      <item row="0" column="0">
-       <property name="text">
-        <string/>
-       </property>
-       <property name="background">
-        <brush brushstyle="NoBrush">
-         <color alpha="255">
-          <red>0</red>
-          <green>0</green>
-          <blue>0</blue>
-         </color>
-        </brush>
-       </property>
-      </item>
-      <item row="1" column="0">
-       <property name="text">
-        <string/>
-       </property>
-      </item>
-      <item row="2" column="0">
-       <property name="text">
-        <string/>
-       </property>
-       <property name="foreground">
-        <brush brushstyle="NoBrush">
-         <color alpha="255">
-          <red>0</red>
-          <green>0</green>
-          <blue>0</blue>
-         </color>
-        </brush>
-       </property>
-      </item>
      </widget>
     </item>
     <item row="1" column="3" rowspan="3">
@@ -103,10 +44,10 @@
       </property>
      </widget>
     </item>
-    <item row="2" column="0" colspan="2">
-     <widget class="Line" name="line">
-      <property name="orientation">
-       <enum>Qt::Horizontal</enum>
+    <item row="0" column="1">
+     <widget class="QLabel" name="lblLegend">
+      <property name="text">
+       <string>Legend</string>
       </property>
      </widget>
     </item>
@@ -117,10 +58,17 @@
       </property>
      </widget>
     </item>
-    <item row="0" column="1">
-     <widget class="QLabel" name="lblLegend">
-      <property name="text">
-       <string>Legend</string>
+    <item row="2" column="0" colspan="2">
+     <widget class="Line" name="line">
+      <property name="orientation">
+       <enum>Qt::Horizontal</enum>
+      </property>
+     </widget>
+    </item>
+    <item row="1" column="2" rowspan="3">
+     <widget class="Line" name="line_2">
+      <property name="orientation">
+       <enum>Qt::Vertical</enum>
       </property>
      </widget>
     </item>
@@ -170,44 +118,82 @@
       </column>
      </widget>
     </item>
-    <item row="1" column="2" rowspan="3">
-     <widget class="Line" name="line_2">
-      <property name="orientation">
-       <enum>Qt::Vertical</enum>
-      </property>
-     </widget>
-    </item>
-    <item row="1" column="0">
-     <widget class="QListWidget" name="occupiedTracksList">
-      <property name="sizePolicy">
-       <sizepolicy hsizetype="Maximum" vsizetype="Expanding">
-        <horstretch>0</horstretch>
-        <verstretch>0</verstretch>
-       </sizepolicy>
-      </property>
+    <item row="1" column="1">
+     <widget class="QTableWidget" name="legend">
       <property name="maximumSize">
        <size>
-        <width>16777215</width>
-        <height>100</height>
+        <width>150</width>
+        <height>115</height>
        </size>
       </property>
-      <property name="horizontalScrollBarPolicy">
-       <enum>Qt::ScrollBarAlwaysOff</enum>
-      </property>
-      <property name="sizeAdjustPolicy">
-       <enum>QAbstractScrollArea::AdjustToContents</enum>
-      </property>
+      <row>
+       <property name="text">
+        <string>Active</string>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>7</pointsize>
+         <weight>75</weight>
+         <bold>true</bold>
+        </font>
+       </property>
+      </row>
+      <row>
+       <property name="text">
+        <string>Inactive</string>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>7</pointsize>
+         <weight>75</weight>
+         <bold>true</bold>
+        </font>
+       </property>
+      </row>
+      <row>
+       <property name="text">
+        <string>Occupied</string>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>7</pointsize>
+         <weight>75</weight>
+         <bold>true</bold>
+        </font>
+       </property>
+      </row>
+      <row>
+       <property name="text">
+        <string>Bypass</string>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>7</pointsize>
+         <weight>75</weight>
+         <bold>true</bold>
+        </font>
+       </property>
+      </row>
+      <row>
+       <property name="text">
+        <string>Pass</string>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>7</pointsize>
+         <weight>75</weight>
+         <bold>true</bold>
+        </font>
+       </property>
+      </row>
+      <column>
+       <property name="text">
+        <string>Color</string>
+       </property>
+      </column>
      </widget>
     </item>
    </layout>
-   <zorder>graphicsView</zorder>
-   <zorder>line</zorder>
-   <zorder>lblOccupiedTracks</zorder>
-   <zorder>lblLegend</zorder>
-   <zorder>treeWidget</zorder>
-   <zorder>line_2</zorder>
-   <zorder>legend</zorder>
-   <zorder>occupiedTracksList</zorder>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">

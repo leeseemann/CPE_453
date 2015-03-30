@@ -27,21 +27,8 @@ MainWindow::MainWindow(QWidget *parent) :
     QGraphicsScene *scene = new QGraphicsScene;
     ui->graphicsView->setScene(scene);
 
-    /*Set the colors and sizing for the legend*/
-    QColor color;
-    color.setGreen(255);
-    ui->legend->item(0,0)->setData(Qt::BackgroundRole,color);
 
-    color.setRgb(255,0,0);
-    ui->legend->item(1,0)->setData(Qt::BackgroundRole,color);
-
-    color.setRgb(255,255,0);
-    ui->legend->item(2,0)->setData(Qt::BackgroundRole,color);
-
-    QHeaderView *verticalHeader = ui->legend->verticalHeader();
-    verticalHeader->sectionResizeMode(QHeaderView::Fixed);
-    verticalHeader->setDefaultSectionSize(25);
-
+    setupLegend();  //sets up the colors in the legend
     createTopLevelItems(); // create the top level tree items (Track Segments, Track Switches, Locomotives)
 
     sql_pavelow(); // allow the user to create a custom connection or connect to pavelow
@@ -752,6 +739,38 @@ void MainWindow::printErrors()
         temp = errorStack.takeFirst();
         qDebug() << temp;
     }
+}
+
+void MainWindow::setupLegend()
+{
+    /*Set the colors and sizing for the legend*/
+    QColor color;
+    color.setGreen(255);
+    ui->legend->setItem(0,0, new QTableWidgetItem);
+    ui->legend->item(0,0)->setBackgroundColor(color);
+
+    color.setRgb(255,0,0);
+    ui->legend->setItem(1,0, new QTableWidgetItem);
+    ui->legend->item(1,0)->setData(Qt::BackgroundRole,color);
+
+    color.setRgb(255,255,0);
+    ui->legend->setItem(2,0, new QTableWidgetItem);
+    ui->legend->item(2,0)->setData(Qt::BackgroundRole,color);
+
+    color.setRgb(79,80,82);
+    ui->legend->setItem(3,0, new QTableWidgetItem);
+    ui->legend->item(3,0)->setData(Qt::BackgroundRole,color);
+
+    color.setRgb(200,140,237);
+    ui->legend->setItem(4,0, new QTableWidgetItem);
+    ui->legend->item(4,0)->setData(Qt::BackgroundRole,color);
+
+    //Set the sizing for rows
+    QHeaderView *verticalHeader = ui->legend->verticalHeader();
+    verticalHeader->sectionResizeMode(QHeaderView::Fixed);
+    verticalHeader->setDefaultSectionSize(18);
+    //Disable ability to select items
+    ui->legend->setSelectionMode(QAbstractItemView::NoSelection);
 }
 
 MainWindow::~MainWindow()
