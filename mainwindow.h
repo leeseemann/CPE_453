@@ -14,6 +14,8 @@
 #include <QSql>
 #include <QSqlError>
 #include <QTimer>
+#include <QMenu>
+#include <QMenuBar>
 #include "userinfo.h"
 
 
@@ -86,6 +88,8 @@ private:
 
     QSqlDatabase team3b;
     QSqlDatabase team4b;
+    QMenu *menu;
+    QAction *testAct;
 
 
     // functions
@@ -95,6 +99,7 @@ private:
     void customLayout(QVector<QString>&, QVector<QString>&, QVector<int>&, QVector<QString>&, QVector<int>&, QVector<QString>&);
     void createTopLevelItems();
     void setupLegend();
+    void setupMenu();
     void addOccupiedTrack(QString);
     void clearOccupiedTrack();
     void sql_pavelow();
@@ -114,6 +119,7 @@ private slots:
     void update_trains();
     void sql_information();
     void connect_pavelow();
+    void test_program();
 };
 
 #endif // MAINWINDOW_H

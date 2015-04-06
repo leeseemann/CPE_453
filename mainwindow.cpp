@@ -6,6 +6,7 @@
 #include <QGraphicsRectItem>
 #include <QBrush>
 #include <QColor>
+#include <QTest>
 
 
 
@@ -28,6 +29,7 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->graphicsView->setScene(scene);
 
 
+    setupMenu();    //sets up the menu
     setupLegend();  //sets up the colors in the legend
     createTopLevelItems(); // create the top level tree items (Track Segments, Track Switches, Locomotives)
 
@@ -412,7 +414,7 @@ void MainWindow::sql_information()
 // this function stores the user's database info and passes it to sql_server
 void MainWindow::sql_submit()
 {
-    db_type = type->text();
+    db_type = type->text().toUpper();
     db_host = host->text();
     db_port = port->text();
     db_name = name->text();
@@ -723,6 +725,10 @@ void MainWindow::addOccupiedTrack(QString id)
 void MainWindow::clearOccupiedTrack()
 {
     ui->occupiedTracksList->clear(); // clear list of currently occupied tracks
+    if(ui->occupiedTracksList->currentItem() != NULL)
+    {
+        qDebug() << "SYSTEMFAIL";
+    }
 }
 
 void MainWindow::pushError(QString Err)
@@ -773,6 +779,34 @@ void MainWindow::setupLegend()
     ui->legend->setSelectionMode(QAbstractItemView::NoSelection);
 }
 
+void MainWindow::setupMenu()
+{
+    testAct = new QAction(("&Test Program"),this);
+    menu = menuBar()->addMenu("&Menu");
+    menu->addAction(testAct);
+    connect(testAct,SIGNAL(triggered()),this,SLOT(test_program()));
+}
+
+void MainWindow::test_program()
+{
+    QString test = "testID";
+    addOccupiedTrack(test);
+    if(test.compare(ui->occupiedTracksList->item(0)->text()) != 0)
+    {
+        user_alert->message("Add Occupied Track Test has Failed");
+        goto bail;
+    }
+    clearOccupiedTrack();
+    if(ui->occupiedTracksList->count() != NULL)
+    {
+        user_alert->message("Clear Occupied Track Test has Failed");
+        goto bail;
+    }
+
+
+bail:
+    return;
+}
 MainWindow::~MainWindow()
 {
     delete ui;
