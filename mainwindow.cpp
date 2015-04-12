@@ -84,17 +84,17 @@ void MainWindow::customLayout(QVector<QString>&trackSegment_ids, QVector<QString
 
 
  //CODE FOR PATH INFO**************************************
-   QString pathInfo = "SELECT pathid, nextpath, next2, next3, next4, next5, next6 FROM 'Path Info'";
-//                      "next7, next8, next9, next10, next11 FROM 'Path Info'";
-   QSqlQuery path(pathInfo, team3b);
+   QString pathInfo = "SELECT * FROM 'Path Info'";
+    QSqlQuery pathQuery(pathInfo, team3b);
 
        for(int i=0; i<4; i++){
-            path.next();
-            pathArray[i].pathID= path.value(0).toInt();
-            pathArray[i].nextPath= path.value(1).toInt();
-                for(int j=0; j<7; j++) {
-                    //update size above
-                    pathArray[i].next[j] = path.value(j).toString();
+           int k=2;
+            pathQuery.next();
+            pathArray[i].pathID= pathQuery.value(0).toInt();
+            pathArray[i].nextPath= pathQuery.value(1).toInt();
+                for(int j=0; j<10; j++) {
+                    pathArray[i].next[j] = pathQuery.value(k).toString();
+                    k++;
                     }
             if(pathArray[i].nextPath!=0){
                 pathArray[pathArray[i].nextPath].pathID==pathArray[i].pathID;
@@ -105,7 +105,6 @@ void MainWindow::customLayout(QVector<QString>&trackSegment_ids, QVector<QString
 
 
    //********CREATES TRACK SEGMENTS IN QTREEWIDGET AND IN QGRAPHICSVIEW
-  // QSqlQuery query("SELECT Track FROM Tracks");
 
         // this loop queries the database and retrieves all coordinates for each detection section
         for(int i = 0; i < trackSegment_ids.size(); i++)
@@ -140,7 +139,7 @@ void MainWindow::customLayout(QVector<QString>&trackSegment_ids, QVector<QString
 
                      //code to set the path in the graphicsView******
                     for(int j=0; j<4; j++){
-                        for(int k=2; k<8; k++){
+                        for(int k=0; k<10; k++){
                             if(trackSegment_ids[i] == pathArray[j].next[k]){
                               trackSegment->setPath(pathArray[j].pathID);
                                 }

@@ -82,7 +82,6 @@ void TrackSegments::setStatus(QString status){
 
 
         //set background color status indicator for QGraphicsRectItem
-        //color.setAlpha(50); ADD LATER WHEN POSITION IS FIXED
         QBrush trackSegmentGraphicsBrush(color);
         setBrush(trackSegmentGraphicsBrush);
 
@@ -103,21 +102,16 @@ void TrackSegments::setStatus(QString status){
         color.setRed(255);
         setBackgroundColor(2, color);
 
-
-        //set outline****
-        //QPen outline(Qt::blue, 1.5);
-//            outline.setCosmetic(true);
+        QPen outline(Qt::transparent, 1.5);
 
         //set background color status indicator for QGraphicsRectItem
         QBrush trackSegmentGraphicsBrush(color);
         setBrush(trackSegmentGraphicsBrush);
 
-
-
         for(unsigned i = 0; i < _rects.size(); ++i) {
             _rects[i]->setBrush(trackSegmentGraphicsBrush);
-          //  _rects[i]->setPen(outline);// set outline******
-
+            if(!PathFlag)
+                _rects[i]->setPen(outline);
         }
 
     }
@@ -131,12 +125,16 @@ void TrackSegments::setStatus(QString status){
         color.setRgb(9,160,235);
         setBackgroundColor(2, color);
 
+         QPen outline(Qt::transparent, 1.5);
+
         //set background color status indicator for QGraphicsRectItem
         QBrush trackSegmentGraphicsBrush(color);
         setBrush(trackSegmentGraphicsBrush);
 
         for(unsigned i = 0; i < _rects.size(); ++i) {
             _rects[i]->setBrush(trackSegmentGraphicsBrush);
+            if(!PathFlag)
+                _rects[i]->setPen(outline);
         }
     }
 
@@ -149,8 +147,12 @@ void TrackSegments::setStatus(QString status){
         QBrush trackSegmentGraphicsBrush(color);
         setBrush(trackSegmentGraphicsBrush);
 
+         QPen outline(Qt::transparent, 1.5);
+
         for(unsigned i = 0; i < _rects.size(); ++i) {
             _rects[i]->setBrush(trackSegmentGraphicsBrush);
+            if(!PathFlag)
+                _rects[i]->setPen(outline);
         }
     }
 
