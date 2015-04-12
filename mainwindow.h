@@ -55,6 +55,13 @@ private:
     QVector<int> locomotive_ids;
     QVector<QString> locomotiveStatus;
 
+   // structure to store path info
+    struct pathStruct{
+        int pathID;
+        int nextPath;
+        QString next[11];
+    }pathArray[4]; //4 path max?
+
     // status labels
     QLabel* trackSegmentStatusLabel;
     QLabel* trackSwitchStatusLabel;

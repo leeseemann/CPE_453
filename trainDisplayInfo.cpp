@@ -3,10 +3,11 @@
 #include <QList>
 #include <QBrush>
 #include <QColor>
+#include <QPen>
 
 
 TrackSegments::TrackSegments(){
-
+     PathFlag=false;
 }
 
 //SET COLUMN ITEMS FOR TrackSegments***************************
@@ -17,6 +18,50 @@ void TrackSegments::setTrackSegmentNumber(QString segmentNum){
 void TrackSegments::setComponentID(QString compID){
     setText(1, compID); // set track segment id
     setTextAlignment(1, Qt::AlignHCenter);
+}
+
+void TrackSegments::setPath(int pathID){
+
+    QColor color;
+
+    if(pathID == 1 ){
+        color.setRgb(18,17,17);
+       QPen outline(color, 2.5);
+       outline.setCosmetic(true);
+       for(unsigned i = 0; i < _rects.size(); ++i) {
+          _rects[i]->setPen(outline);// set outline******
+          PathFlag=true;
+       }
+    }
+    if(pathID == 2 ){
+        color.setRgb(102,99,97);
+        QPen outline(color, 2.5);
+       outline.setCosmetic(true);
+       for(unsigned i = 0; i < _rects.size(); ++i) {
+          _rects[i]->setPen(outline);// set outline******
+          PathFlag=true;
+       }
+    }
+    if(pathID == 3){
+        color.setRgb(240,188,17);
+        QPen outline(color, 2.5);
+       outline.setCosmetic(true);
+       for(unsigned i = 0; i < _rects.size(); ++i) {
+          _rects[i]->setPen(outline);// set outline******
+          PathFlag=true;
+       }
+    }
+
+    if(pathID == 4){
+        color.setRgb(14,6,161);
+        QPen outline(color, 2.5);
+       outline.setCosmetic(true);
+       for(unsigned i = 0; i < _rects.size(); ++i) {
+          _rects[i]->setPen(outline);// set outline******
+          PathFlag=true;
+       }
+    }
+
 }
 
 void TrackSegments::setStatus(QString status){
@@ -33,6 +78,9 @@ void TrackSegments::setStatus(QString status){
         color.setGreen(255);
         setBackgroundColor(2, color);
 
+        QPen outline(Qt::transparent, 1.5);
+
+
         //set background color status indicator for QGraphicsRectItem
         //color.setAlpha(50); ADD LATER WHEN POSITION IS FIXED
         QBrush trackSegmentGraphicsBrush(color);
@@ -40,6 +88,8 @@ void TrackSegments::setStatus(QString status){
 
         for(unsigned i = 0; i < _rects.size(); ++i) {
             _rects[i]->setBrush(trackSegmentGraphicsBrush);
+            if(!PathFlag)
+                _rects[i]->setPen(outline);
         }
 
     }
@@ -53,12 +103,21 @@ void TrackSegments::setStatus(QString status){
         color.setRed(255);
         setBackgroundColor(2, color);
 
+
+        //set outline****
+        //QPen outline(Qt::blue, 1.5);
+//            outline.setCosmetic(true);
+
         //set background color status indicator for QGraphicsRectItem
         QBrush trackSegmentGraphicsBrush(color);
         setBrush(trackSegmentGraphicsBrush);
 
+
+
         for(unsigned i = 0; i < _rects.size(); ++i) {
             _rects[i]->setBrush(trackSegmentGraphicsBrush);
+          //  _rects[i]->setPen(outline);// set outline******
+
         }
 
     }
@@ -69,7 +128,7 @@ void TrackSegments::setStatus(QString status){
 
         //set background color status indicator for QTreeWidgetItem
         QColor color;
-        color.setRgb(255,255,0);
+        color.setRgb(9,160,235);
         setBackgroundColor(2, color);
 
         //set background color status indicator for QGraphicsRectItem
