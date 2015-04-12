@@ -222,13 +222,23 @@ void MainWindow::customLayout(QVector<QString>&trackSegment_ids, QVector<QString
                       trackSwitch->setRect(switchX, switchY, 8.5, 15);
                       ui->graphicsView->scene()->addItem(trackSwitch);
 
+                      switch_label = "Switch ";
+                      switch_number = QString::number(curSwitch+1);
+                      switch_label.append(switch_number);
+                      trackSwitch->setTrackSwitchNumber(switch_label);
+                      trackSwitch->setComponentID(trackSwitch_ids.at(curSwitch));
+                      trackSwitch->setStatus(trackSwitchStatus.at(curSwitch));
+
+                      switches.insert(curSwitch,trackSwitch);
                       ++curSwitch;
                     }
                     query3.previous();
+
               }
         }
 
-   for(int k = 0; k < trackSwitch_ids.length(); k++)
+
+  /* for(int k = 0; k < trackSwitch_ids.length(); k++)
    {
        // create the label that will be displayed in the first column of the Track Switches section in the QTreeWidget
        trackSwitch = new TrackSwitches;
@@ -242,7 +252,7 @@ void MainWindow::customLayout(QVector<QString>&trackSegment_ids, QVector<QString
        trackSwitch->setStatus(trackSwitchStatus.at(k));
 
        switches.insert(curSwitch,trackSwitch);
-   }
+   }*/
 
 
    // if there are no locomotives found, alert the user
