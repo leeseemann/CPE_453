@@ -11,7 +11,6 @@
 #include <QSqlQuery>
 #include <QSql>
 #include <QSqlError>
-#include "userinfo.h"
 
 namespace Ui {
 class MainWindow;
@@ -27,8 +26,6 @@ public:
 
 private:
     Ui::MainWindow *ui;
-
-    userInfo* user_alert; // instance of userInfo class
 
     // parts of dialog used to allow user to enter info for connecting to an sql database
     QLineEdit* type;
@@ -46,13 +43,16 @@ private:
     QString db_username;
     QString db_password;
 
-    QSqlDatabase team3b;
+    QSqlDatabase fqt_test;
     QSqlDatabase team4b;
 
     // functions
     void sql_connect(QString db_type, QString db_host, int db_port, QString db_name, QString db_username, QString db_password);
     void sql_initialData();
     void sql_pavelow();
+    void message(QString);
+    void message(QSqlError);
+    void message(QString,QVector<QString>);
 
 private slots:
     void sql_submit();
@@ -60,6 +60,8 @@ private slots:
     void sql_information();
     void connect_pavelow();
     void acceptance_test();
+    // overloaded functions for displaying a message to the user
+
 };
 
 #endif // MAINWINDOW_H

@@ -1,6 +1,7 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 #include "QDebug"
+#include <QListWidget>
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -61,22 +62,22 @@ void MainWindow::connect_pavelow()
     {
         qDebug() << "Database was not opened successfully";
         qDebug() << team4b.lastError();
-        //user_alert->message("Database was not opened successfully.\n Closing the application!");
+        message("Database was not opened successfully.\n Closing the application!");
         exit(2);
     }
 
-    team3b = QSqlDatabase::addDatabase("QMYSQL", "3b");
-    team3b.setHostName("pavelow.eng.uah.edu");
-    team3b.setPort(33157);
-    team3b.setDatabaseName("team3b");
-    team3b.setUserName("team3b");
-    team3b.setPassword("ulimbese");
+    fqt_test = QSqlDatabase::addDatabase("QMYSQL", "3b");
+    fqt_test.setHostName("pavelow.eng.uah.edu");
+    fqt_test.setPort(33157);
+    fqt_test.setDatabaseName("fqt_test");
+    fqt_test.setUserName("team3b");
+    fqt_test.setPassword("ulimbese");
 
-    if(!team3b.open())
+    if(!fqt_test.open())
     {
         qDebug() << "Database was not opened successfully";
-        qDebug() << team3b.lastError();
-        //user_alert->message("Database was not opened successfully.\n Closing the application!");
+        qDebug() << fqt_test.lastError();
+        message("Database was not opened successfully.\n Closing the application!");
         exit(2);
     }
 }
@@ -175,12 +176,12 @@ void MainWindow::sql_connect(QString db_type, QString db_host, int db_port, QStr
 {
     QString path_to_database = "C:/Users/Eric/Documents/GitHub/build-CPE_453-Desktop_Qt_5_3_MSVC2013_64bit-Debug"+db_name;
     // create a QSqlDatabase and set login data
-    team3b = QSqlDatabase::addDatabase(db_type, "4b");
-    team3b.setHostName(db_host);
-    team3b.setPort(db_port);
-    team3b.setDatabaseName(path_to_database);
-    team3b.setUserName(db_username);
-    team3b.setPassword(db_password);
+    fqt_test = QSqlDatabase::addDatabase(db_type, "4b");
+    fqt_test.setHostName(db_host);
+    fqt_test.setPort(db_port);
+    fqt_test.setDatabaseName(path_to_database);
+    fqt_test.setUserName(db_username);
+    fqt_test.setPassword(db_password);
 
     team4b = QSqlDatabase::addDatabase(db_type, "3b");
     team4b.setHostName(db_host);
@@ -191,11 +192,11 @@ void MainWindow::sql_connect(QString db_type, QString db_host, int db_port, QStr
 
     // verify that database was opened successfully
     // if failure occurs, alert the user and exit the program
-    if(!team3b.open())
+    if(!fqt_test.open())
     {
         qDebug() << "Database was not opened successfully";
-        qDebug() << team3b.lastError();
-        //user_alert->message("Database was not opened successfully.\n Closing the application!");
+        qDebug() << fqt_test.lastError();
+        message("Database was not opened successfully.\n Closing the application!");
         exit(2);
     }
 
@@ -210,7 +211,7 @@ void MainWindow::sql_connect(QString db_type, QString db_host, int db_port, QStr
     {
         qDebug() << "Database was not opened successfully";
         qDebug() << team4b.lastError();
-        //user_alert->message("Database was not opened successfully.\n Closing the application!");
+        message("Database was not opened successfully.\n Closing the application!");
         exit(2);
     }
 
@@ -227,7 +228,7 @@ void MainWindow::sql_connect(QString db_type, QString db_host, int db_port, QStr
 void MainWindow::acceptance_test()
 {
 
-    QSqlQuery query("UPDATE Occupancy SET Occupied = 'TRUE' WHERE Segment = '2_7'", team3b);
+    QSqlQuery query("UPDATE Occupancy SET Occupied = 'TRUE' WHERE Segment = '2_7'", fqt_test);
 
     bool badDB = false;
 
@@ -245,3 +246,111 @@ void MainWindow::acceptance_test()
         badDB = true; // 'true' indicates failure
     }
 }
+
+void MainWindow::message(QString alert)
+{
+    QDialog user_alert;
+    QVBoxLayout* layout = new QVBoxLayout;
+    //QString Err;
+    //int ErrStackSize = ErrorStack.getStackSize();
+
+    QLabel* title = new QLabel("WARNING");
+    title->setAlignment(Qt::AlignHCenter);
+    title->setFont(QFont("Helvetica", 16, QFont::Bold));
+
+    QLabel* message = new QLabel(alert);
+    message->setAlignment(Qt::AlignHCenter);
+    message->setFont(QFont("Helvetica", 12));
+
+    //QListWidget* errors = new QListWidget();
+
+    //for(int iter = 0; iter < ErrStackSize; iter++)
+    //{
+    //    Err = ErrorStack.getStack();
+    //    errors->addItem();
+    //}
+
+    layout->addWidget(title);
+    layout->addSpacing(15);
+    layout->addWidget(message);
+    layout->addSpacing(25);
+    //layout->addWidget(errors);
+    //layout->addSpacing(25);
+
+  //  layout->addWidget(accept);
+
+    user_alert.setLayout(layout);
+
+    user_alert.exec();
+}
+
+void MainWindow::message(QSqlError alert)
+{
+    QDialog user_alert;
+    QVBoxLayout* layout = new QVBoxLayout;
+
+    QLabel* title = new QLabel("WARNING");
+    title->setAlignment(Qt::AlignHCenter);
+    title->setFont(QFont("Helvetica", 16, QFont::Bold));
+
+    QLabel* message = new QLabel(alert.text());
+    message->setAlignment(Qt::AlignHCenter);
+    message->setFont(QFont("Helvetica", 12));
+
+    layout->addWidget(title);
+    layout->addSpacing(15);
+    layout->addWidget(message);
+    layout->addSpacing(25);
+
+    user_alert.setLayout(layout);
+
+    user_alert.exec();
+}
+
+void MainWindow::message(QString alert, QVector<QString> errorlist)
+{
+    QDialog user_alert;
+    QVBoxLayout* layout = new QVBoxLayout;
+
+    QLabel* title = new QLabel("WARNING");
+    title->setAlignment(Qt::AlignHCenter);
+    title->setFont(QFont("Helvetica", 16, QFont::Bold));
+
+   // QPushButton* accept = new QPushButton("Continue");
+
+    QLabel* message = new QLabel(alert);
+    message->setAlignment(Qt::AlignHCenter);
+    message->setFont(QFont("Helvetica", 12));
+
+    QLabel* err = new QLabel("List of Errors");
+    err->setAlignment(Qt::AlignLeft);
+    err->setFont(QFont("Helvetica",12));
+
+    QListWidget* errors = new QListWidget();
+
+    QString temp;
+    while(!errorlist.empty())
+    {
+        temp = errorlist.takeFirst();
+        errors->addItem(temp);
+    }
+
+
+    layout->addWidget(title);
+    layout->addSpacing(15);
+    layout->addWidget(message);
+    layout->addSpacing(25);
+    layout->addWidget(err);
+    layout->addSpacing(5);
+    layout->addWidget(errors);
+    layout->addSpacing(25);
+
+   //  layout->addWidget(accept);
+
+    user_alert.setLayout(layout);
+
+    user_alert.exec();
+}
+
+
+

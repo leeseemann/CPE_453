@@ -333,7 +333,7 @@ void MainWindow::connect_pavelow()
     team3b = QSqlDatabase::addDatabase("QMYSQL", "3b");
     team3b.setHostName("pavelow.eng.uah.edu");
     team3b.setPort(33157);
-    team3b.setDatabaseName("team3b");
+    team3b.setDatabaseName("fqt_test");
     team3b.setUserName("team3b");
     team3b.setPassword("ulimbese");
 
