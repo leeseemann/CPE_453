@@ -85,10 +85,28 @@ void MainWindow::customLayout(QVector<QString>&trackSegment_ids, QVector<QString
     }
 
 
+ //CODE FOR PATH INFO**************************************
+   QString pathInfo = "SELECT * FROM 'Path Info'";
+    QSqlQuery pathQuery(pathInfo, team3b);
+
+       for(int i=0; i<4; i++){
+           int k=2;
+            pathQuery.next();
+            pathArray[i].pathID= pathQuery.value(0).toInt();
+            pathArray[i].nextPath= pathQuery.value(1).toInt();
+                for(int j=0; j<10; j++) {
+                    pathArray[i].next[j] = pathQuery.value(k).toString();
+                    k++;
+                    }
+            if(pathArray[i].nextPath!=0){
+                pathArray[pathArray[i].nextPath].pathID==pathArray[i].pathID;
+
+            }
+   }//END PATH INFO CODE
+
 
 
    //********CREATES TRACK SEGMENTS IN QTREEWIDGET AND IN QGRAPHICSVIEW
-  // QSqlQuery query("SELECT Track FROM Tracks");
 
         // this loop queries the database and retrieves all coordinates for each detection section
         for(int i = 0; i < trackSegment_ids.size(); i++)
@@ -101,9 +119,8 @@ void MainWindow::customLayout(QVector<QString>&trackSegment_ids, QVector<QString
            QString ycoordQuery = "SELECT Vert_Y FROM DS_"+ (trackSegment_ids[i]);
            QSqlQuery query1(xcoordQuery, team4b);
            QSqlQuery query2(ycoordQuery, team4b);
-
                     // while there is coordinate data available, retrieve it
-                   while (query1.next() && query2.next())
+                   while (query1.next() && query2.next() )
                    {
                       QGraphicsRectItem* rect = new QGraphicsRectItem;
 
@@ -114,13 +131,24 @@ void MainWindow::customLayout(QVector<QString>&trackSegment_ids, QVector<QString
 
                       // use query results to plot detection section
                       int xValue = query1.value(0).toInt();
-                      xValue = xValue*7;
+                      xValue = xValue*8.5;
                       int yValue = query2.value(0).toInt();
-                      yValue = yValue*7;
-                      rect->setRect(xValue, yValue, 7, 5);
+                      yValue = yValue*8.5;
+                      rect->setRect(xValue, yValue, 8.5, 7);
                       trackSegment->addRect(rect);
                       ui->graphicsView->scene()->addItem(rect); // add item to graphicsView
-                   }
+
+
+                     //code to set the path in the graphicsView******
+                    for(int j=0; j<4; j++){
+                        for(int k=0; k<10; k++){
+                            if(trackSegment_ids[i] == pathArray[j].next[k]){
+                              trackSegment->setPath(pathArray[j].pathID);
+                                }
+                            }
+                        }
+
+                   }//end while loop
 
                    // create the label that will be displayed in the first column of the Track Segments section in the QTreeWidget
                    segment_label = "Segment ";
@@ -188,21 +216,31 @@ void MainWindow::customLayout(QVector<QString>&trackSegment_ids, QVector<QString
                 // if the DIR values changes, a switch is present
                     if(switchCoord=="A" && switchCoordNext=="B")
                     {
-                      switchX = switchX*7;
-                      switchY = switchY*7;
+                      switchX = switchX*8.5;
+                      switchY = switchY*8.5;
 
                       // add the switch to the graphics view
                       trackSwitch = new TrackSwitches;
-                      trackSwitch->setRect(switchX, switchY, 7, 12);
+                      trackSwitch->setRect(switchX, switchY, 8.5, 15);
                       ui->graphicsView->scene()->addItem(trackSwitch);
 
+                      switch_label = "Switch ";
+                      switch_number = QString::number(curSwitch+1);
+                      switch_label.append(switch_number);
+                      trackSwitch->setTrackSwitchNumber(switch_label);
+                      trackSwitch->setComponentID(trackSwitch_ids.at(curSwitch));
+                      trackSwitch->setStatus(trackSwitchStatus.at(curSwitch));
+
+                      switches.insert(curSwitch,trackSwitch);
                       ++curSwitch;
                     }
                     query3.previous();
+
               }
         }
 
-   for(int k = 0; k < trackSwitch_ids.length(); k++)
+
+  /* for(int k = 0; k < trackSwitch_ids.length(); k++)
    {
        // create the label that will be displayed in the first column of the Track Switches section in the QTreeWidget
        trackSwitch = new TrackSwitches;
@@ -216,7 +254,7 @@ void MainWindow::customLayout(QVector<QString>&trackSegment_ids, QVector<QString
        trackSwitch->setStatus(trackSwitchStatus.at(k));
 
        switches.insert(curSwitch,trackSwitch);
-   }
+   }*/
 
 
    // if there are no locomotives found, alert the user

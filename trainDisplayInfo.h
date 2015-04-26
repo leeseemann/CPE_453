@@ -9,11 +9,13 @@
 class TrackSegments: public QTreeWidgetItem, public QGraphicsRectItem {
 private:
     QVector<QGraphicsRectItem*> _rects;
+      bool PathFlag;
     public:
         TrackSegments();
         void setTrackSegmentNumber(QString segmentNum);
         void setComponentID(QString compID);
         void setStatus(QString status);
+        void setPath(int pathID);
         int getTrackSegmentNumber();
         QString getComponentID();
         QString getStatus();
