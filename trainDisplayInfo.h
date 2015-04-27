@@ -29,10 +29,10 @@ public:
     TrackSwitches();
     void setTrackSwitchNumber(QString switchNum);
     void setComponentID(int compID);
-    void setStatus(QString status);
+    void setStatus(/*QString*/ int status);
     int getTrackSwitchNumber();
     QString getComponentID();
-    QString getStatus();
+    int getStatus();
 
 };
 

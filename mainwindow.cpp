@@ -62,7 +62,7 @@ void MainWindow::createTopLevelItems()
 }
 
 // this function populates three QLists that are then used to populate the TreeWidget
-void MainWindow::customLayout(QVector<QString>&trackSegment_ids, QVector<QString>& trackSegmentStatus, QVector<int>& trackSwitch_ids, QVector<QString>& trackSwitchStatus, QVector<int>&locomotive_ids, QVector<QString>& locomotive_status)
+void MainWindow::customLayout(QVector<QString>&trackSegment_ids, QVector<QString>& trackSegmentStatus, QVector<int>& trackSwitch_ids, QVector</*QString*/ int>& trackSwitchStatus, QVector<int>&locomotive_ids, QVector<QString>& locomotive_status)
 {
     // define necessary variables
     QString segment_label;
@@ -86,7 +86,7 @@ void MainWindow::customLayout(QVector<QString>&trackSegment_ids, QVector<QString
 
 
  //CODE FOR PATH INFO**************************************
-   QString pathInfo = "SELECT * FROM 'Path Info'";
+   QString pathInfo = "SELECT * FROM scheduled_routes";
     QSqlQuery pathQuery(pathInfo, team3b);
 
        for(int i=0; i<4; i++){
@@ -115,8 +115,9 @@ void MainWindow::customLayout(QVector<QString>&trackSegment_ids, QVector<QString
            trackSegment = new TrackSegments;
 
            // create the necessary queries
-           QString xcoordQuery ="SELECT Vert_X FROM DS_" + (trackSegment_ids[i]);
-           QString ycoordQuery = "SELECT Vert_Y FROM DS_"+ (trackSegment_ids[i]);
+           QString xcoordQuery ="SELECT X FROM " + (trackSegment_ids[i]);
+           qDebug() << trackSegment_ids.at(i);
+           QString ycoordQuery = "SELECT Y FROM "+ (trackSegment_ids[i]);
            QSqlQuery query1(xcoordQuery, team4b);
            QSqlQuery query2(ycoordQuery, team4b);
                     // while there is coordinate data available, retrieve it
@@ -163,7 +164,7 @@ void MainWindow::customLayout(QVector<QString>&trackSegment_ids, QVector<QString
                    tracks.insert(i,trackSegment); // add this track segment to the master list of track segments
             }
 
-        QSqlQuery query3 ("SELECT Segment, Occupied FROM Occupancy", team3b);
+        QSqlQuery query3 ("SELECT id, status FROM track_ds", team3b);
 
         if(!query3.exec())
         {
@@ -197,9 +198,9 @@ void MainWindow::customLayout(QVector<QString>&trackSegment_ids, QVector<QString
       {
 
         // create the necessary queries
-        QString xcoordQuery ="SELECT Vert_X FROM DS_" + (trackSegment_ids[j]);
-        QString ycoordQuery = "SELECT Vert_Y FROM DS_"+ (trackSegment_ids[j]);
-        QString dirQuery = "SELECT DIR FROM DS_"+ (trackSegment_ids[j]);
+        QString xcoordQuery ="SELECT X FROM " + (trackSegment_ids[j]);
+        QString ycoordQuery = "SELECT Y FROM "+ (trackSegment_ids[j]);
+        QString dirQuery = "SELECT Node FROM "+ (trackSegment_ids[j]);
 
         QSqlQuery query1(xcoordQuery, team4b);
         QSqlQuery query2(ycoordQuery, team4b);
@@ -224,14 +225,14 @@ void MainWindow::customLayout(QVector<QString>&trackSegment_ids, QVector<QString
                       trackSwitch->setRect(switchX, switchY, 8.5, 15);
                       ui->graphicsView->scene()->addItem(trackSwitch);
 
-                      switch_label = "Switch ";
-                      switch_number = QString::number(curSwitch+1);
-                      switch_label.append(switch_number);
-                      trackSwitch->setTrackSwitchNumber(switch_label);
-                      trackSwitch->setComponentID(trackSwitch_ids.at(curSwitch));
-                      trackSwitch->setStatus(trackSwitchStatus.at(curSwitch));
+                      //switch_label = "Switch ";
+                      //switch_number = QString::number(curSwitch+1);
+                      //switch_label.append(switch_number);
+                     // trackSwitch->setTrackSwitchNumber(switch_label);
+                      //trackSwitch->setComponentID(trackSwitch_ids.at(curSwitch));
+                      //trackSwitch->setStatus(trackSwitchStatus.at(curSwitch));
 
-                      switches.insert(curSwitch,trackSwitch);
+                      //switches.insert(curSwitch,trackSwitch);
                       ++curSwitch;
                     }
                     query3.previous();
@@ -240,7 +241,7 @@ void MainWindow::customLayout(QVector<QString>&trackSegment_ids, QVector<QString
         }
 
 
-  /* for(int k = 0; k < trackSwitch_ids.length(); k++)
+  for(int k = 0; k < trackSwitch_ids.length(); k++)
    {
        // create the label that will be displayed in the first column of the Track Switches section in the QTreeWidget
        trackSwitch = new TrackSwitches;
@@ -252,9 +253,10 @@ void MainWindow::customLayout(QVector<QString>&trackSegment_ids, QVector<QString
        // set the ID and status asssociated with this switch
        trackSwitch->setComponentID(trackSwitch_ids.at(k));
        trackSwitch->setStatus(trackSwitchStatus.at(k));
+       qDebug()<< "initialStatus: "<< trackSwitchStatus.at(k);
 
        switches.insert(curSwitch,trackSwitch);
-   }*/
+   }
 
 
    // if there are no locomotives found, alert the user
@@ -291,6 +293,8 @@ void MainWindow::customLayout(QVector<QString>&trackSegment_ids, QVector<QString
    addChildren(tracks, switches, locomotives);
 
    status_update->start(); // start timer
+
+   qDebug() << "end of customlayout";
 }
 
 // this function adds all the necessary data to the TreeWidget
@@ -356,7 +360,7 @@ void MainWindow::connect_pavelow()
     team4b = QSqlDatabase::addDatabase("QMYSQL", "4b");
     team4b.setHostName("pavelow.eng.uah.edu");
     team4b.setPort(33158);
-    team4b.setDatabaseName("team4b");
+    team4b.setDatabaseName("LocoLayout");
     team4b.setUserName("team3b");
     team4b.setPassword("ulimbese");
 
@@ -382,6 +386,8 @@ void MainWindow::connect_pavelow()
         user_alert->message("Database was not opened successfully.\n Closing the application!");
         exit(2);
     }
+
+    sql_initialData();
 }
 
 // this function prompts the user for database information
@@ -531,7 +537,7 @@ void MainWindow::sql_connect(QString db_type, QString db_host, int db_port, QStr
 void MainWindow::sql_initialData()
 {
     // retrieve the initial status and ids from database, pass them to MainWindow::customLayout
-    QSqlQuery query ("SELECT Switch, Position FROM Switches", team3b);
+    QSqlQuery query ("SELECT id, position FROM track_switch_5a", team3b);
     bool badDB = false;
 
     // verify that the query is valid and executes properly
@@ -553,12 +559,13 @@ void MainWindow::sql_initialData()
     while(query.next()) // while there is data to retrieve
     {
         trackSwitch_ids.push_back(query.value(0).toInt()); // store the id of the switch
-        trackSwitchStatus.push_back(query.value(1).toString()); // store the current status of the switch
+        trackSwitchStatus.push_back(query.value(1).toInt()); // store the current status of the switch
 
        i++;
     }
+    //qDebug() << "trackSwitchStatus: " << trackSwitchStatus.size();
 
-    QSqlQuery query2("SELECT Train, Current FROM Trains", team3b); // retrieve train id and current location
+    QSqlQuery query2("SELECT id, current FROM scheduled_train_info", team3b); // retrieve train id and current location
 
     // verify that the query is valid and executes properly
 
@@ -585,7 +592,7 @@ void MainWindow::sql_initialData()
     }
 
 
-    QSqlQuery query3("SELECT Track, Status FROM Tracks", team3b); // retrieve track segment ids and the current status
+    QSqlQuery query3("SELECT ds, state FROM track_power", team3b); // retrieve track segment ids and the current status
 
     // verify that the query is valid and executes properly
     if(!query3.exec())
@@ -617,7 +624,7 @@ void MainWindow::sql_initialData()
         printErrors();  //pring errors to debug too
         exit(1);
     }
-
+//qDebug() << trackSwitch_ids.size();
     // populate the tree with the data retrieved
     customLayout(trackSegment_ids, trackSegmentStatus, trackSwitch_ids, trackSwitchStatus, locomotive_ids, locomotiveStatus);
 
@@ -625,7 +632,8 @@ void MainWindow::sql_initialData()
 
 void MainWindow::update_tracks() // update the track status, execute each time the timer expires
 {
-    QSqlQuery query_trackStatus("SELECT Status FROM Tracks", team3b);
+    //qDebug() << "inside update_tracks";
+    QSqlQuery query_trackStatus("SELECT state FROM track_power", team3b);
 
     // verify query is valid and executes properly
     if(!query_trackStatus.exec())
@@ -641,7 +649,10 @@ void MainWindow::update_tracks() // update the track status, execute each time t
 
 
     while(query_trackStatus.next())
-        temp_track.push_back(query_trackStatus.value(0).toString()); // store current track status in temporary vector
+    {
+        temp_track.push_back(query_trackStatus.value(0).toString()); // store current track status in temporary
+        //qDebug() << "status: " << query_trackStatus.value(0).toString();
+    }
 
     // if the new status is different than the current status, update the status
     for(int k = 0; k < temp_track.length(); k++)
@@ -652,7 +663,7 @@ void MainWindow::update_tracks() // update the track status, execute each time t
     temp_track.clear(); // clear temp vector to prepare for next update
 
     // check to see which tracks are now occcupied
-   QSqlQuery query_trackStatus2("SELECT Segment, Occupied FROM Occupancy", team3b);
+   QSqlQuery query_trackStatus2("SELECT id, status FROM track_ds", team3b);
 
     // verify query is valid and executes properly
     if(!query_trackStatus2.exec())
@@ -665,12 +676,13 @@ void MainWindow::update_tracks() // update the track status, execute each time t
         qDebug() << "Query Error: " << query_trackStatus2.lastError();
         user_alert->message(query_trackStatus2.lastError()); // alert user
     }
-
+//qDebug() << "query_trackStatus2.value(0): " << query_trackStatus2.value(0);
+//qDebug() << "query_trackStatus2.value(1): " << query_trackStatus2.value(1);
 
     while(query_trackStatus2.next())
     {
         // if a track segment is occupied, update the status of that track segment
-        if(query_trackStatus2.value(1).toString() == "TRUE")
+        if(query_trackStatus2.value(1).toString() == "1")
         {
             for(int j = 0; j < tracks.length(); j++)
             {
@@ -690,12 +702,13 @@ void MainWindow::update_tracks() // update the track status, execute each time t
             addOccupiedTrack(tracks.at(i)->getComponentID());
         }
     }
-
+qDebug() << "end of update tracks";
 }
 
 void MainWindow::update_switches() // update the switch status, execute each time the timer expires
 {
-    QSqlQuery query_switchStatus("SELECT Position FROM Switches", team3b);
+    qDebug() << "inside update switches";
+    QSqlQuery query_switchStatus("SELECT position FROM track_switch_5a", team3b);
 
     // verify query is valid and executes properly
     if(!query_switchStatus.exec())
@@ -712,21 +725,32 @@ void MainWindow::update_switches() // update the switch status, execute each tim
 
 
     while(query_switchStatus.next())
-        temp_switch.push_back(query_switchStatus.value(0).toString()); // store current status in a temporary vector
+    {
+        temp_switch.push_back(query_switchStatus.value(0).toInt()); // store current status in a temporary vector
+       // qDebug() << "status: " << query_switchStatus.value(0).toInt();
+    }
+
 
     for(int k = 0; k < temp_switch.length(); k++)
     {
+        //qDebug() << "temp_switch: "<<temp_switch.at(k);
+        //qDebug() << "switches: "<<switches.at(k)->getStatus();
         // if new status is different than current status, update the display
         if(temp_switch.at(k) != switches.at(k)->getStatus())
+        {
             switches.at(k)->setStatus(temp_switch.at(k));
+           // qDebug() << "newStatus: " << switches.at(k)->getStatus();
+        }
     }
 
     temp_switch.clear(); // clear temporary vector to prepare for next
+    qDebug() << "end of update switches";
 }
 
 void MainWindow::update_trains() // update the train status, execute each time the timer expires
 {
-    QSqlQuery query_trainStatus("SELECT Current FROM Trains", team3b);
+    qDebug() << "inside update trains";
+    QSqlQuery query_trainStatus("SELECT current FROM scheduled_train_info", team3b);
 
     // verify query is valid and executes properly
     if(!query_trainStatus.exec())
@@ -751,7 +775,7 @@ void MainWindow::update_trains() // update the train status, execute each time t
     }
 
     temp_train.clear(); // clear temporary vector to prepare for next update
-
+qDebug() << "end of update trains";
 }
 
 //Eric's Functions for stuff

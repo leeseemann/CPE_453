@@ -51,7 +51,7 @@ private:
 
     // vectors to store switch, track, and train ids and statuses
     QVector<int> trackSwitch_ids;
-    QVector<QString> trackSwitchStatus;
+    QVector</*QString*/ int> trackSwitchStatus;
     QVector<QString> trackSegment_ids;
     QVector<QString> trackSegmentStatus;
     QVector<int> locomotive_ids;
@@ -71,7 +71,7 @@ private:
 
     // temporary vector used for updating status of components
     QVector<QString> temp_track;
-    QVector<QString> temp_switch;
+    QVector</*QString*/ int> temp_switch;
     QVector<QString> temp_train;
 
     // timer
@@ -103,7 +103,7 @@ private:
     void addChildren(QList<TrackSegments*>, QList<TrackSwitches*>, QList<Locomotives*>);
     void sql_connect(QString db_type, QString db_host, int db_port, QString db_name, QString db_username, QString db_password);
     void sql_initialData();
-    void customLayout(QVector<QString>&, QVector<QString>&, QVector<int>&, QVector<QString>&, QVector<int>&, QVector<QString>&);
+    void customLayout(QVector<QString>&, QVector<QString>&, QVector<int>&, QVector</*QString*/int>&, QVector<int>&, QVector<QString>&);
     void createTopLevelItems();
     void setupLegend();
     void setupMenu();

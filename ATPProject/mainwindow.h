@@ -53,13 +53,16 @@ private:
     void message(QString);
     void message(QSqlError);
     void message(QString,QVector<QString>);
+    void init_database();
 
 private slots:
     void sql_submit();
     void sql_default();
     void sql_information();
     void connect_pavelow();
-    void acceptance_test();
+    void acceptance_test();\
+
+    void next_test();
     // overloaded functions for displaying a message to the user
 
 };

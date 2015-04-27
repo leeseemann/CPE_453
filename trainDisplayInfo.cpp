@@ -4,6 +4,7 @@
 #include <QBrush>
 #include <QColor>
 #include <QPen>
+#include <QDebug>
 
 
 TrackSegments::TrackSegments(){
@@ -96,7 +97,7 @@ void TrackSegments::setStatus(QString status){
      else if( status=="0")
     {
         setText(2, "Inactive"); // set track segment status
-
+qDebug() << "inside off";
         //set background color status indicator for QTreeWidgetItem
         QColor color;
         color.setRed(255);
@@ -187,13 +188,13 @@ void TrackSwitches::setComponentID(int compID){
     setTextAlignment(1, Qt::AlignHCenter);
 }
 
-void TrackSwitches::setStatus(QString status){
+void TrackSwitches::setStatus(/*QString*/ int status){
 
 
    //SET STATUS COLORS FOR TrackSwitches************
-   if(status=="Pass")
+   if(status== 0)
    {
-       setText(2, status); // set track switch status
+       setText(2, "Pass"); // set track switch status
 
        //set background color status indicator for QTreeWidgetItem
        QColor color;
@@ -208,9 +209,9 @@ void TrackSwitches::setStatus(QString status){
 
    }
 
-   else if(status=="Bypass")
+   else if(status== 1)
    {
-       setText(2, status); // set track switch status
+       setText(2, "Bypass"); // set track switch status
 
        //set background color status indicator for QTreeWidgetItem
        QColor color;
@@ -236,9 +237,9 @@ QString TrackSwitches::getComponentID()
     return text(1); // retrieve switch id
 }
 
-QString TrackSwitches::getStatus()
+int TrackSwitches::getStatus()
 {
-    return text(2); // retreive switch status
+    return text(2).toInt(); // retreive switch status
 }
 
 
