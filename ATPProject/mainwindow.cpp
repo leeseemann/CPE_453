@@ -1929,148 +1929,235 @@ void MainWindow::message(QString alert)
      if(!query210.exec())
          qDebug() << "Query Error: " << query210.lastError();
 
-     queryPrep = "INSERT INTO track_switch_5a VALUES (11, 14, 0)";
+     queryPrep = "INSERT INTO track_switch_5a VALUES (?,?,?)";
          QSqlQuery query211 (queryPrep, fqt_test);
+         query211.addBindValue(11);
+         query211.addBindValue(14);
+         query211.addBindValue(0);
      if(!query211.exec())
          qDebug() << "Query Error: " << query211.lastError();
 
-     queryPrep = "INSERT INTO track_switch_5a VALUES (12, 45, 1)";
+     queryPrep = "INSERT INTO track_switch_5a VALUES (?,?,?)";
          QSqlQuery query212 (queryPrep, fqt_test);
+         query212.addBindValue(12);
+         query212.addBindValue(45);
+         query212.addBindValue(1);
      if(!query212.exec())
          qDebug() << "Query Error: " << query212.lastError();
 
-     queryPrep = "INSERT INTO track_switch_5a VALUES (13, 25, 1)";
+     queryPrep = "INSERT INTO track_switch_5a VALUES (?,?,?)";
          QSqlQuery query213 (queryPrep, fqt_test);
+         query213.addBindValue(13);
+         query213.addBindValue(25);
+         query213.addBindValue(1);
      if(!query213.exec())
          qDebug() << "Query Error: " << query213.lastError();
 
-     queryPrep = "INSERT INTO track_switch_5a VALUES (14, 14, 1)";
+     queryPrep = "INSERT INTO track_switch_5a VALUES (?,?,?)";
          QSqlQuery query214 (queryPrep, fqt_test);
+         query214.addBindValue(14);
+         query214.addBindValue(14);
+         query214.addBindValue(1);
      if(!query214.exec())
          qDebug() << "Query Error: " << query214.lastError();
 
-     queryPrep = "INSERT INTO track_switch_5a VALUES (42, 42, 1)";
+     queryPrep = "INSERT INTO track_switch_5a VALUES (?,?,?)";
          QSqlQuery query215 (queryPrep, fqt_test);
+         query215.addBindValue(42);
+         query215.addBindValue(42);
+         query215.addBindValue(1);
      if(!query215.exec())
          qDebug() << "Query Error: " << query215.lastError();
 
-     queryPrep = "INSERT INTO track_switch_5a VALUES (43, 43, 1)";
+     queryPrep = "INSERT INTO track_switch_5a VALUES (?,?,?)";
          QSqlQuery query216 (queryPrep, fqt_test);
+         query216.addBindValue(43);
+         query216.addBindValue(43);
+         query216.addBindValue(1);
      if(!query216.exec())
          qDebug() << "Query Error: " << query216.lastError();
 
-     queryPrep = "INSERT INTO track_switch_5a VALUES (21, 21, 1)";
+     queryPrep = "INSERT INTO track_switch_5a VALUES (?,?,?)";
          QSqlQuery query217 (queryPrep, fqt_test);
+         query217.addBindValue(21);
+         query217.addBindValue(21);
+         query217.addBindValue(1);
      if(!query217.exec())
          qDebug() << "Query Error: " << query217.lastError();
 
-     queryPrep = "INSERT INTO track_switch_5a VALUES (22, 22, 1)";
+     queryPrep = "INSERT INTO track_switch_5a VALUES (?,?,?)";
          QSqlQuery query218 (queryPrep, fqt_test);
+         query218.addBindValue(22);
+         query218.addBindValue(22);
+         query218.addBindValue(1);
      if(!query218.exec())
          qDebug() << "Query Error: " << query218.lastError();
 
-     queryPrep = "INSERT INTO track_switch_5a VALUES (23, 23, 1)";
+     queryPrep = "INSERT INTO track_switch_5a VALUES (?,?,?)";
          QSqlQuery query219 (queryPrep, fqt_test);
+         query219.addBindValue(23);
+         query219.addBindValue(23);
+         query219.addBindValue(1);
      if(!query219.exec())
          qDebug() << "Query Error: " << query219.lastError();
 
-     queryPrep = "INSERT INTO track_switch_5a VALUES (24, 24, 1)";
+     queryPrep = "INSERT INTO track_switch_5a VALUES (?,?,?)";
          QSqlQuery query220 (queryPrep, fqt_test);
+         query220.addBindValue(24);
+         query220.addBindValue(24);
+         query220.addBindValue(1);
      if(!query220.exec())
          qDebug() << "Query Error: " << query220.lastError();
 
-     queryPrep = "INSERT INTO track_switch_5a VALUES (31, 31, 1)";
+     queryPrep = "INSERT INTO track_switch_5a VALUES (?,?,?)";
          QSqlQuery query221 (queryPrep, fqt_test);
+         query221.addBindValue(31);
+         query221.addBindValue(31);
+         query221.addBindValue(1);
      if(!query221.exec())
          qDebug() << "Query Error: " << query221.lastError();
 
-     queryPrep = "INSERT INTO track_switch_5a VALUES (32, 32, 1)";
+     queryPrep = "INSERT INTO track_switch_5a VALUES (?,?,?)";
          QSqlQuery query222 (queryPrep, fqt_test);
+         query222.addBindValue(32);
+         query222.addBindValue(32);
+         query222.addBindValue(1);
      if(!query222.exec())
          qDebug() << "Query Error: " << query222.lastError();
 
-     queryPrep = "INSERT INTO track_switch_5a VALUES (33, 33, 1)";
+     queryPrep = "INSERT INTO track_switch_5a VALUES (?,?,?)";
          QSqlQuery query223 (queryPrep, fqt_test);
+         query223.addBindValue(33);
+         query223.addBindValue(33);
+         query223.addBindValue(1);
      if(!query223.exec())
          qDebug() << "Query Error: " << query223.lastError();
 
-     queryPrep = "INSERT INTO track_switch_5a VALUES (34, 34, 1)";
+     queryPrep = "INSERT INTO track_switch_5a VALUES (?,?,?)";
          QSqlQuery query224 (queryPrep, fqt_test);
+         query224.addBindValue(34);
+         query224.addBindValue(34);
+         query224.addBindValue(1);
      if(!query224.exec())
          qDebug() << "Query Error: " << query224.lastError();
 
-     queryPrep = "INSERT INTO track_switch_5a VALUES (41, 41, 1)";
+     queryPrep = "INSERT INTO track_switch_5a VALUES (?,?,?)";
          QSqlQuery query225 (queryPrep, fqt_test);
+         query225.addBindValue(41);
+         query225.addBindValue(41);
+         query225.addBindValue(1);
      if(!query225.exec())
          qDebug() << "Query Error: " << query225.lastError();
 
-     queryPrep = "INSERT INTO track_switch_5a VALUES (61, 61, 1)";
+     queryPrep = "INSERT INTO track_switch_5a VALUES (?,?,?)";
          QSqlQuery query226 (queryPrep, fqt_test);
+         query226.addBindValue(61);
+         query226.addBindValue(61);
+         query226.addBindValue(1);
      if(!query226.exec())
          qDebug() << "Query Error: " << query226.lastError();
 
-     queryPrep = "INSERT INTO track_switch_5a VALUES (62, 62, 1)";
+     queryPrep = "INSERT INTO track_switch_5a VALUES (?,?,?)";
          QSqlQuery query227 (queryPrep, fqt_test);
+         query227.addBindValue(62);
+         query227.addBindValue(62);
+         query227.addBindValue(1);
      if(!query227.exec())
          qDebug() << "Query Error: " << query227.lastError();
 
-     queryPrep = "INSERT INTO track_switch_5a VALUES (63, 63, 1)";
+     queryPrep = "INSERT INTO track_switch_5a VALUES (?,?,?)";
          QSqlQuery query228 (queryPrep, fqt_test);
+         query228.addBindValue(63);
+         query228.addBindValue(63);
+         query228.addBindValue(1);
      if(!query228.exec())
          qDebug() << "Query Error: " << query228.lastError();
 
-     queryPrep = "INSERT INTO track_switch_5a VALUES (64, 64, 1)";
+     queryPrep = "INSERT INTO track_switch_5a VALUES (?,?,?)";
          QSqlQuery query229 (queryPrep, fqt_test);
+         query229.addBindValue(64);
+         query229.addBindValue(64);
+         query229.addBindValue(1);
      if(!query229.exec())
          qDebug() << "Query Error: " << query229.lastError();
 
-     queryPrep = "INSERT INTO track_switch_5a VALUES (72, 72, 1)";
+     queryPrep = "INSERT INTO track_switch_5a VALUES (?,?,?)";
          QSqlQuery query230 (queryPrep, fqt_test);
+         query230.addBindValue(72);
+         query230.addBindValue(72);
+         query230.addBindValue(1);
      if(!query230.exec())
          qDebug() << "Query Error: " << query230.lastError();
 
-     queryPrep = "INSERT INTO track_switch_5a VALUES (73, 73, 1)";
+     queryPrep = "INSERT INTO track_switch_5a VALUES (?,?,?)";
          QSqlQuery query231 (queryPrep, fqt_test);
+         query231.addBindValue(73);
+         query231.addBindValue(73);
+         query231.addBindValue(1);
      if(!query231.exec())
          qDebug() << "Query Error: " << query231.lastError();
 
-     queryPrep = "INSERT INTO track_switch_5a VALUES (74, 74, 1)";
+     queryPrep = "INSERT INTO track_switch_5a VALUES (?,?,?)";
          QSqlQuery query232 (queryPrep, fqt_test);
+         query232.addBindValue(74);
+         query232.addBindValue(74);
+         query232.addBindValue(1);
      if(!query232.exec())
          qDebug() << "Query Error: " << query232.lastError();
 
-     queryPrep = "INSERT INTO track_switch_5a VALUES (84, 84, 1)";
+     queryPrep = "INSERT INTO track_switch_5a VALUES (?,?,?)";
          QSqlQuery query233 (queryPrep, fqt_test);
+         query233.addBindValue(84);
+         query233.addBindValue(84);
+         query233.addBindValue(1);
      if(!query233.exec())
          qDebug() << "Query Error: " << query233.lastError();
 
-     queryPrep = "INSERT INTO track_switch_5a VALUES (82, 82, 1)";
+     queryPrep = "INSERT INTO track_switch_5a VALUES (?,?,?)";
          QSqlQuery query234 (queryPrep, fqt_test);
+         query234.addBindValue(82);
+         query234.addBindValue(82);
+         query234.addBindValue(1);
      if(!query234.exec())
          qDebug() << "Query Error: " << query234.lastError();
 
-     queryPrep = "INSERT INTO track_switch_5a VALUES (83, 83, 1)";
+     queryPrep = "INSERT INTO track_switch_5a VALUES (?,?,?)";
          QSqlQuery query235 (queryPrep, fqt_test);
+         query235.addBindValue(83);
+         query235.addBindValue(83);
+         query235.addBindValue(1);
      if(!query235.exec())
          qDebug() << "Query Error: " << query235.lastError();
 
-     queryPrep = "INSERT INTO track_switch_5a VALUES (51, 51, 1)";
+     queryPrep = "INSERT INTO track_switch_5a VALUES (?,?,?)";
          QSqlQuery query236 (queryPrep, fqt_test);
+         query236.addBindValue(51);
+         query236.addBindValue(51);
+         query236.addBindValue(1);
      if(!query236.exec())
          qDebug() << "Query Error: " << query236.lastError();
 
-     queryPrep = "INSERT INTO track_switch_5a VALUES (52, 52, 1)";
+     queryPrep = "INSERT INTO track_switch_5a VALUES (?,?,?)";
          QSqlQuery query237 (queryPrep, fqt_test);
+         query237.addBindValue(52);
+         query237.addBindValue(52);
+         query237.addBindValue(1);
      if(!query237.exec())
          qDebug() << "Query Error: " << query237.lastError();
 
-     queryPrep = "INSERT INTO track_switch_5a VALUES (71, 71, 1)";
+     queryPrep = "INSERT INTO track_switch_5a VALUES (?,?,?)";
          QSqlQuery query238 (queryPrep, fqt_test);
+         query238.addBindValue(71);
+         query238.addBindValue(71);
+         query238.addBindValue(1);
      if(!query238.exec())
          qDebug() << "Query Error: " << query238.lastError();
 
-     queryPrep = "INSERT INTO track_switch_5a VALUES (81, 81, 1)";
+     queryPrep = "INSERT INTO track_switch_5a VALUES (?,?,?)";
          QSqlQuery query239 (queryPrep, fqt_test);
+         query239.addBindValue(81);
+         query239.addBindValue(81);
+         query239.addBindValue(1);
      if(!query239.exec())
          qDebug() << "Query Error: " << query239.lastError();
 
