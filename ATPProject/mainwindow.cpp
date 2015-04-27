@@ -338,499 +338,889 @@ void MainWindow::message(QString alert)
      query2.addBindValue("FALSE");
      query2.addBindValue("NULL");
      query2.addBindValue("NULL");
-
-
      if(!query2.exec())
          qDebug() << "Query Error: " << query2.lastError();
 
-     queryPrep = "INSERT INTO track_ds VALUES('1_10', '0', 'NULL', 'NULL')";
+     queryPrep = "INSERT INTO track_ds VALUES(?,?,?,?)";
      QSqlQuery query3 (queryPrep, fqt_test);
+     query3.addBindValue("1_10");
+     query3.addBindValue("FALSE");
+     query3.addBindValue("NULL");
+     query3.addBindValue("NULL");
      if(!query3.exec())
          qDebug() << "Query Error: " << query3.lastError();
 
-     queryPrep = "INSERT INTO track_ds VALUES('1_11', '0', 'NULL', 'NULL')";
+     queryPrep = "INSERT INTO track_ds VALUES(?,?,?,?)";
      QSqlQuery query4 (queryPrep, fqt_test);
+     query4.addBindValue("1_11");
+     query4.addBindValue("FALSE");
+     query4.addBindValue("NULL");
+     query4.addBindValue("NULL");
      if(!query4.exec())
          qDebug() << "Query Error: " << query4.lastError();
 
-     queryPrep = "INSERT INTO track_ds VALUES('1_12', '0', 'NULL', 'NULL')";
+     queryPrep = "INSERT INTO track_ds VALUES(?,?,?,?)";
      QSqlQuery query5 (queryPrep, fqt_test);
+     query5.addBindValue("1_12");
+     query5.addBindValue("FALSE");
+     query5.addBindValue("NULL");
+     query5.addBindValue("NULL");
      if(!query5.exec())
          qDebug() << "Query Error: " << query5.lastError();
 
-     queryPrep = "INSERT INTO track_ds VALUES('1_14', '0', 'NULL', 'NULL')";
+     queryPrep = "INSERT INTO track_ds VALUES(?,?,?,?)";
      QSqlQuery query6 (queryPrep, fqt_test);
+     query6.addBindValue("1_14");
+     query6.addBindValue("FALSE");
+     query6.addBindValue("NULL");
+     query6.addBindValue("NULL");
      if(!query6.exec())
          qDebug() << "Query Error: " << query6.lastError();
 
-     queryPrep = "INSERT INTO track_ds VALUES('1_15', '0', 'NULL', 'NULL')";
+     queryPrep = "INSERT INTO track_ds VALUES(?,?,?,?)";
      QSqlQuery query7 (queryPrep, fqt_test);
+     query7.addBindValue("1_15");
+     query7.addBindValue("FALSE");
+     query7.addBindValue("NULL");
+     query7.addBindValue("NULL");
      if(!query7.exec())
          qDebug() << "Query Error: " << query7.lastError();
 
-     queryPrep = "INSERT INTO track_ds VALUES('1_16', '0', 'NULL', 'NULL')";
+     queryPrep = "INSERT INTO track_ds VALUES(?,?,?,?)";
      QSqlQuery query8 (queryPrep, fqt_test);
+     query8.addBindValue("1_16");
+     query8.addBindValue("FALSE");
+     query8.addBindValue("NULL");
+     query8.addBindValue("NULL");
      if(!query8.exec())
          qDebug() << "Query Error: " << query8.lastError();
 
-     queryPrep = "INSERT INTO track_ds VALUES('1_2', '0', 'NULL', 'NULL')";
+     queryPrep = "INSERT INTO track_ds VALUES(?,?,?,?)";
      QSqlQuery query9 (queryPrep, fqt_test);
+     query9.addBindValue("1_2");
+     query9.addBindValue("FALSE");
+     query9.addBindValue("NULL");
+     query9.addBindValue("NULL");
      if(!query9.exec())
          qDebug() << "Query Error: " << query9.lastError();
 
-     queryPrep = "INSERT INTO track_ds VALUES('1_3', '0', 'NULL', 'NULL')";
+     queryPrep = "INSERT INTO track_ds VALUES(?,?,?,?)";
      QSqlQuery query10 (queryPrep, fqt_test);
+     query10.addBindValue("1_3");
+     query10.addBindValue("FALSE");
+     query10.addBindValue("NULL");
+     query10.addBindValue("NULL");
      if(!query10.exec())
          qDebug() << "Query Error: " << query10.lastError();
 
-     queryPrep = "INSERT INTO track_ds VALUES('1_4', '0', 'NULL', 'NULL')";
+     queryPrep = "INSERT INTO track_ds VALUES(?,?,?,?)";
      QSqlQuery query12 (queryPrep, fqt_test);
+     query12.addBindValue("1_4");
+     query12.addBindValue("FALSE");
+     query12.addBindValue("NULL");
+     query12.addBindValue("NULL");
      if(!query12.exec())
          qDebug() << "Query Error: " << query12.lastError();
 
-     queryPrep = "INSERT INTO track_ds VALUES('1_5', '0', 'NULL', 'NULL')";
+     queryPrep = "INSERT INTO track_ds VALUES(?,?,?,?)";
      QSqlQuery query13 (queryPrep, fqt_test);
+     query13.addBindValue("1_5");
+     query13.addBindValue("FALSE");
+     query13.addBindValue("NULL");
+     query13.addBindValue("NULL");
      if(!query13.exec())
          qDebug() << "Query Error: " << query13.lastError();
 
-     queryPrep = "INSERT INTO track_ds VALUES('1_6', '0', 'NULL', 'NULL')";
+     queryPrep = "INSERT INTO track_ds VALUES(?,?,?,?)";
      QSqlQuery query14 (queryPrep, fqt_test);
+     query14.addBindValue("1_6");
+     query14.addBindValue("FALSE");
+     query14.addBindValue("NULL");
+     query14.addBindValue("NULL");
      if(!query14.exec())
          qDebug() << "Query Error: " << query14.lastError();
 
-     queryPrep = "INSERT INTO track_ds VALUES('1_7', '0', 'NULL', 'NULL')";
+     queryPrep = "INSERT INTO track_ds VALUES(?,?,?,?)";
      QSqlQuery query15 (queryPrep, fqt_test);
+     query15.addBindValue("1_7");
+     query15.addBindValue("FALSE");
+     query15.addBindValue("NULL");
+     query15.addBindValue("NULL");
      if(!query15.exec())
          qDebug() << "Query Error: " << query15.lastError();
 
-     queryPrep = "INSERT INTO track_ds VALUES('1_8', '0', 'NULL', 'NULL')";
+     queryPrep = "INSERT INTO track_ds VALUES(?,?,?,?)";
      QSqlQuery query16 (queryPrep, fqt_test);
+     query16.addBindValue("1_8");
+     query16.addBindValue("FALSE");
+     query16.addBindValue("NULL");
+     query16.addBindValue("NULL");
      if(!query16.exec())
          qDebug() << "Query Error: " << query16.lastError();
 
-     queryPrep = "INSERT INTO track_ds VALUES('1_9', '0', 'NULL', 'NULL')";
+     queryPrep = "INSERT INTO track_ds VALUES(?,?,?,?)";
      QSqlQuery query17 (queryPrep, fqt_test);
+     query17.addBindValue("1_9");
+     query17.addBindValue("FALSE");
+     query17.addBindValue("NULL");
+     query17.addBindValue("NULL");
      if(!query17.exec())
          qDebug() << "Query Error: " << query17.lastError();
 
-     queryPrep = "INSERT INTO track_ds VALUES('2_1', '1', 'NULL', 'NULL')";
+     queryPrep = "INSERT INTO track_ds VALUES(?,?,?,?)";
      QSqlQuery query18 (queryPrep, fqt_test);
+     query18.addBindValue("2_1");
+     query18.addBindValue("TRUE");
+     query18.addBindValue("NULL");
+     query18.addBindValue("NULL");
      if(!query18.exec())
          qDebug() << "Query Error: " << query18.lastError();
 
-     queryPrep = "INSERT INTO track_ds VALUES('2_10', '0', 'NULL', 'NULL')";
+     queryPrep = "INSERT INTO track_ds VALUES(?,?,?,?)";
      QSqlQuery query19 (queryPrep, fqt_test);
+     query19.addBindValue("2_10");
+     query19.addBindValue("FALSE");
+     query19.addBindValue("NULL");
+     query19.addBindValue("NULL");
      if(!query19.exec())
          qDebug() << "Query Error: " << query19.lastError();
 
-     queryPrep = "INSERT INTO track_ds VALUES('2_11', '0', 'NULL', 'NULL')";
+     queryPrep = "INSERT INTO track_ds VALUES(?,?,?,?)";
      QSqlQuery query20 (queryPrep, fqt_test);
+     query20.addBindValue("2_11");
+     query20.addBindValue("FALSE");
+     query20.addBindValue("NULL");
+     query20.addBindValue("NULL");
      if(!query20.exec())
          qDebug() << "Query Error: " << query20.lastError();
 
-     queryPrep = "INSERT INTO track_ds VALUES('2_12', '0', 'NULL', 'NULL')";
+     queryPrep = "INSERT INTO track_ds VALUES(?,?,?,?)";
      QSqlQuery query21 (queryPrep, fqt_test);
+     query21.addBindValue("2_12");
+     query21.addBindValue("FALSE");
+     query21.addBindValue("NULL");
+     query21.addBindValue("NULL");
      if(!query21.exec())
          qDebug() << "Query Error: " << query21.lastError();
 
-     queryPrep = "INSERT INTO track_ds VALUES('2_13', '0', 'NULL', 'NULL')";
+     queryPrep = "INSERT INTO track_ds VALUES(?,?,?,?)";
      QSqlQuery query22 (queryPrep, fqt_test);
+     query22.addBindValue("2_13");
+     query22.addBindValue("FALSE");
+     query22.addBindValue("NULL");
+     query22.addBindValue("NULL");
      if(!query22.exec())
          qDebug() << "Query Error: " << query22.lastError();
 
-     queryPrep = "INSERT INTO track_ds VALUES('2_14', '0', 'NULL', 'NULL')";
+     queryPrep = "INSERT INTO track_ds VALUES(?,?,?,?)";
      QSqlQuery query23 (queryPrep, fqt_test);
+     query23.addBindValue("2_14");
+     query23.addBindValue("FALSE");
+     query23.addBindValue("NULL");
+     query23.addBindValue("NULL");
      if(!query23.exec())
          qDebug() << "Query Error: " << query23.lastError();
 
-     queryPrep = "INSERT INTO track_ds VALUES('2_15', '1', 'NULL', 'NULL')";
+     queryPrep = "INSERT INTO track_ds VALUES(?,?,?,?)";
      QSqlQuery query24 (queryPrep, fqt_test);
+     query24.addBindValue("2_15");
+     query24.addBindValue("TRUE");
+     query24.addBindValue("NULL");
+     query24.addBindValue("NULL");
      if(!query24.exec())
          qDebug() << "Query Error: " << query24.lastError();
 
-     queryPrep = "INSERT INTO track_ds VALUES('2_16', '0', 'NULL', 'NULL')";
+     queryPrep = "INSERT INTO track_ds VALUES(?,?,?,?)";
      QSqlQuery query25 (queryPrep, fqt_test);
+     query25.addBindValue("2_16");
+     query25.addBindValue("FALSE");
+     query25.addBindValue("NULL");
+     query25.addBindValue("NULL");
      if(!query25.exec())
          qDebug() << "Query Error: " << query25.lastError();
 
-     queryPrep = "INSERT INTO track_ds VALUES('2_2', '0', 'NULL', 'NULL')";
+     queryPrep = "INSERT INTO track_ds VALUES(?,?,?,?)";
      QSqlQuery query26 (queryPrep, fqt_test);
+     query26.addBindValue("2_2");
+     query26.addBindValue("FALSE");
+     query26.addBindValue("NULL");
+     query26.addBindValue("NULL");
      if(!query26.exec())
          qDebug() << "Query Error: " << query26.lastError();
 
-     queryPrep = "INSERT INTO track_ds VALUES('2_3', '0', 'NULL', 'NULL')";
+     queryPrep = "INSERT INTO track_ds VALUES(?,?,?,?)";
      QSqlQuery query27 (queryPrep, fqt_test);
+     query27.addBindValue("2_3");
+     query27.addBindValue("FALSE");
+     query27.addBindValue("NULL");
+     query27.addBindValue("NULL");
      if(!query27.exec())
          qDebug() << "Query Error: " << query27.lastError();
 
-     queryPrep = "INSERT INTO track_ds VALUES('2_4', '0', 'NULL', 'NULL')";
+     queryPrep = "INSERT INTO track_ds VALUES(?,?,?,?)";
      QSqlQuery query28 (queryPrep, fqt_test);
+     query28.addBindValue("2_4");
+     query28.addBindValue("FALSE");
+     query28.addBindValue("NULL");
+     query28.addBindValue("NULL");
      if(!query28.exec())
          qDebug() << "Query Error: " << query28.lastError();
 
-     queryPrep = "INSERT INTO track_ds VALUES('2_5', '1', 'NULL', 'NULL')";
+     queryPrep = "INSERT INTO track_ds VALUES(?,?,?,?)";
      QSqlQuery query29 (queryPrep, fqt_test);
+     query29.addBindValue("2_5");
+     query29.addBindValue("TRUE");
+     query29.addBindValue("NULL");
+     query29.addBindValue("NULL");
      if(!query29.exec())
          qDebug() << "Query Error: " << query29.lastError();
 
-     queryPrep = "INSERT INTO track_ds VALUES('2_6', '0', 'NULL', 'NULL')";
+     queryPrep = "INSERT INTO track_ds VALUES(?,?,?,?)";
      QSqlQuery query30 (queryPrep, fqt_test);
+     query30.addBindValue("2_6");
+     query30.addBindValue("FALSE");
+     query30.addBindValue("NULL");
+     query30.addBindValue("NULL");
      if(!query30.exec())
          qDebug() << "Query Error: " << query30.lastError();
 
-     queryPrep = "INSERT INTO track_ds VALUES('2_7', '0', 'NULL', 'NULL')";
+     queryPrep = "INSERT INTO track_ds VALUES(?,?,?,?)";
      QSqlQuery query31 (queryPrep, fqt_test);
+     query31.addBindValue("2_7");
+     query31.addBindValue("FALSE");
+     query31.addBindValue("NULL");
+     query31.addBindValue("NULL");
      if(!query31.exec())
          qDebug() << "Query Error: " << query31.lastError();
 
-     queryPrep = "INSERT INTO track_ds VALUES('2_8', '0', 'NULL', 'NULL')";
+     queryPrep = "INSERT INTO track_ds VALUES(?,?,?,?)";
      QSqlQuery query32 (queryPrep, fqt_test);
+     query32.addBindValue("2_8");
+     query32.addBindValue("FALSE");
+     query32.addBindValue("NULL");
+     query32.addBindValue("NULL");
      if(!query32.exec())
          qDebug() << "Query Error: " << query32.lastError();
 
-     queryPrep = "INSERT INTO track_ds VALUES('2_9', '0', 'NULL', 'NULL')";
+     queryPrep = "INSERT INTO track_ds VALUES(?,?,?,?)";
      QSqlQuery query33 (queryPrep, fqt_test);
+     query33.addBindValue("2_9");
+     query33.addBindValue("FALSE");
+     query33.addBindValue("NULL");
+     query33.addBindValue("NULL");
      if(!query33.exec())
          qDebug() << "Query Error: " << query33.lastError();
 
-     queryPrep = "INSERT INTO track_ds VALUES('3_1', '0', 'NULL', 'NULL')";
+     queryPrep = "INSERT INTO track_ds VALUES(?,?,?,?)";
      QSqlQuery query34 (queryPrep, fqt_test);
+     query34.addBindValue("3_1");
+     query34.addBindValue("FALSE");
+     query34.addBindValue("NULL");
+     query34.addBindValue("NULL");
      if(!query34.exec())
          qDebug() << "Query Error: " << query34.lastError();
 
-     queryPrep = "INSERT INTO track_ds VALUES('3_13', '0', 'NULL', 'NULL')";
+     queryPrep = "INSERT INTO track_ds VALUES(?,?,?,?)";
      QSqlQuery query35 (queryPrep, fqt_test);
+     query35.addBindValue("3_13");
+     query35.addBindValue("FALSE");
+     query35.addBindValue("NULL");
+     query35.addBindValue("NULL");
      if(!query35.exec())
          qDebug() << "Query Error: " << query35.lastError();
 
-     queryPrep = "INSERT INTO track_ds VALUES('3_14', '0', 'NULL', 'NULL')";
+     queryPrep = "INSERT INTO track_ds VALUES(?,?,?,?)";
      QSqlQuery query36 (queryPrep, fqt_test);
+     query36.addBindValue("3_14");
+     query36.addBindValue("FALSE");
+     query36.addBindValue("NULL");
+     query36.addBindValue("NULL");
      if(!query36.exec())
          qDebug() << "Query Error: " << query36.lastError();
 
-     queryPrep = "INSERT INTO track_ds VALUES('3_15', '0', 'NULL', 'NULL')";
+     queryPrep = "INSERT INTO track_ds VALUES(?,?,?,?)";
      QSqlQuery query37 (queryPrep, fqt_test);
+     query37.addBindValue("3_15");
+     query37.addBindValue("FALSE");
+     query37.addBindValue("NULL");
+     query37.addBindValue("NULL");
      if(!query37.exec())
          qDebug() << "Query Error: " << query37.lastError();
 
-     queryPrep = "INSERT INTO track_ds VALUES('3_16', '0', 'NULL', 'NULL')";
+     queryPrep = "INSERT INTO track_ds VALUES(?,?,?,?)";
      QSqlQuery query38 (queryPrep, fqt_test);
+     query38.addBindValue("3_16");
+     query38.addBindValue("FALSE");
+     query38.addBindValue("NULL");
+     query38.addBindValue("NULL");
      qDebug() << "Query Error: " << query38.lastError();
      if(!query38.exec())
          qDebug() << "Query Error: " << query38.lastError();
 
-     queryPrep = "INSERT INTO track_ds VALUES('3_2', '0', 'NULL', 'NULL')";
+     queryPrep = "INSERT INTO track_ds VALUES(?,?,?,?)";
      QSqlQuery query39 (queryPrep, fqt_test);
+     query39.addBindValue("3_2");
+     query39.addBindValue("FALSE");
+     query39.addBindValue("NULL");
+     query39.addBindValue("NULL");
      if(!query39.exec())
          qDebug() << "Query Error: " << query39.lastError();
 
-     queryPrep = "INSERT INTO track_ds VALUES('3_3', '0', 'NULL', 'NULL')";
+     queryPrep = "INSERT INTO track_ds VALUES(?,?,?,?)";
      QSqlQuery query40 (queryPrep, fqt_test);
+     query40.addBindValue("3_3");
+     query40.addBindValue("FALSE");
+     query40.addBindValue("NULL");
+     query40.addBindValue("NULL");
      if(!query40.exec())
          qDebug() << "Query Error: " << query40.lastError();
 
-     queryPrep = "INSERT INTO track_ds VALUES('3_4', '0', 'NULL', 'NULL')";
+     queryPrep = "INSERT INTO track_ds VALUES(?,?,?,?)";
      QSqlQuery query41 (queryPrep, fqt_test);
+     query41.addBindValue("3_4");
+     query41.addBindValue("FALSE");
+     query41.addBindValue("NULL");
+     query41.addBindValue("NULL");
      if(!query41.exec())
          qDebug() << "Query Error: " << query41.lastError();
 
-     queryPrep = "INSERT INTO track_ds VALUES('3_5', '0', 'NULL', 'NULL')";
+     queryPrep = "INSERT INTO track_ds VALUES(?,?,?,?)";
      QSqlQuery query42 (queryPrep, fqt_test);
+     query42.addBindValue("3_5");
+     query42.addBindValue("FALSE");
+     query42.addBindValue("NULL");
+     query42.addBindValue("NULL");
      if(!query42.exec())
          qDebug() << "Query Error: " << query42.lastError();
 
-     queryPrep = "INSERT INTO track_ds VALUES('3_6', '0', 'NULL', 'NULL')";
+     queryPrep = "INSERT INTO track_ds VALUES(?,?,?,?)";
      QSqlQuery query43 (queryPrep, fqt_test);
+     query43.addBindValue("3_6");
+     query43.addBindValue("FALSE");
+     query43.addBindValue("NULL");
+     query43.addBindValue("NULL");
      if(!query43.exec())
          qDebug() << "Query Error: " << query43.lastError();
 
-     queryPrep = "INSERT INTO track_ds VALUES('3_7', '0', 'NULL', 'NULL')";
+     queryPrep = "INSERT INTO track_ds VALUES(?,?,?,?)";
      QSqlQuery query44 (queryPrep, fqt_test);
+     query44.addBindValue("3_7");
+     query44.addBindValue("FALSE");
+     query44.addBindValue("NULL");
+     query44.addBindValue("NULL");
      if(!query44.exec())
          qDebug() << "Query Error: " << query44.lastError();
 
-     queryPrep = "INSERT INTO track_ds VALUES('3_8', '0', 'NULL', 'NULL')";
+     queryPrep = "INSERT INTO track_ds VALUES(?,?,?,?)";
      QSqlQuery query45 (queryPrep, fqt_test);
+     query45.addBindValue("3_8");
+     query45.addBindValue("FALSE");
+     query45.addBindValue("NULL");
+     query45.addBindValue("NULL");
      if(!query45.exec())
          qDebug() << "Query Error: " << query45.lastError();
 
-     queryPrep = "INSERT INTO track_ds VALUES('4_10', '0', 'NULL', 'NULL')";
+     queryPrep = "INSERT INTO track_ds VALUES(?,?,?,?)";
      QSqlQuery query46 (queryPrep, fqt_test);
+     query46.addBindValue("4_10");
+     query46.addBindValue("FALSE");
+     query46.addBindValue("NULL");
+     query46.addBindValue("NULL");
      if(!query46.exec())
          qDebug() << "Query Error: " << query46.lastError();
 
-     queryPrep = "INSERT INTO track_ds VALUES('4_11', '0', 'NULL', 'NULL')";
+     queryPrep = "INSERT INTO track_ds VALUES(?,?,?,?)";
      QSqlQuery query47 (queryPrep, fqt_test);
+     query47.addBindValue("4_11");
+     query47.addBindValue("FALSE");
+     query47.addBindValue("NULL");
+     query47.addBindValue("NULL");
      if(!query47.exec())
          qDebug() << "Query Error: " << query47.lastError();
 
-     queryPrep = "INSERT INTO track_ds VALUES('4_12', '0', 'NULL', 'NULL')";
+     queryPrep = "INSERT INTO track_ds VALUES(?,?,?,?)";
      QSqlQuery query48 (queryPrep, fqt_test);
+     query48.addBindValue("4_12");
+     query48.addBindValue("FALSE");
+     query48.addBindValue("NULL");
+     query48.addBindValue("NULL");
      if(!query48.exec())
          qDebug() << "Query Error: " << query48.lastError();
 
-     queryPrep = "INSERT INTO track_ds VALUES('4_13', '0', 'NULL', 'NULL')";
+     queryPrep = "INSERT INTO track_ds VALUES(?,?,?,?)";
      QSqlQuery query49 (queryPrep, fqt_test);
+     query49.addBindValue("4_13");
+     query49.addBindValue("FALSE");
+     query49.addBindValue("NULL");
+     query49.addBindValue("NULL");
      if(!query49.exec())
          qDebug() << "Query Error: " << query49.lastError();
 
-     queryPrep = "INSERT INTO track_ds VALUES('4_14', '0', 'NULL', 'NULL')";
+     queryPrep = "INSERT INTO track_ds VALUES(?,?,?,?)";
      QSqlQuery query50 (queryPrep, fqt_test);
+     query50.addBindValue("4_14");
+     query50.addBindValue("FALSE");
+     query50.addBindValue("NULL");
+     query50.addBindValue("NULL");
      if(!query50.exec())
          qDebug() << "Query Error: " << query50.lastError();
 
-     queryPrep = "INSERT INTO track_ds VALUES('4_15', '0', 'NULL', 'NULL')";
+     queryPrep = "INSERT INTO track_ds VALUES(?,?,?,?)";
      QSqlQuery query51 (queryPrep, fqt_test);
+     query51.addBindValue("4_15");
+     query51.addBindValue("FALSE");
+     query51.addBindValue("NULL");
+     query51.addBindValue("NULL");
      if(!query51.exec())
          qDebug() << "Query Error: " << query51.lastError();
 
-     queryPrep = "INSERT INTO track_ds VALUES('4_16', '0', 'NULL', 'NULL')";
+     queryPrep = "INSERT INTO track_ds VALUES(?,?,?,?)";
      QSqlQuery query52 (queryPrep, fqt_test);
+     query52.addBindValue("4_16");
+     query52.addBindValue("FALSE");
+     query52.addBindValue("NULL");
+     query52.addBindValue("NULL");
      if(!query52.exec())
          qDebug() << "Query Error: " << query52.lastError();
 
-     queryPrep = "INSERT INTO track_ds VALUES('4_2', '0', 'NULL', 'NULL')";
+     queryPrep = "INSERT INTO track_ds VALUES(?,?,?,?)";
      QSqlQuery query53 (queryPrep, fqt_test);
+     query53.addBindValue("4_2");
+     query53.addBindValue("FALSE");
+     query53.addBindValue("NULL");
+     query53.addBindValue("NULL");
      if(!query53.exec())
          qDebug() << "Query Error: " << query53.lastError();
 
-     queryPrep = "INSERT INTO track_ds VALUES('4_3', '0', 'NULL', 'NULL')";
+     queryPrep = "INSERT INTO track_ds VALUES(?,?,?,?)";
      QSqlQuery query54 (queryPrep, fqt_test);
+     query54.addBindValue("4_3");
+     query54.addBindValue("FALSE");
+     query54.addBindValue("NULL");
+     query54.addBindValue("NULL");
      if(!query54.exec())
          qDebug() << "Query Error: " << query54.lastError();
 
-     queryPrep = "INSERT INTO track_ds VALUES('4_4', '0', 'NULL', 'NULL')";
+     queryPrep = "INSERT INTO track_ds VALUES(?,?,?,?)";
      QSqlQuery query55 (queryPrep, fqt_test);
+     query55.addBindValue("4_4");
+     query55.addBindValue("FALSE");
+     query55.addBindValue("NULL");
+     query55.addBindValue("NULL");
      if(!query55.exec())
          qDebug() << "Query Error: " << query55.lastError();
 
-     queryPrep = "INSERT INTO track_ds VALUES('4_9', '0', 'NULL', 'NULL')";
+     queryPrep = "INSERT INTO track_ds VALUES(?,?,?,?)";
      QSqlQuery query56 (queryPrep, fqt_test);
+     query56.addBindValue("4_9");
+     query56.addBindValue("FALSE");
+     query56.addBindValue("NULL");
+     query56.addBindValue("NULL");
      if(!query56.exec())
          qDebug() << "Query Error: " << query56.lastError();
 
-     queryPrep = "INSERT INTO track_ds VALUES('5_1', '0', 'NULL', 'NULL')";
+     queryPrep = "INSERT INTO track_ds VALUES(?,?,?,?)";
      QSqlQuery query57 (queryPrep, fqt_test);
+     query57.addBindValue("5_1");
+     query57.addBindValue("FALSE");
+     query57.addBindValue("NULL");
+     query57.addBindValue("NULL");
      if(!query57.exec())
          qDebug() << "Query Error: " << query57.lastError();
 
-     queryPrep = "INSERT INTO track_ds VALUES('5_13', '0', 'NULL', 'NULL')";
+     queryPrep = "INSERT INTO track_ds VALUES(?,?,?,?)";
      QSqlQuery query58 (queryPrep, fqt_test);
+     query58.addBindValue("5_13");
+     query58.addBindValue("FALSE");
+     query58.addBindValue("NULL");
+     query58.addBindValue("NULL");
      if(!query58.exec())
          qDebug() << "Query Error: " << query58.lastError();
 
-     queryPrep = "INSERT INTO track_ds VALUES('5_14', '0', 'NULL', 'NULL')";
+     queryPrep = "INSERT INTO track_ds VALUES(?,?,?,?)";
      QSqlQuery query59 (queryPrep, fqt_test);
+     query59.addBindValue("5_14");
+     query59.addBindValue("FALSE");
+     query59.addBindValue("NULL");
+     query59.addBindValue("NULL");
      if(!query59.exec())
          qDebug() << "Query Error: " << query59.lastError();
 
-     queryPrep = "INSERT INTO track_ds VALUES('5_15', '0', 'NULL', 'NULL')";
+     queryPrep = "INSERT INTO track_ds VALUES(?,?,?,?)";
      QSqlQuery query60 (queryPrep, fqt_test);
+     query60.addBindValue("5_15");
+     query60.addBindValue("FALSE");
+     query60.addBindValue("NULL");
+     query60.addBindValue("NULL");
      if(!query60.exec())
          qDebug() << "Query Error: " << query60.lastError();
 
-     queryPrep = "INSERT INTO track_ds VALUES('5_16', '0', 'NULL', 'NULL')";
+     queryPrep = "INSERT INTO track_ds VALUES(?,?,?,?)";
      QSqlQuery query61 (queryPrep, fqt_test);
+     query61.addBindValue("5_16");
+     query61.addBindValue("FALSE");
+     query61.addBindValue("NULL");
+     query61.addBindValue("NULL");
      if(!query61.exec())
          qDebug() << "Query Error: " << query61.lastError();
 
-     queryPrep = "INSERT INTO track_ds VALUES('5_2', '0', 'NULL', 'NULL')";
+     queryPrep = "INSERT INTO track_ds VALUES(?,?,?,?)";
      QSqlQuery query62 (queryPrep, fqt_test);
+     query62.addBindValue("5_2");
+     query62.addBindValue("FALSE");
+     query62.addBindValue("NULL");
+     query62.addBindValue("NULL");
      if(!query62.exec())
          qDebug() << "Query Error: " << query62.lastError();
 
-     queryPrep = "INSERT INTO track_ds VALUES('5_3', '0', 'NULL', 'NULL')";
+     queryPrep = "INSERT INTO track_ds VALUES(?,?,?,?)";
      QSqlQuery query63 (queryPrep, fqt_test);
+     query63.addBindValue("5_3");
+     query63.addBindValue("FALSE");
+     query63.addBindValue("NULL");
+     query63.addBindValue("NULL");
      if(!query63.exec())
          qDebug() << "Query Error: " << query63.lastError();
 
-     queryPrep = "INSERT INTO track_ds VALUES('5_4', '0', 'NULL', 'NULL')";
+     queryPrep = "INSERT INTO track_ds VALUES(?,?,?,?)";
      QSqlQuery query64 (queryPrep, fqt_test);
+     query64.addBindValue("5_4");
+     query64.addBindValue("FALSE");
+     query64.addBindValue("NULL");
+     query64.addBindValue("NULL");
      if(!query64.exec())
          qDebug() << "Query Error: " << query64.lastError();
 
-     queryPrep = "INSERT INTO track_ds VALUES('5_5', '0', 'NULL', 'NULL')";
+     queryPrep = "INSERT INTO track_ds VALUES(?,?,?,?)";
      QSqlQuery query65 (queryPrep, fqt_test);
+     query65.addBindValue("5_5");
+     query65.addBindValue("FALSE");
+     query65.addBindValue("NULL");
+     query65.addBindValue("NULL");
      if(!query65.exec())
          qDebug() << "Query Error: " << query65.lastError();
 
-     queryPrep = "INSERT INTO track_ds VALUES('5_6', '0', 'NULL', 'NULL')";
+     queryPrep = "INSERT INTO track_ds VALUES(?,?,?,?)";
      QSqlQuery query66 (queryPrep, fqt_test);
+     query66.addBindValue("5_6");
+     query66.addBindValue("FALSE");
+     query66.addBindValue("NULL");
+     query66.addBindValue("NULL");
      if(!query66.exec())
          qDebug() << "Query Error: " << query66.lastError();
 
-     queryPrep = "INSERT INTO track_ds VALUES('5_7', '0', 'NULL', 'NULL')";
+     queryPrep = "INSERT INTO track_ds VALUES(?,?,?,?)";
      QSqlQuery query67 (queryPrep, fqt_test);
+     query67.addBindValue("5_7");
+     query67.addBindValue("FALSE");
+     query67.addBindValue("NULL");
+     query67.addBindValue("NULL");
      if(!query67.exec())
          qDebug() << "Query Error: " << query67.lastError();
 
-     queryPrep = "INSERT INTO track_ds VALUES('5_8', '0', 'NULL', 'NULL')";
+     queryPrep = "INSERT INTO track_ds VALUES(?,?,?,?)";
      QSqlQuery query68 (queryPrep, fqt_test);
+     query68.addBindValue("5_8");
+     query68.addBindValue("FALSE");
+     query68.addBindValue("NULL");
+     query68.addBindValue("NULL");
      if(!query68.exec())
          qDebug() << "Query Error: " << query68.lastError();
 
-     queryPrep = "INSERT INTO track_ds VALUES('6_1', '0', 'NULL', 'NULL')";
+     queryPrep = "INSERT INTO track_ds VALUES(?,?,?,?)";
      QSqlQuery query69 (queryPrep, fqt_test);
+     query69.addBindValue("6_1");
+     query69.addBindValue("FALSE");
+     query69.addBindValue("NULL");
+     query69.addBindValue("NULL");
      if(!query69.exec())
          qDebug() << "Query Error: " << query69.lastError();
 
-     queryPrep = "INSERT INTO track_ds VALUES('6_2', '0', 'NULL', 'NULL')";
+     queryPrep = "INSERT INTO track_ds VALUES(?,?,?,?)";
      QSqlQuery query70 (queryPrep, fqt_test);
+     query70.addBindValue("6_2");
+     query70.addBindValue("FALSE");
+     query70.addBindValue("NULL");
+     query70.addBindValue("NULL");
      if(!query70.exec())
          qDebug() << "Query Error: " << query70.lastError();
 
-     queryPrep = "INSERT INTO track_ds VALUES('6_3', '0', 'NULL', 'NULL')";
+     queryPrep = "INSERT INTO track_ds VALUES(?,?,?,?)";
      QSqlQuery query71 (queryPrep, fqt_test);
+     query71.addBindValue("6_3");
+     query71.addBindValue("FALSE");
+     query71.addBindValue("NULL");
+     query71.addBindValue("NULL");
      if(!query71.exec())
          qDebug() << "Query Error: " << query71.lastError();
 
-     queryPrep = "INSERT INTO track_ds VALUES('6_4', '0', 'NULL', 'NULL')";
+     queryPrep = "INSERT INTO track_ds VALUES(?,?,?,?)";
      QSqlQuery query72 (queryPrep, fqt_test);
+     query72.addBindValue("6_4");
+     query72.addBindValue("FALSE");
+     query72.addBindValue("NULL");
+     query72.addBindValue("NULL");
      if(!query72.exec())
          qDebug() << "Query Error: " << query72.lastError();
 
-     queryPrep = "INSERT INTO track_ds VALUES('6_5', '0', 'NULL', 'NULL')";
+     queryPrep = "INSERT INTO track_ds VALUES(?,?,?,?)";
      QSqlQuery query73 (queryPrep, fqt_test);
+     query73.addBindValue("6_5");
+     query73.addBindValue("FALSE");
+     query73.addBindValue("NULL");
+     query73.addBindValue("NULL");
      if(!query73.exec())
          qDebug() << "Query Error: " << query73.lastError();
 
-     queryPrep = "INSERT INTO track_ds VALUES('6_6', '0', 'NULL', 'NULL')";
+     queryPrep = "INSERT INTO track_ds VALUES(?,?,?,?)";
      QSqlQuery query74 (queryPrep, fqt_test);
+     query74.addBindValue("6_6");
+     query74.addBindValue("FALSE");
+     query74.addBindValue("NULL");
+     query74.addBindValue("NULL");
      if(!query74.exec())
          qDebug() << "Query Error: " << query74.lastError();
 
-     queryPrep = "INSERT INTO track_ds VALUES('6_7', '0', 'NULL', 'NULL')";
+     queryPrep = "INSERT INTO track_ds VALUES(?,?,?,?)";
      QSqlQuery query75 (queryPrep, fqt_test);
+     query75.addBindValue("6_7");
+     query75.addBindValue("FALSE");
+     query75.addBindValue("NULL");
+     query75.addBindValue("NULL");
      if(!query75.exec())
          qDebug() << "Query Error: " << query75.lastError();
 
-     queryPrep = "INSERT INTO track_ds VALUES('6_8', '0', 'NULL', 'NULL')";
+     queryPrep = "INSERT INTO track_ds VALUES(?,?,?,?)";
      QSqlQuery query76 (queryPrep, fqt_test);
+     query76.addBindValue("6_8");
+     query76.addBindValue("FALSE");
+     query76.addBindValue("NULL");
+     query76.addBindValue("NULL");
      if(!query76.exec())
          qDebug() << "Query Error: " << query76.lastError();
 
-     queryPrep = "INSERT INTO track_ds VALUES('7_1', '0', 'NULL', 'NULL')";
+     queryPrep = "INSERT INTO track_ds VALUES(?,?,?,?)";
      QSqlQuery query77 (queryPrep, fqt_test);
+     query77.addBindValue("7_1");
+     query77.addBindValue("FALSE");
+     query77.addBindValue("NULL");
+     query77.addBindValue("NULL");
      if(!query77.exec())
          qDebug() << "Query Error: " << query77.lastError();
 
-     queryPrep = "INSERT INTO track_ds VALUES('7_13', '0', 'NULL', 'NULL')";
+     queryPrep = "INSERT INTO track_ds VALUES(?,?,?,?)";
      QSqlQuery query78 (queryPrep, fqt_test);
+     query78.addBindValue("7_13");
+     query78.addBindValue("FALSE");
+     query78.addBindValue("NULL");
+     query78.addBindValue("NULL");
      if(!query78.exec())
          qDebug() << "Query Error: " << query78.lastError();
 
-     queryPrep = "INSERT INTO track_ds VALUES('7_2', '0', 'NULL', 'NULL')";
+     queryPrep = "INSERT INTO track_ds VALUES(?,?,?,?)";
      QSqlQuery query79 (queryPrep, fqt_test);
+     query79.addBindValue("7_2");
+     query79.addBindValue("FALSE");
+     query79.addBindValue("NULL");
+     query79.addBindValue("NULL");
      if(!query79.exec())
          qDebug() << "Query Error: " << query79.lastError();
 
-     queryPrep = "INSERT INTO track_ds VALUES('7_3', '0', 'NULL', 'NULL')";
+     queryPrep = "INSERT INTO track_ds VALUES(?,?,?,?)";
      QSqlQuery query80 (queryPrep, fqt_test);
+     query80.addBindValue("7_3");
+     query80.addBindValue("FALSE");
+     query80.addBindValue("NULL");
+     query80.addBindValue("NULL");
      if(!query80.exec())
          qDebug() << "Query Error: " << query80.lastError();
 
-     queryPrep = "INSERT INTO track_ds VALUES('7_4', '0', 'NULL', 'NULL')";
+     queryPrep = "INSERT INTO track_ds VALUES(?,?,?,?)";
      QSqlQuery query81 (queryPrep, fqt_test);
+     query81.addBindValue("7_4");
+     query81.addBindValue("FALSE");
+     query81.addBindValue("NULL");
+     query81.addBindValue("NULL");
      if(!query81.exec())
          qDebug() << "Query Error: " << query81.lastError();
 
-     queryPrep = "INSERT INTO track_ds VALUES('7_5', '0', 'NULL', 'NULL')";
+     queryPrep = "INSERT INTO track_ds VALUES(?,?,?,?)";
      QSqlQuery query82 (queryPrep, fqt_test);
+     query82.addBindValue("7_5");
+     query82.addBindValue("FALSE");
+     query82.addBindValue("NULL");
+     query82.addBindValue("NULL");
      if(!query82.exec())
          qDebug() << "Query Error: " << query82.lastError();
 
-     queryPrep = "INSERT INTO track_ds VALUES('7_6', '0', 'NULL', 'NULL')";
+     queryPrep = "INSERT INTO track_ds VALUES(?,?,?,?)";
      QSqlQuery query83 (queryPrep, fqt_test);
+     query83.addBindValue("7_6");
+     query83.addBindValue("FALSE");
+     query83.addBindValue("NULL");
+     query83.addBindValue("NULL");
      if(!query83.exec())
          qDebug() << "Query Error: " << query83.lastError();
 
-     queryPrep = "INSERT INTO track_ds VALUES('7_7', '0', 'NULL', 'NULL')";
+     queryPrep = "INSERT INTO track_ds VALUES(?,?,?,?)";
      QSqlQuery query84 (queryPrep, fqt_test);
+     query84.addBindValue("7_7");
+     query84.addBindValue("FALSE");
+     query84.addBindValue("NULL");
+     query84.addBindValue("NULL");
      if(!query84.exec())
          qDebug() << "Query Error: " << query84.lastError();
 
-     queryPrep = "INSERT INTO track_ds VALUES('7_8', '0', 'NULL', 'NULL')";
+     queryPrep = "INSERT INTO track_ds VALUES(?,?,?,?)";
      QSqlQuery query85 (queryPrep, fqt_test);
+     query85.addBindValue("7_8");
+     query85.addBindValue("FALSE");
+     query85.addBindValue("NULL");
+     query85.addBindValue("NULL");
      if(!query85.exec())
          qDebug() << "Query Error: " << query85.lastError();
 
-     queryPrep = "INSERT INTO track_ds VALUES('8_1', '0', 'NULL', 'NULL')";
+     queryPrep = "INSERT INTO track_ds VALUES(?,?,?,?)";
      QSqlQuery query86 (queryPrep, fqt_test);
+     query86.addBindValue("8_1");
+     query86.addBindValue("FALSE");
+     query86.addBindValue("NULL");
+     query86.addBindValue("NULL");
      if(!query86.exec())
          qDebug() << "Query Error: " << query86.lastError();
 
-     queryPrep = "INSERT INTO track_ds VALUES('8_10', '0', 'NULL', 'NULL')";
+     queryPrep = "INSERT INTO track_ds VALUES(?,?,?,?)";
      QSqlQuery query87 (queryPrep, fqt_test);
+     query87.addBindValue("8_10");
+     query87.addBindValue("FALSE");
+     query87.addBindValue("NULL");
+     query87.addBindValue("NULL");
      if(!query87.exec())
          qDebug() << "Query Error: " << query87.lastError();
 
-     queryPrep = "INSERT INTO track_ds VALUES('8_11', '0', 'NULL', 'NULL')";
+     queryPrep = "INSERT INTO track_ds VALUES(?,?,?,?)";
      QSqlQuery query88 (queryPrep, fqt_test);
+     query88.addBindValue("8_11");
+     query88.addBindValue("FALSE");
+     query88.addBindValue("NULL");
+     query88.addBindValue("NULL");
      if(!query88.exec())
          qDebug() << "Query Error: " << query88.lastError();
 
-     queryPrep = "INSERT INTO track_ds VALUES('8_12', '0', 'NULL', 'NULL')";
+     queryPrep = "INSERT INTO track_ds VALUES(?,?,?,?)";
      QSqlQuery query89 (queryPrep, fqt_test);
+     query89.addBindValue("8_12");
+     query89.addBindValue("FALSE");
+     query89.addBindValue("NULL");
+     query89.addBindValue("NULL");
      if(!query89.exec())
          qDebug() << "Query Error: " << query89.lastError();
 
-     queryPrep = "INSERT INTO track_ds VALUES('8_13', '0', 'NULL', 'NULL')";
+     queryPrep = "INSERT INTO track_ds VALUES(?,?,?,?)";
      QSqlQuery query90 (queryPrep, fqt_test);
+     query90.addBindValue("8_13");
+     query90.addBindValue("FALSE");
+     query90.addBindValue("NULL");
+     query90.addBindValue("NULL");
      if(!query90.exec())
          qDebug() << "Query Error: " << query90.lastError();
 
-     queryPrep = "INSERT INTO track_ds VALUES('8_14', '0', 'NULL', 'NULL')";
+     queryPrep = "INSERT INTO track_ds VALUES(?,?,?,?)";
      QSqlQuery query91 (queryPrep, fqt_test);
+     query91.addBindValue("8_14");
+     query91.addBindValue("FALSE");
+     query91.addBindValue("NULL");
+     query91.addBindValue("NULL");
      if(!query91.exec())
          qDebug() << "Query Error: " << query91.lastError();
 
-     queryPrep = "INSERT INTO track_ds VALUES('8_15', '0', 'NULL', 'NULL')";
+     queryPrep = "INSERT INTO track_ds VALUES(?,?,?,?)";
      QSqlQuery query92 (queryPrep, fqt_test);
+     query92.addBindValue("8_15");
+     query92.addBindValue("FALSE");
+     query92.addBindValue("NULL");
+     query92.addBindValue("NULL");
      if(!query92.exec())
          qDebug() << "Query Error: " << query92.lastError();
 
-     queryPrep = "INSERT INTO track_ds VALUES('8_16', '0', 'NULL', 'NULL')";
+     queryPrep = "INSERT INTO track_ds VALUES(?,?,?,?)";
      QSqlQuery query93 (queryPrep, fqt_test);
+     query93.addBindValue("8_16");
+     query93.addBindValue("FALSE");
+     query93.addBindValue("NULL");
+     query93.addBindValue("NULL");
      if(!query93.exec())
          qDebug() << "Query Error: " << query93.lastError();
 
-     queryPrep = "INSERT INTO track_ds VALUES('8_2', '0', 'NULL', 'NULL')";
+     queryPrep = "INSERT INTO track_ds VALUES(?,?,?,?)";
      QSqlQuery query94 (queryPrep, fqt_test);
+     query94.addBindValue("8_2");
+     query94.addBindValue("FALSE");
+     query94.addBindValue("NULL");
+     query94.addBindValue("NULL");
      if(!query94.exec())
          qDebug() << "Query Error: " << query94.lastError();
 
-     queryPrep = "INSERT INTO track_ds VALUES('8_3', '0', 'NULL', 'NULL')";
+     queryPrep = "INSERT INTO track_ds VALUES(?,?,?,?)";
      QSqlQuery query95 (queryPrep, fqt_test);
+     query95.addBindValue("8_3");
+     query95.addBindValue("FALSE");
+     query95.addBindValue("NULL");
+     query95.addBindValue("NULL");
      if(!query95.exec())
          qDebug() << "Query Error: " << query95.lastError();
 
-     queryPrep = "INSERT INTO track_ds VALUES('8_4', '0', 'NULL', 'NULL')";
+     queryPrep = "INSERT INTO track_ds VALUES(?,?,?,?)";
      QSqlQuery query96 (queryPrep, fqt_test);
+     query96.addBindValue("8_4");
+     query96.addBindValue("FALSE");
+     query96.addBindValue("NULL");
+     query96.addBindValue("NULL");
      if(!query96.exec())
          qDebug() << "Query Error: " << query96.lastError();
 
-     queryPrep = "INSERT INTO track_ds VALUES('8_5', '0', 'NULL', 'NULL')";
+     queryPrep = "INSERT INTO track_ds VALUES(?,?,?,?)";
      QSqlQuery query97 (queryPrep, fqt_test);
+     query97.addBindValue("8_5");
+     query97.addBindValue("FALSE");
+     query97.addBindValue("NULL");
+     query97.addBindValue("NULL");
      if(!query97.exec())
          qDebug() << "Query Error: " << query97.lastError();
 
-     queryPrep = "INSERT INTO track_ds VALUES('8_6', '0', 'NULL', 'NULL')";
+     queryPrep = "INSERT INTO track_ds VALUES(?,?,?,?)";
      QSqlQuery query98 (queryPrep, fqt_test);
+     query98.addBindValue("8_6");
+     query98.addBindValue("FALSE");
+     query98.addBindValue("NULL");
+     query98.addBindValue("NULL");
      if(!query98.exec())
          qDebug() << "Query Error: " << query98.lastError();
 
-     queryPrep = "INSERT INTO track_ds VALUES('8_7', '0', 'NULL', 'NULL')";
+     queryPrep = "INSERT INTO track_ds VALUES(?,?,?,?)";
      QSqlQuery query99 (queryPrep, fqt_test);
+     query99.addBindValue("8_7");
+     query99.addBindValue("FALSE");
+     query99.addBindValue("NULL");
+     query99.addBindValue("NULL");
      if(!query99.exec())
          qDebug() << "Query Error: " << query99.lastError();
 
-     queryPrep = "INSERT INTO track_ds VALUES('8_8', '0', 'NULL', 'NULL')";
+     queryPrep = "INSERT INTO track_ds VALUES(?,?,?,?)";
      QSqlQuery query100 (queryPrep, fqt_test);
+     query100.addBindValue("8_8");
+     query100.addBindValue("FALSE");
+     query100.addBindValue("NULL");
+     query100.addBindValue("NULL");
      if(!query100.exec())
          qDebug() << "Query Error: " << query100.lastError();
 
-     queryPrep = "INSERT INTO track_ds VALUES('8_9', '0', 'NULL', 'NULL')";
+     queryPrep = "INSERT INTO track_ds VALUES(?,?,?,?)";
      QSqlQuery query101 (queryPrep, fqt_test);
+     query101.addBindValue("8_9");
+     query101.addBindValue("FALSE");
+     query101.addBindValue("NULL");
+     query101.addBindValue("NULL");
      if(!query101.exec())
          qDebug() << "Query Error: " << query101.lastError();
 
