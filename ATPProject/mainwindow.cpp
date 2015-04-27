@@ -2168,18 +2168,33 @@ void MainWindow::message(QString alert)
      if(!query102.exec())
          qDebug() << "Query Error: " << query102.lastError();
 
-     queryPrep = "INSERT INTO scheduled_train_info VALUES ('1', '2_5', '2_9', '2_6', 1)";
+     queryPrep = "INSERT INTO scheduled_train_info VALUES (?,?,?,?,?)";
      QSqlQuery query103 (queryPrep, fqt_test);
+     query103.addBindValue("1");
+     query103.addBindValue("2_5");
+     query103.addBindValue("2_9");
+     query103.addBindValue("2_6");
+     query103.addBindValue(1);
      if(!query103.exec())
          qDebug() << "Query Error: " << query103.lastError();
 
-     queryPrep = "INSERT INTO scheduled_train_info VALUES ('2', '3_1', '3_14', '3_13', 2)";
+     queryPrep = "INSERT INTO scheduled_train_info VALUES (?,?,?,?,?)";
      QSqlQuery query104 (queryPrep, fqt_test);
+     query104.addBindValue("2");
+     query104.addBindValue("3_1");
+     query104.addBindValue("3_14");
+     query104.addBindValue("3_13");
+     query104.addBindValue(2);
      if(!query104.exec())
          qDebug() << "Query Error: " << query104.lastError();
 
      queryPrep = "INSERT INTO scheduled_train_info VALUES ('3', '4_11', '4_14', '4_12', 3)";
      QSqlQuery query105 (queryPrep, fqt_test);
+     query105.addBindValue("3");
+     query105.addBindValue("4_11");
+     query105.addBindValue("4_14");
+     query105.addBindValue("4_12");
+     query105.addBindValue(3);
      if(!query105.exec())
          qDebug() << "Query Error: " << query105.lastError();
 
@@ -2188,18 +2203,56 @@ void MainWindow::message(QString alert)
      if(!query106.exec())
          qDebug() << "Query Error: " << query106.lastError();
 
-     queryPrep = "INSERT INTO scheduled_routes VALUES (1, NULL, 4_14, 1_16, 1_15, 1_14, 1_8, NULL, NULL, NULL, NULL, NULL)";
+     queryPrep = "INSERT INTO scheduled_routes VALUES (?,?,?,?,?,?,?,?,?,?,?,?)";
      QSqlQuery query107 (queryPrep, fqt_test);
+     query107.addBindValue("1");
+     query107.addBindValue("NULL");
+     query107.addBindValue("4_14");
+     query107.addBindValue("1_16");
+     query107.addBindValue("1_15");
+     query107.addBindValue("1_14");
+     query107.addBindValue("1_8");
+     query107.addBindValue("NULL");
+     query107.addBindValue("NULL");
+     query107.addBindValue("NULL");
+     query107.addBindValue("NULL");
+     query107.addBindValue("NULL");
+
      if(!query107.exec())
          qDebug() << "Query Error: " << query107.lastError();
 
-     queryPrep = "INSERT INTO scheduled_routes VALUES (2, NULL, 2_1, 2_3, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL)";
+     queryPrep = "INSERT INTO scheduled_routes VALUES (?,?,?,?,?,?,?,?,?,?,?,?)";
      QSqlQuery query108 (queryPrep, fqt_test);
+     query108.addBindValue("2");
+     query108.addBindValue("NULL");
+     query108.addBindValue("2_1");
+     query108.addBindValue("2_3");
+     query108.addBindValue("NULL");
+     query108.addBindValue("NULL");
+     query108.addBindValue("NULL");
+     query108.addBindValue("NULL");
+     query108.addBindValue("NULL");
+     query108.addBindValue("NULL");
+     query108.addBindValue("NULL");
+     query108.addBindValue("NULL");
+
      if(!query108.exec())
          qDebug() << "Query Error: " << query108.lastError();
 
-     queryPrep = "INSERT INTO scheduled_routes VALUES (3, NULL, 2_15, 2_14, 8_4, 8_3, 8_2, NULL, NULL, NULL, NULL, NULL)";
+     queryPrep = "INSERT INTO scheduled_routes VALUES (?,?,?,?,?,?,?,?,?,?,?,?)";
      QSqlQuery query109 (queryPrep, fqt_test);
+     query109.addBindValue("3");
+     query109.addBindValue("NULL");
+     query109.addBindValue("2_15");
+     query109.addBindValue("2_14");
+     query109.addBindValue("8_4");
+     query109.addBindValue("8_3");
+     query109.addBindValue("8_2");
+     query109.addBindValue("NULL");
+     query109.addBindValue("NULL");
+     query109.addBindValue("NULL");
+     query109.addBindValue("NULL");
+     query109.addBindValue("NULL");
      if(!query109.exec())
          qDebug() << "Query Error: " << query109.lastError();
 
