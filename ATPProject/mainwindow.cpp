@@ -1237,493 +1237,689 @@ void MainWindow::message(QString alert)
      if(!query111.exec())
          qDebug() << "Query Error: " << query111.lastError();
 
-     queryPrep = "INSERT INTO track_power VALUES ('1_10', 1)";
+     queryPrep = "INSERT INTO track_power VALUES (?,?)";
      QSqlQuery query112 (queryPrep, fqt_test);
+     query112.addBindValue("1_10");
+     query112.addBindValue(1);
      if(!query112.exec())
          qDebug() << "Query Error: " << query112.lastError();
 
-     queryPrep = "INSERT INTO track_power VALUES ('1_11', 1)";
+     queryPrep = "INSERT INTO track_power VALUES (?,?)";
      QSqlQuery query113 (queryPrep, fqt_test);
+     query113.addBindValue("1_11");
+     query113.addBindValue(1);
      if(!query113.exec())
          qDebug() << "Query Error: " << query113.lastError();
 
-     queryPrep = "INSERT INTO track_power VALUES ('1_12', 1)";
+     queryPrep = "INSERT INTO track_power VALUES (?,?)";
      QSqlQuery query114 (queryPrep, fqt_test);
+     query114.addBindValue("1_12");
+     query114.addBindValue(1);
      if(!query114.exec())
          qDebug() << "Query Error: " << query114.lastError();
 
-     queryPrep = "INSERT INTO track_power VALUES ('1_14', 1)";
+     queryPrep = "INSERT INTO track_power VALUES (?,?)";
      QSqlQuery query115 (queryPrep, fqt_test);
+     query115.addBindValue("1_14");
+     query115.addBindValue(1);
      if(!query115.exec())
          qDebug() << "Query Error: " << query115.lastError();
 
-     queryPrep = "INSERT INTO track_power VALUES ('1_15', 1)";
+     queryPrep = "INSERT INTO track_power VALUES (?,?)";
      QSqlQuery query116 (queryPrep, fqt_test);
+     query116.addBindValue("1_15");
+     query116.addBindValue(1);
      if(!query116.exec())
          qDebug() << "Query Error: " << query116.lastError();
 
-     queryPrep = "INSERT INTO track_power VALUES ('1_16', 1)";
+     queryPrep = "INSERT INTO track_power VALUES (?,?)";
      QSqlQuery query117 (queryPrep, fqt_test);
+     query117.addBindValue("1_16");
+     query117.addBindValue(1);
      if(!query117.exec())
          qDebug() << "Query Error: " << query117.lastError();
 
-     queryPrep = "INSERT INTO track_power VALUES ('1_2', 1)";
+     queryPrep = "INSERT INTO track_power VALUES (?,?)";
      QSqlQuery query118 (queryPrep, fqt_test);
+     query118.addBindValue("1_2");
+     query118.addBindValue(1);
      if(!query118.exec())
          qDebug() << "Query Error: " << query118.lastError();
 
-     queryPrep = "INSERT INTO track_power VALUES ('1_3', 1)";
+     queryPrep = "INSERT INTO track_power VALUES (?,?)";
      QSqlQuery query119 (queryPrep, fqt_test);
+     query119.addBindValue("1_3");
+     query119.addBindValue(1);
      if(!query119.exec())
          qDebug() << "Query Error: " << query119.lastError();
 
-     queryPrep = "INSERT INTO track_power VALUES ('1_4', 1)";
+     queryPrep = "INSERT INTO track_power VALUES (?,?)";
      QSqlQuery query120 (queryPrep, fqt_test);
+     query120.addBindValue("1_4");
+     query120.addBindValue(1);
      if(!query120.exec())
          qDebug() << "Query Error: " << query120.lastError();
 
-     queryPrep = "INSERT INTO track_power VALUES ('1_5', 1)";
+     queryPrep = "INSERT INTO track_power VALUES (?,?)";
      QSqlQuery query121 (queryPrep, fqt_test);
+     query121.addBindValue("1_5");
+     query121.addBindValue(1);
      if(!query121.exec())
          qDebug() << "Query Error: " << query121.lastError();
 
-     queryPrep = "INSERT INTO track_power VALUES ('1_6', 1)";
+     queryPrep = "INSERT INTO track_power VALUES (?,?)";
      QSqlQuery query122 (queryPrep, fqt_test);
+     query122.addBindValue("1_6");
+     query122.addBindValue(1);
      if(!query122.exec())
          qDebug() << "Query Error: " << query122.lastError();
 
-     queryPrep = "INSERT INTO track_power VALUES ('1_7', 1)";
+     queryPrep = "INSERT INTO track_power VALUES (?,?)";
      QSqlQuery query123 (queryPrep, fqt_test);
+     query123.addBindValue("1_7");
+     query123.addBindValue(1);
      if(!query123.exec())
          qDebug() << "Query Error: " << query123.lastError();
 
-     queryPrep = "INSERT INTO track_power VALUES ('1_8', 1)";
+     queryPrep = "INSERT INTO track_power VALUES (?,?)";
      QSqlQuery query124 (queryPrep, fqt_test);
+     query124.addBindValue("1_8");
+     query124.addBindValue(1);
      if(!query124.exec())
          qDebug() << "Query Error: " << query124.lastError();
 
-     queryPrep = "INSERT INTO track_power VALUES ('1_9', 1)";
+     queryPrep = "INSERT INTO track_power VALUES (?,?)";
      QSqlQuery query125 (queryPrep, fqt_test);
+     query125.addBindValue("1_9");
+     query125.addBindValue(1);
      if(!query125.exec())
          qDebug() << "Query Error: " << query125.lastError();
 
-     queryPrep = "INSERT INTO track_power VALUES ('2_1', 1)";
+     queryPrep = "INSERT INTO track_power VALUES (?,?)";
      QSqlQuery query126 (queryPrep, fqt_test);
+     query126.addBindValue("2_1");
+     query126.addBindValue(1);
      if(!query126.exec())
          qDebug() << "Query Error: " << query126.lastError();
 
-     queryPrep = "INSERT INTO track_power VALUES ('2_10', 1)";
+     queryPrep = "INSERT INTO track_power VALUES (?,?)";
      QSqlQuery query127 (queryPrep, fqt_test);
+     query127.addBindValue("2_10");
+     query127.addBindValue(1);
      if(!query127.exec())
          qDebug() << "Query Error: " << query127.lastError();
 
-     queryPrep = "INSERT INTO track_power VALUES ('2_11', 1)";
+     queryPrep = "INSERT INTO track_power VALUES (?,?)";
      QSqlQuery query128 (queryPrep, fqt_test);
+     query128.addBindValue("2_11");
+     query128.addBindValue(1);
      if(!query128.exec())
          qDebug() << "Query Error: " << query128.lastError();
 
-     queryPrep = "INSERT INTO track_power VALUES ('2_12', 1)";
+     queryPrep = "INSERT INTO track_power VALUES (?,?)";
      QSqlQuery query129 (queryPrep, fqt_test);
+     query129.addBindValue("2_12");
+     query129.addBindValue(1);
      if(!query129.exec())
          qDebug() << "Query Error: " << query129.lastError();
 
-     queryPrep = "INSERT INTO track_power VALUES ('2_13', 1)";
+     queryPrep = "INSERT INTO track_power VALUES (?,?)";
      QSqlQuery query130 (queryPrep, fqt_test);
+     query130.addBindValue("2_13");
+     query130.addBindValue(1);
      if(!query130.exec())
          qDebug() << "Query Error: " << query130.lastError();
 
-     queryPrep = "INSERT INTO track_power VALUES ('2_14', 1)";
+     queryPrep = "INSERT INTO track_power VALUES (?,?)";
      QSqlQuery query131 (queryPrep, fqt_test);
+     query131.addBindValue("2_14");
+     query131.addBindValue(1);
      if(!query131.exec())
          qDebug() << "Query Error: " << query131.lastError();
 
-     queryPrep = "INSERT INTO track_power VALUES ('2_15', 1)";
+     queryPrep = "INSERT INTO track_power VALUES (?,?)";
      QSqlQuery query132 (queryPrep, fqt_test);
+     query132.addBindValue("2_15");
+     query132.addBindValue(1);
      if(!query132.exec())
          qDebug() << "Query Error: " << query132.lastError();
 
-     queryPrep = "INSERT INTO track_power VALUES ('2_16', 1)";
+     queryPrep = "INSERT INTO track_power VALUES (?,?)";
      QSqlQuery query133 (queryPrep, fqt_test);
+     query133.addBindValue("2_16");
+     query133.addBindValue(1);
      if(!query133.exec())
          qDebug() << "Query Error: " << query133.lastError();
 
-     queryPrep = "INSERT INTO track_power VALUES ('2_2', 1)";
+     queryPrep = "INSERT INTO track_power VALUES (?,?)";
      QSqlQuery query134 (queryPrep, fqt_test);
+     query134.addBindValue("2_2");
+     query134.addBindValue(1);
      if(!query134.exec())
          qDebug() << "Query Error: " << query134.lastError();
 
-     queryPrep = "INSERT INTO track_power VALUES ('2_3', 1)";
+     queryPrep = "INSERT INTO track_power VALUES (?,?)";
      QSqlQuery query135 (queryPrep, fqt_test);
+     query135.addBindValue("2_3");
+     query135.addBindValue(1);
      if(!query135.exec())
          qDebug() << "Query Error: " << query135.lastError();
 
-     queryPrep = "INSERT INTO track_power VALUES ('2_4', 1)";
+     queryPrep = "INSERT INTO track_power VALUES (?,?)";
      QSqlQuery query136 (queryPrep, fqt_test);
+     query136.addBindValue("2_4");
+     query136.addBindValue(1);
      if(!query136.exec())
          qDebug() << "Query Error: " << query136.lastError();
 
-     queryPrep = "INSERT INTO track_power VALUES ('2_5', 1)";
+     queryPrep = "INSERT INTO track_power VALUES (?,?)";
      QSqlQuery query137 (queryPrep, fqt_test);
+     query137.addBindValue("2_5");
+     query137.addBindValue(1);
      if(!query137.exec())
          qDebug() << "Query Error: " << query137.lastError();
 
-     queryPrep = "INSERT INTO track_power VALUES ('2_6', 1)";
+     queryPrep = "INSERT INTO track_power VALUES (?,?)";
      QSqlQuery query138 (queryPrep, fqt_test);
+     query138.addBindValue("2_6");
+     query138.addBindValue(1);
      if(!query138.exec())
          qDebug() << "Query Error: " << query138.lastError();
 
-     queryPrep = "INSERT INTO track_power VALUES ('2_7', 1)";
+     queryPrep = "INSERT INTO track_power VALUES (?,?)";
      QSqlQuery query139 (queryPrep, fqt_test);
+     query139.addBindValue("2_7");
+     query139.addBindValue(1);
      if(!query139.exec())
          qDebug() << "Query Error: " << query139.lastError();
 
-     queryPrep = "INSERT INTO track_power VALUES ('2_8', 1)";
+     queryPrep = "INSERT INTO track_power VALUES (?,?)";
      QSqlQuery query140 (queryPrep, fqt_test);
+     query140.addBindValue("2_8");
+     query140.addBindValue(1);
      if(!query140.exec())
          qDebug() << "Query Error: " << query140.lastError();
 
-     queryPrep = "INSERT INTO track_power VALUES ('2_9', 1)";
+     queryPrep = "INSERT INTO track_power VALUES (?,?)";
      QSqlQuery query141 (queryPrep, fqt_test);
+     query141.addBindValue("2_9");
+     query141.addBindValue(1);
      if(!query141.exec())
          qDebug() << "Query Error: " << query141.lastError();
 
-     queryPrep = "INSERT INTO track_power VALUES ('3_1', 1)";
+     queryPrep = "INSERT INTO track_power VALUES (?,?)";
      QSqlQuery query142 (queryPrep, fqt_test);
+     query142.addBindValue("3_1");
+     query142.addBindValue(1);
      if(!query142.exec())
          qDebug() << "Query Error: " << query142.lastError();
 
-     queryPrep = "INSERT INTO track_power VALUES ('3_13', 0)";
+     queryPrep = "INSERT INTO track_power VALUES (?,?)";
      QSqlQuery query143 (queryPrep, fqt_test);
+     query143.addBindValue("3_13");
+     query143.addBindValue(0);
      if(!query143.exec())
          qDebug() << "Query Error: " << query143.lastError();
 
-     queryPrep = "INSERT INTO track_power VALUES ('3_14', 1)";
+     queryPrep = "INSERT INTO track_power VALUES (?,?)";
      QSqlQuery query144 (queryPrep, fqt_test);
+     query144.addBindValue("3_14");
+     query144.addBindValue(1);
      if(!query144.exec())
          qDebug() << "Query Error: " << query144.lastError();
 
-     queryPrep = "INSERT INTO track_power VALUES ('3_15', 1)";
+     queryPrep = "INSERT INTO track_power VALUES (?,?)";
      QSqlQuery query145 (queryPrep, fqt_test);
+     query145.addBindValue("3_15");
+     query145.addBindValue(1);
      if(!query145.exec())
          qDebug() << "Query Error: " << query145.lastError();
 
-     queryPrep = "INSERT INTO track_power VALUES ('3_16', 1)";
+     queryPrep = "INSERT INTO track_power VALUES (?,?)";
      QSqlQuery query146 (queryPrep, fqt_test);
+     query146.addBindValue("3_16");
+     query146.addBindValue(1);
      if(!query146.exec())
          qDebug() << "Query Error: " << query146.lastError();
 
-     queryPrep = "INSERT INTO track_power VALUES ('3_2', 1)";
+     queryPrep = "INSERT INTO track_power VALUES (?,?)";
      QSqlQuery query147 (queryPrep, fqt_test);
+     query147.addBindValue("3_2");
+     query147.addBindValue(1);
      if(!query147.exec())
          qDebug() << "Query Error: " << query147.lastError();
 
-     queryPrep = "INSERT INTO track_power VALUES ('3_3', 1)";
+     queryPrep = "INSERT INTO track_power VALUES (?,?)";
      QSqlQuery query148 (queryPrep, fqt_test);
+     query148.addBindValue("3_3");
+     query148.addBindValue(1);
      if(!query148.exec())
          qDebug() << "Query Error: " << query148.lastError();
 
-     queryPrep = "INSERT INTO track_power VALUES ('3_4', 1)";
+     queryPrep = "INSERT INTO track_power VALUES ?,?)";
      QSqlQuery query149 (queryPrep, fqt_test);
+     query149.addBindValue("3_4");
+     query149.addBindValue(1);
      if(!query149.exec())
          qDebug() << "Query Error: " << query149.lastError();
 
-     queryPrep = "INSERT INTO track_power VALUES ('3_5', 1)";
+     queryPrep = "INSERT INTO track_power VALUES (?,?)";
      QSqlQuery query150 (queryPrep, fqt_test);
+     query150.addBindValue("3_5");
+     query150.addBindValue(1);
      if(!query150.exec())
          qDebug() << "Query Error: " << query150.lastError();
 
-     queryPrep = "INSERT INTO track_power VALUES ('3_6', 1)";
+     queryPrep = "INSERT INTO track_power VALUES (?,?)";
      QSqlQuery query151 (queryPrep, fqt_test);
+     query151.addBindValue("3_6");
+     query151.addBindValue(1);
      if(!query151.exec())
          qDebug() << "Query Error: " << query151.lastError();
 
-     queryPrep = "INSERT INTO track_power VALUES ('3_7', 1)";
+     queryPrep = "INSERT INTO track_power VALUES (?,?)";
      QSqlQuery query152 (queryPrep, fqt_test);
+     query152.addBindValue("3_7");
+     query152.addBindValue(1);
      if(!query152.exec())
          qDebug() << "Query Error: " << query152.lastError();
 
-     queryPrep = "INSERT INTO track_power VALUES ('3_8', 0)";
+     queryPrep = "INSERT INTO track_power VALUES (?,?)";
      QSqlQuery query153 (queryPrep, fqt_test);
+     query153.addBindValue("3_8");
+     query153.addBindValue(0);
      if(!query153.exec())
          qDebug() << "Query Error: " << query153.lastError();
 
-     queryPrep = "INSERT INTO track_power VALUES ('4_10', 1)";
+     queryPrep = "INSERT INTO track_power VALUES (?,?)";
      QSqlQuery query154 (queryPrep, fqt_test);
+     query154.addBindValue("4_10");
+     query154.addBindValue(1);
      if(!query154.exec())
          qDebug() << "Query Error: " << query154.lastError();
 
-     queryPrep = "INSERT INTO track_power VALUES ('4_11', 1)";
+     queryPrep = "INSERT INTO track_power VALUES (?,?)";
      QSqlQuery query155 (queryPrep, fqt_test);
+     query155.addBindValue("4_11");
+     query155.addBindValue(1);
      if(!query155.exec())
          qDebug() << "Query Error: " << query155.lastError();
 
-     queryPrep = "INSERT INTO track_power VALUES ('4_12', 1)";
+     queryPrep = "INSERT INTO track_power VALUES (?,?)";
      QSqlQuery query156 (queryPrep, fqt_test);
+     query156.addBindValue("4_12");
+     query156.addBindValue(1);
      if(!query156.exec())
          qDebug() << "Query Error: " << query156.lastError();
 
-     queryPrep = "INSERT INTO track_power VALUES ('4_13', 1)";
+     queryPrep = "INSERT INTO track_power VALUES (?,?)";
      QSqlQuery query157 (queryPrep, fqt_test);
+     query157.addBindValue("4_13");
+     query157.addBindValue(1);
      if(!query157.exec())
          qDebug() << "Query Error: " << query157.lastError();
 
-     queryPrep = "INSERT INTO track_power VALUES ('4_14', 1)";
+     queryPrep = "INSERT INTO track_power VALUES (?,?)";
      QSqlQuery query158 (queryPrep, fqt_test);
+     query158.addBindValue("4_14");
+     query158.addBindValue(1);
      if(!query158.exec())
          qDebug() << "Query Error: " << query158.lastError();
 
-     queryPrep = "INSERT INTO track_power VALUES ('4_15', 1)";
+     queryPrep = "INSERT INTO track_power VALUES (?,?)";
      QSqlQuery query159 (queryPrep, fqt_test);
+     query159.addBindValue("4_15");
+     query159.addBindValue(1);
      if(!query159.exec())
          qDebug() << "Query Error: " << query159.lastError();
 
-     queryPrep = "INSERT INTO track_power VALUES ('4_16', 1)";
+     queryPrep = "INSERT INTO track_power VALUES (?,?)";
      QSqlQuery query160 (queryPrep, fqt_test);
+     query160.addBindValue("4_16");
+     query160.addBindValue(1);
      if(!query160.exec())
          qDebug() << "Query Error: " << query160.lastError();
 
-     queryPrep = "INSERT INTO track_power VALUES ('4_2', 1)";
+     queryPrep = "INSERT INTO track_power VALUES (?,?)";
      QSqlQuery query161 (queryPrep, fqt_test);
+     query161.addBindValue("4_2");
+     query161.addBindValue(1);
      if(!query161.exec())
          qDebug() << "Query Error: " << query161.lastError();
 
-     queryPrep = "INSERT INTO track_power VALUES ('4_3', 1)";
+     queryPrep = "INSERT INTO track_power VALUES (?,?)";
      QSqlQuery query162 (queryPrep, fqt_test);
+     query162.addBindValue("4_3");
+     query162.addBindValue(1);
      if(!query162.exec())
          qDebug() << "Query Error: " << query162.lastError();
 
-     queryPrep = "INSERT INTO track_power VALUES ('4_4', 1)";
+     queryPrep = "INSERT INTO track_power VALUES (?,?)";
      QSqlQuery query163 (queryPrep, fqt_test);
+     query163.addBindValue("4_4");
+     query163.addBindValue(1);
      if(!query163.exec())
          qDebug() << "Query Error: " << query163.lastError();
 
-     queryPrep = "INSERT INTO track_power VALUES ('4_9', 1)";
+     queryPrep = "INSERT INTO track_power VALUES (?,?)";
      QSqlQuery query164 (queryPrep, fqt_test);
+     query164.addBindValue("4_9");
+     query164.addBindValue(1);
      if(!query164.exec())
          qDebug() << "Query Error: " << query164.lastError();
 
-     queryPrep = "INSERT INTO track_power VALUES ('5_1', 1)";
+     queryPrep = "INSERT INTO track_power VALUES (?,?)";
      QSqlQuery query165 (queryPrep, fqt_test);
+     query165.addBindValue("5_1");
+     query165.addBindValue(1);
      if(!query165.exec())
          qDebug() << "Query Error: " << query165.lastError();
 
-     queryPrep = "INSERT INTO track_power VALUES ('5_13', 1)";
+     queryPrep = "INSERT INTO track_power VALUES (?,?)";
      QSqlQuery query166 (queryPrep, fqt_test);
+     query166.addBindValue("5_13");
+     query166.addBindValue(1);
      if(!query166.exec())
          qDebug() << "Query Error: " << query166.lastError();
 
-     queryPrep = "INSERT INTO track_power VALUES ('5_14', 1)";
+     queryPrep = "INSERT INTO track_power VALUES (?,?)";
      QSqlQuery query167 (queryPrep, fqt_test);
+     query167.addBindValue("5_14");
+     query167.addBindValue(1);
      if(!query167.exec())
          qDebug() << "Query Error: " << query167.lastError();
 
-     queryPrep = "INSERT INTO track_power VALUES ('5_15', 1)";
+     queryPrep = "INSERT INTO track_power VALUES (?,?)";
      QSqlQuery query168 (queryPrep, fqt_test);
+     query168.addBindValue("5_15");
+     query168.addBindValue(1);
      if(!query168.exec())
          qDebug() << "Query Error: " << query168.lastError();
 
-     queryPrep = "INSERT INTO track_power VALUES ('5_16', 1)";
+     queryPrep = "INSERT INTO track_power VALUES (?,?)";
      QSqlQuery query169 (queryPrep, fqt_test);
+     query169.addBindValue("5_16");
+     query169.addBindValue(1);
      if(!query169.exec())
          qDebug() << "Query Error: " << query169.lastError();
 
-     queryPrep = "INSERT INTO track_power VALUES ('5_2', 1)";
+     queryPrep = "INSERT INTO track_power VALUES ?,?)";
      QSqlQuery query170 (queryPrep, fqt_test);
+     query170.addBindValue("5_2");
+     query170.addBindValue(1);
      if(!query170.exec())
          qDebug() << "Query Error: " << query170.lastError();
 
-     queryPrep = "INSERT INTO track_power VALUES ('5_3', 1)";
+     queryPrep = "INSERT INTO track_power VALUES (?,?)";
      QSqlQuery query171 (queryPrep, fqt_test);
+     query171.addBindValue("5_3");
+     query171.addBindValue(1);
      if(!query171.exec())
          qDebug() << "Query Error: " << query171.lastError();
 
-     queryPrep = "INSERT INTO track_power VALUES ('5_4', 0)";
+     queryPrep = "INSERT INTO track_power VALUES (?,?)";
      QSqlQuery query172 (queryPrep, fqt_test);
+     query172.addBindValue("5_4");
+     query172.addBindValue(0);
      if(!query172.exec())
          qDebug() << "Query Error: " << query172.lastError();
 
-     queryPrep = "INSERT INTO track_power VALUES ('5_5', 1)";
+     queryPrep = "INSERT INTO track_power VALUES (?,?)";
      QSqlQuery query173 (queryPrep, fqt_test);
+     query173.addBindValue("5_5");
+     query173.addBindValue(1);
      if(!query173.exec())
          qDebug() << "Query Error: " << query173.lastError();
 
-     queryPrep = "INSERT INTO track_power VALUES ('5_6', 1)";
+     queryPrep = "INSERT INTO track_power VALUES (?,?)";
      QSqlQuery query174 (queryPrep, fqt_test);
+     query174.addBindValue("5_6");
+     query174.addBindValue(1);
      if(!query174.exec())
          qDebug() << "Query Error: " << query174.lastError();
 
-     queryPrep = "INSERT INTO track_power VALUES ('5_7', 1)";
+     queryPrep = "INSERT INTO track_power VALUES (?,?)";
      QSqlQuery query175 (queryPrep, fqt_test);
+     query175.addBindValue("5_7");
+     query175.addBindValue(1);
      if(!query175.exec())
          qDebug() << "Query Error: " << query175.lastError();
 
-     queryPrep = "INSERT INTO track_power VALUES ('5_8', 1)";
+     queryPrep = "INSERT INTO track_power VALUES (?,?)";
      QSqlQuery query176 (queryPrep, fqt_test);
+     query176.addBindValue("5_8");
+     query176.addBindValue(1);
      if(!query176.exec())
          qDebug() << "Query Error: " << query176.lastError();
 
-     queryPrep = "INSERT INTO track_power VALUES ('6_1', 1)";
+     queryPrep = "INSERT INTO track_power VALUES (?,?)";
      QSqlQuery query177 (queryPrep, fqt_test);
+     query177.addBindValue("6_1");
+     query177.addBindValue(1);
      if(!query177.exec())
          qDebug() << "Query Error: " << query177.lastError();
 
-     queryPrep = "INSERT INTO track_power VALUES ('6_2', 1)";
+     queryPrep = "INSERT INTO track_power VALUES (?,?)";
      QSqlQuery query178 (queryPrep, fqt_test);
+     query178.addBindValue("6_2");
+     query178.addBindValue(1);
      if(!query178.exec())
          qDebug() << "Query Error: " << query178.lastError();
 
-     queryPrep = "INSERT INTO track_power VALUES ('6_3', 1)";
+     queryPrep = "INSERT INTO track_power VALUES (?,?)";
      QSqlQuery query179 (queryPrep, fqt_test);
+     query179.addBindValue("6_3");
+     query179.addBindValue(1);
      if(!query179.exec())
          qDebug() << "Query Error: " << query179.lastError();
 
-     queryPrep = "INSERT INTO track_power VALUES ('6_4', 1)";
+     queryPrep = "INSERT INTO track_power VALUES (?,?)";
      QSqlQuery query180 (queryPrep, fqt_test);
+     query180.addBindValue("6_4");
+     query180.addBindValue(1);
      if(!query180.exec())
          qDebug() << "Query Error: " << query180.lastError();
 
-     queryPrep = "INSERT INTO track_power VALUES ('6_5', 1)";
+     queryPrep = "INSERT INTO track_power VALUES (?,?)";
      QSqlQuery query181 (queryPrep, fqt_test);
+     query181.addBindValue("6_5");
+     query181.addBindValue(1);
      if(!query181.exec())
          qDebug() << "Query Error: " << query181.lastError();
 
-     queryPrep = "INSERT INTO track_power VALUES ('6_6', 1)";
+     queryPrep = "INSERT INTO track_power VALUES (?,?)";
      QSqlQuery query182 (queryPrep, fqt_test);
+     query182.addBindValue("6_6");
+     query182.addBindValue(1);
      if(!query182.exec())
          qDebug() << "Query Error: " << query182.lastError();
 
-     queryPrep = "INSERT INTO track_power VALUES ('6_7', 1)";
+     queryPrep = "INSERT INTO track_power VALUES (?,?)";
      QSqlQuery query183 (queryPrep, fqt_test);
+     query183.addBindValue("6_7");
+     query183.addBindValue(1);
      if(!query183.exec())
          qDebug() << "Query Error: " << query183.lastError();
 
-     queryPrep = "INSERT INTO track_power VALUES ('6_8', 1)";
+     queryPrep = "INSERT INTO track_power VALUES (?,?)";
      QSqlQuery query184 (queryPrep, fqt_test);
+     query184.addBindValue("6_8");
+     query184.addBindValue(1);
      if(!query184.exec())
          qDebug() << "Query Error: " << query184.lastError();
 
-     queryPrep = "INSERT INTO track_power VALUES ('7_1', 1)";
+     queryPrep = "INSERT INTO track_power VALUES (?,?)";
      QSqlQuery query185 (queryPrep, fqt_test);
+     query185.addBindValue("7_1");
+     query185.addBindValue(1);
      if(!query185.exec())
          qDebug() << "Query Error: " << query185.lastError();
 
-     queryPrep = "INSERT INTO track_power VALUES ('7_13', 1)";
+     queryPrep = "INSERT INTO track_power VALUES (?,?)";
      QSqlQuery query186 (queryPrep, fqt_test);
+     query186.addBindValue("7_13");
+     query186.addBindValue(1);
      if(!query186.exec())
          qDebug() << "Query Error: " << query186.lastError();
 
-     queryPrep = "INSERT INTO track_power VALUES ('7_2', 1)";
+     queryPrep = "INSERT INTO track_power VALUES (?,?)";
      QSqlQuery query187 (queryPrep, fqt_test);
+     query187.addBindValue("7_2");
+     query187.addBindValue(1);
      if(!query187.exec())
          qDebug() << "Query Error: " << query187.lastError();
 
-     queryPrep = "INSERT INTO track_power VALUES ('7_3', 1)";
+     queryPrep = "INSERT INTO track_power VALUES (?,?)";
      QSqlQuery query188 (queryPrep, fqt_test);
+     query188.addBindValue("7_3");
+     query188.addBindValue(1);
      if(!query188.exec())
          qDebug() << "Query Error: " << query188.lastError();
 
-     queryPrep = "INSERT INTO track_power VALUES ('7_4', 1)";
+     queryPrep = "INSERT INTO track_power VALUES (?,?)";
      QSqlQuery query189 (queryPrep, fqt_test);
+     query189.addBindValue("7_4");
+     query189.addBindValue(1);
      if(!query189.exec())
          qDebug() << "Query Error: " << query189.lastError();
 
-     queryPrep = "INSERT INTO track_power VALUES ('7_5', 1)";
+     queryPrep = "INSERT INTO track_power VALUES (?,?)";
      QSqlQuery query190 (queryPrep, fqt_test);
+     query190.addBindValue("7_5");
+     query190.addBindValue(1);
      if(!query190.exec())
          qDebug() << "Query Error: " << query190.lastError();
 
-     queryPrep = "INSERT INTO track_power VALUES ('7_6', 1)";
+     queryPrep = "INSERT INTO track_power VALUES (?,?)";
      QSqlQuery query191 (queryPrep, fqt_test);
+     query191.addBindValue("7_6");
+     query191.addBindValue(1);
      if(!query191.exec())
          qDebug() << "Query Error: " << query191.lastError();
 
-     queryPrep = "INSERT INTO track_power VALUES ('7_7', 1)";
+     queryPrep = "INSERT INTO track_power VALUES (?,?)";
      QSqlQuery query192 (queryPrep, fqt_test);
+     query192.addBindValue("7_7");
+     query192.addBindValue(1);
      if(!query192.exec())
          qDebug() << "Query Error: " << query192.lastError();
 
-     queryPrep = "INSERT INTO track_power VALUES ('7_8', 1)";
+     queryPrep = "INSERT INTO track_power VALUES (?,?)";
      QSqlQuery query193 (queryPrep, fqt_test);
+     query193.addBindValue("7_8");
+     query193.addBindValue(1);
      if(!query193.exec())
          qDebug() << "Query Error: " << query193.lastError();
 
-     queryPrep = "INSERT INTO track_power VALUES ('8_1', 0)";
+     queryPrep = "INSERT INTO track_power VALUES (?,?)";
      QSqlQuery query194 (queryPrep, fqt_test);
+     query194.addBindValue("8_1");
+     query194.addBindValue(0);
      if(!query194.exec())
          qDebug() << "Query Error: " << query194.lastError();
 
-     queryPrep = "INSERT INTO track_power VALUES ('8_10', 1)";
+     queryPrep = "INSERT INTO track_power VALUES (?,?)";
      QSqlQuery query195 (queryPrep, fqt_test);
+     query195.addBindValue("8_10");
+     query195.addBindValue(1);
      if(!query195.exec())
          qDebug() << "Query Error: " << query195.lastError();
 
-     queryPrep = "INSERT INTO track_power VALUES ('8_11', 1)";
+     queryPrep = "INSERT INTO track_power VALUES (?,?)";
      QSqlQuery query196 (queryPrep, fqt_test);
+     query196.addBindValue("8_11");
+     query196.addBindValue(1);
      if(!query196.exec())
          qDebug() << "Query Error: " << query196.lastError();
 
-     queryPrep = "INSERT INTO track_power VALUES ('8_12', 1)";
+     queryPrep = "INSERT INTO track_power VALUES (?,?)";
      QSqlQuery query197 (queryPrep, fqt_test);
+     query197.addBindValue("8_12");
+     query197.addBindValue(1);
      if(!query197.exec())
          qDebug() << "Query Error: " << query197.lastError();
 
-     queryPrep = "INSERT INTO track_power VALUES ('8_13', 1)";
+     queryPrep = "INSERT INTO track_power VALUES (?,?))";
      QSqlQuery query198 (queryPrep, fqt_test);
+     query198.addBindValue("8_13");
+     query198.addBindValue(1);
      if(!query198.exec())
          qDebug() << "Query Error: " << query198.lastError();
 
-     queryPrep = "INSERT INTO track_power VALUES ('8_14', 1)";
+     queryPrep = "INSERT INTO track_power VALUES (?,?)";
      QSqlQuery query199 (queryPrep, fqt_test);
+     query199.addBindValue("8_14");
+     query199.addBindValue(1);
      if(!query199.exec())
          qDebug() << "Query Error: " << query199.lastError();
 
-     queryPrep = "INSERT INTO track_power VALUES ('8_15', 1)";
+     queryPrep = "INSERT INTO track_power VALUES (?,?)";
      QSqlQuery query200 (queryPrep, fqt_test);
+     query200.addBindValue("8_15");
+     query200.addBindValue(1);
      if(!query200.exec())
          qDebug() << "Query Error: " << query200.lastError();
 
-     queryPrep = "INSERT INTO track_power VALUES ('8_16', 1)";
+     queryPrep = "INSERT INTO track_power VALUES (?,?)";
      QSqlQuery query201 (queryPrep, fqt_test);
+     query201.addBindValue("8_16");
+     query201.addBindValue(1);
      if(!query201.exec())
          qDebug() << "Query Error: " << query201.lastError();
 
-     queryPrep = "INSERT INTO track_power VALUES ('8_2', 1)";
+     queryPrep = "INSERT INTO track_power VALUES (?,?)";
      QSqlQuery query202 (queryPrep, fqt_test);
+     query202.addBindValue("8_2");
+     query202.addBindValue(1);
      if(!query202.exec())
          qDebug() << "Query Error: " << query202.lastError();
 
-     queryPrep = "INSERT INTO track_power VALUES ('8_3', 1)";
+     queryPrep = "INSERT INTO track_power VALUES (?,?)";
      QSqlQuery query203 (queryPrep, fqt_test);
+     query203.addBindValue("8_3");
+     query203.addBindValue(1);
      if(!query203.exec())
          qDebug() << "Query Error: " << query203.lastError();
 
-     queryPrep = "INSERT INTO track_power VALUES ('8_4', 1)";
+     queryPrep = "INSERT INTO track_power VALUES (?,?)";
      QSqlQuery query204 (queryPrep, fqt_test);
+     query204.addBindValue("8_4");
+     query204.addBindValue(1);
      if(!query204.exec())
          qDebug() << "Query Error: " << query204.lastError();
 
-     queryPrep = "INSERT INTO track_power VALUES ('8_5', 1)";
+     queryPrep = "INSERT INTO track_power VALUES (?,?)";
      QSqlQuery query205 (queryPrep, fqt_test);
+     query205.addBindValue("8_5");
+     query205.addBindValue(1);
      if(!query205.exec())
          qDebug() << "Query Error: " << query205.lastError();
 
-     queryPrep = "INSERT INTO track_power VALUES ('8_6', 1)";
+     queryPrep = "INSERT INTO track_power VALUES (?,?)";
      QSqlQuery query206 (queryPrep, fqt_test);
+     query206.addBindValue("8_6");
+     query206.addBindValue(1);
      if(!query206.exec())
          qDebug() << "Query Error: " << query206.lastError();
 
-     queryPrep = "INSERT INTO track_power VALUES ('8_7', 1)";
+     queryPrep = "INSERT INTO track_power VALUES (?,?)";
      QSqlQuery query207 (queryPrep, fqt_test);
+     query207.addBindValue("8_7");
+     query207.addBindValue(1);
      if(!query207.exec())
          qDebug() << "Query Error: " << query207.lastError();
 
-     queryPrep = "INSERT INTO track_power VALUES ('8_8', 1)";
+     queryPrep = "INSERT INTO track_power VALUES (?,?)";
      QSqlQuery query208 (queryPrep, fqt_test);
+     query208.addBindValue("8_8");
+     query208.addBindValue(1);
      if(!query208.exec())
          qDebug() << "Query Error: " << query208.lastError();
 
-     queryPrep = "INSERT INTO track_power VALUES ('8_9', 1)";
+     queryPrep = "INSERT INTO track_power VALUES (?,?)";
      QSqlQuery query209 (queryPrep, fqt_test);
+     query209.addBindValue("8_9");
+     query209.addBindValue(1);
      if(!query209.exec())
          qDebug() << "Query Error: " << query209.lastError();
 
