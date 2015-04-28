@@ -6,7 +6,7 @@
 #include <QGraphicsRectItem>
 #include <QBrush>
 #include <QColor>
-#include <QTest>
+//#include <QTest>
 
 
 
@@ -727,17 +727,18 @@ void MainWindow::update_switches() // update the switch status, execute each tim
     while(query_switchStatus.next())
     {
         temp_switch.push_back(query_switchStatus.value(0).toInt()); // store current status in a temporary vector
-       // qDebug() << "status: " << query_switchStatus.value(0).toInt();
+        //qDebug() << "status: " << query_switchStatus.value(0).toInt();
     }
 
 
     for(int k = 0; k < temp_switch.length(); k++)
     {
-        //qDebug() << "temp_switch: "<<temp_switch.at(k);
-        //qDebug() << "switches: "<<switches.at(k)->getStatus();
+        qDebug() << "temp_switch: "<<temp_switch.at(k);
+        qDebug() << "switches: "<<switches.at(k)->getStatus();
         // if new status is different than current status, update the display
         if(temp_switch.at(k) != switches.at(k)->getStatus())
         {
+            qDebug() << "updating ";
             switches.at(k)->setStatus(temp_switch.at(k));
            // qDebug() << "newStatus: " << switches.at(k)->getStatus();
         }
@@ -821,7 +822,7 @@ void MainWindow::setupLegend()
     ui->legend->setItem(1,0, new QTableWidgetItem);
     ui->legend->item(1,0)->setData(Qt::BackgroundRole,color);
 
-    color.setRgb(255,255,0);
+    color.setRgb(9,160,235);
     ui->legend->setItem(2,0, new QTableWidgetItem);
     ui->legend->item(2,0)->setData(Qt::BackgroundRole,color);
 

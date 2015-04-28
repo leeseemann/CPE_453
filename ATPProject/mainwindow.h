@@ -54,6 +54,7 @@ private:
     void message(QSqlError);
     void message(QString,QVector<QString>);
     void init_database();
+    void clear_database();
 
 private slots:
     void sql_submit();

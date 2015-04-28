@@ -190,15 +190,15 @@ void TrackSwitches::setComponentID(int compID){
 
 void TrackSwitches::setStatus(/*QString*/ int status){
 
-
+qDebug() << "inside setStatus: "<< status;
    //SET STATUS COLORS FOR TrackSwitches************
-   if(status== 0)
+   if(status == 0)
    {
        setText(2, "Pass"); // set track switch status
 
        //set background color status indicator for QTreeWidgetItem
        QColor color;
-      color.setRgb(200,140,237);
+       color.setRgb(200,140,237);
        setBackgroundColor(2, color);
 
        //set background color status indicator for QGraphicsRectItem
@@ -209,13 +209,14 @@ void TrackSwitches::setStatus(/*QString*/ int status){
 
    }
 
-   else if(status== 1)
+   else if(status == 1)
    {
+       qDebug() << "updating again";
        setText(2, "Bypass"); // set track switch status
 
        //set background color status indicator for QTreeWidgetItem
        QColor color;
-        color.setRgb(79,80,82);
+       color.setRgb(79,80,82);
        setBackgroundColor(2, color);
 
        //set background color status indicator for QGraphicsRectItem
@@ -239,7 +240,12 @@ QString TrackSwitches::getComponentID()
 
 int TrackSwitches::getStatus()
 {
-    return text(2).toInt(); // retreive switch status
+    if(text(2) == "Pass")
+        return 0;
+    else if (text(2) == "Bypass")
+        return 1;
+
+    //return text(2).toInt(); // retreive switch status
 }
 
 
